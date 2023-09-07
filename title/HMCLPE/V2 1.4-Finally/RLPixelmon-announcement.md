@@ -3,4 +3,4 @@
 如有问题请咨询请联系开发者<br/>
 服务器IP和端口：s4.mc.fyi:14384<br/>
 客户端定制@3356168312<br/>
-⚠️若发现启动器崩溃，请尝试关闭“Animated terrain loading1.12.2.jar”模组
+⚠️若发现启动器崩溃，请尝试关闭“[优化]Animated terrain loading1.12.2.jar”模组
