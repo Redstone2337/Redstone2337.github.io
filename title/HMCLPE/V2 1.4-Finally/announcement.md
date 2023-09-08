@@ -1,4 +1,3 @@
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 欢迎使用海中石油直装包<br/>
 欢迎使用海中石油直装包<br/>
 欢迎使用海中石油直装包<br/>
