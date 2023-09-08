@@ -1,5 +1,4 @@
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-欢迎使用HMCL-PE日轮宝可梦客户端，本端免费使用非付费产品<br/>
+欢迎使用海中石油日轮宝可梦客户端，本端免费使用非付费产品<br/>
 如有问题请咨询请联系开发者<br/>
 如有问题请咨询请联系开发者<br/>
 ⚠服务器IP和端口：s4.mc.fyi:14384<br/>
