@@ -1,3 +1,4 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 欢迎使用折叠工艺启动器安装器客户端<br/>
 欢迎使用折叠工艺启动器安装器客户端<br/>
 欢迎使用折叠工艺启动器安装器客户端<br/>
