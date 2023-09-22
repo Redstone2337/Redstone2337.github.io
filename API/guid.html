@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<style>
+    #v1 {
+        font-size: large;
+    }
+
+    #v2{
+        border: 5em;
+        border-width: 3em;
+        border-color: aqua;
+        width: 10em;
+        height: 5em;
+        font-size: 3em;
+    }
+    #v3{
+        font-size: medium;
+        border-width: 3em;
+        border: 5em;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>生成随机GUID</title>
+</head>
+
+<body>
+    <h1>随机生成三段GUID</h1>
+    <div id="v3">
+        <p id="v1"><span id="guid1"></span></p>
+        <p id="v1"><span id="guid2"></span></p>
+        <p id="v1"><span id="guid3"></span></p>
+    </div>
+    <button onclick="generateGUIDs()" id="v2">生成GUID</button>
+
+    <script>
+        function generateGUID() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0,
+                    v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        function generateGUIDs() {
+            var guid1 = generateGUID();
+            var guid2 = generateGUID();
+            var guid3 = generateGUID();
+
+            document.getElementById('guid1').textContent = guid1;
+            document.getElementById('guid2').textContent = guid2;
+            document.getElementById('guid3').textContent = guid3;
+        }
+
+        // 初始生成一次
+        generateGUIDs();
+    </script>
+</body>
+
+</html>
