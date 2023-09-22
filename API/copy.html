@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html>
+    <style>
+        #v1{
+        border: 5em;
+        border-width: 3em;
+        border-color: aqua;
+        width: 10em;
+        height: 5em;
+        font-size: 3em;
+    }
+        #textToCopy{
+            border: 5em;
+            border-width: 3em;
+            background-color: aqua;
+            width: auto;
+            height: auto;
+            font-size: 3em;
+        }
+        
+    </style>
 <head>
     <title>复制文本按钮</title>
 </head>
 <body>
     <input type="text" id="textToCopy" value="Show it Ben">
-    <button onclick="copyText()">复制文本</button>
-    
-    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=2084165642&auto=1&height=66"></iframe>
+    <button onclick="copyText()" id="v1">复制文本</button><br>
+
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=2084165642&auto=0&height=66"></iframe>
 
     <script>
         function copyText() {
