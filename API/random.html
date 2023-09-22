@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html>
+	<style>
+		#hitokoto{
+           font-size: 3em;
+		   color: green;
+		}
+	</style>
 <head>
 	<title>飞龙科技</title>
 </head>
@@ -18,6 +24,21 @@
 				document.getElementById("hitokoto").innerText = data.hitokoto;
 			})
 			.catch(error => console.error(error));
+			
+			function copyText() {
+            // 获取要复制的文本
+            var text = document.getElementById("hitokoto");
+            
+            // 选择文本
+            text.select();
+            text.setSelectionRange(0, 99999); // 兼容性设置
+
+            // 复制文本到剪贴板
+            document.execCommand("copy");
+
+            // 提示复制成功
+            alert("文本已复制到剪贴板: " + text.value);
+        }
 	</script>
 </body>
 </html>
