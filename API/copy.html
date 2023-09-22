@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>复制文本按钮</title>
+</head>
+<body>
+    <input type="text" id="textToCopy" value="Show it Ben">
+    <button onclick="copyText()">复制文本</button>
+    
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=2084165642&auto=1&height=66"></iframe>
+
+    <script>
+        function copyText() {
+            // 获取要复制的文本
+            var text = document.getElementById("textToCopy");
+            
+            // 选择文本
+            text.select();
+            text.setSelectionRange(0, 99999); // 兼容性设置
+
+            // 复制文本到剪贴板
+            document.execCommand("copy");
+
+            // 提示复制成功
+            alert("文本已复制到剪贴板: " + text.value);
+        }
+    </script>
+</body>
+</html>
