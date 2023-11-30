@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>关于整合包</title>
+		<!-- <script src="https://unpkg.com/vue@next"></script> -->
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+	</head>
+	<body>
+		<div id="app">
+			<img id="logo"
+				src="https://www.minecraft.net/content/dam/games/minecraft/key-art/PC_Bundle_Deluxe_Desktop.jpg?imwidth=2401" />
+
+			<div id="box">
+				<div id="title">
+					<h3>为《Minecraft》提供更多的龙冒险永恒和经典枪生存整合包</h3>
+				</div>
+				<div id="text">
+					More dragons adventure for Timeless and Classics guns in minecraft
+					(为《<span onclick="toUrl(0)">Minecraft</span>》提供更多的龙冒险永恒和经典枪)整合包，整合包版本<span  onclick="toUrl(1)">1.1.2.1正式版</span>，
+					上个版本新增了<span  onclick="toUrl(2)">Tips</span>和<span  onclick="toUrl(3)">Public GUI Announcement</span>以及<span  onclick="toUrl(4)">ModernWorldCreation</span>三个模组，
+					本次版本新增了<span  onclick="toUrl(5)">[可选]RPG-Hud</span>，<span  onclick="toUrl(6)">ItemZoom</span>和<span  onclick="toUrl(7)">Legendary Tooltips</span>三个模组，
+					由于[可选]RPG-Hud模组启用之后，会极大影响帧率，所以默认禁用，可以选择开启，
+					不过建议不要开启，如果是电脑设备的话，就不需要了。在这个充满龙的世界中，
+					玩家可以选择当<span  onclick="toUrl(8)">龙骑士耀武扬威</span>，也可以选择<span  onclick="toUrl(9)">化身为龙，体验龙的生活</span>，玩家还可以选择发展<span  onclick="toUrl(10)">科技实现自动化工厂</span>，
+					还能以<span  onclick="toUrl(11)">枪为武器，大战巨龙，成为猎龙人</span>，这是一个未知的世界，可以联机，也可以单机。
+				</div>
+				<div id="down">
+					<p>More dragons adventure for Timeless and Classics guns in minecraft</p>
+					<button onclick="down()">下载文件</button>
+				</div>
+				<div id="warn">
+					<svg t="1701315241516" class="icon" viewBox="0 0 1024 1024" version="1.1"
+						xmlns="http://www.w3.org/2000/svg" p-id="4291" width="200" height="200">
+						<path
+							d="M512 147.2C310.528 147.2 147.2 310.528 147.2 512S310.528 876.8 512 876.8 876.8 713.472 876.8 512 713.472 147.2 512 147.2z m0 64c166.144 0 300.8 134.656 300.8 300.8S678.144 812.8 512 812.8 211.2 678.144 211.2 512 345.856 211.2 512 211.2z"
+							fill="#FB553C" p-id="4292"></path>
+						<path
+							d="M478.72 462.3104m33.28 0l0 0q33.28 0 33.28 33.28l0 173.056q0 33.28-33.28 33.28l0 0q-33.28 0-33.28-33.28l0-173.056q0-33.28 33.28-33.28Z"
+							fill="#FB553C" p-id="4293"></path>
+						<path d="M512 370.7136m-48.64 0a48.64 48.64 0 1 0 97.28 0 48.64 48.64 0 1 0-97.28 0Z"
+							fill="#FB553C" p-id="4294"></path>
+					</svg>
+					<p>
+						整合包内[可选]OptiFine_1.18.2_HD_U_H9模组默认是禁用的状态，需要手动启用[可选]OptiFine_1.18.2_HD_U_H9模组才正常启用整合包。
+					</p>
+				</div>
+			</div>
+
+		</div>
+		<script type="text/javascript">
+			var downList = [
+				"https://www.minecraft.net/zh-hans",
+				"https://redstone2337200.github.io/",
+				"https://www.mcmod.cn/class/3666.html",
+				"https://www.mcmod.cn/class/5200.html",
+				"https://www.mcmod.cn/class/10311.html",
+				"https://www.mcmod.cn/class/5711.html",
+				"https://www.mcmod.cn/class/3048.html",
+				"https://www.mcmod.cn/class/5396.html",
+				"https://www.mcmod.cn/class/5711.html",
+				"https://www.mcmod.cn/class/770.html",
+				"https://www.mcmod.cn/class/3838.html",
+				"https://www.mcmod.cn/class/260.html",
+				"https://www.mcmod.cn/class/4170.html",
+			]
+			function toUrl(num) {
+				window.location.href = this.downList[num]
+			}
+			function down(){
+				window.location.href = "https://www.123pan.com/s/hSr9-i1m5d.html"
+			}
+		</script>
+	</body>
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		#logo {
+			width: 100%;
+			max-height: 400px;
+			min-height: 200px;
+			object-fit: cover;
+		}
+		
+		#box {
+			margin: 0 auto;
+			max-width: 1200px;
+		}
+		
+		#title {
+			margin: 20px;
+		}
+		#title h3 {
+			position: relative;
+			padding-left: 10px;
+		}
+			
+		#title h3::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 5px;
+			height: 100%;
+			background: red;
+		}
+				
+		#text {
+			margin: 20px;
+			padding: 20px;
+			border-radius: 10px;
+			background: #777;
+			color: #FFF;
+			letter-spacing: 1px;
+			line-height: 30px;
+			word-break: break-all;
+			word-wrap: break-word;
+			font-size: 14px;
+		}
+		#text span {
+			position: relative;
+			margin: 0 5px;
+			padding: 1px 5px;
+			color: #00ff00;
+			border-radius: 10px;
+			cursor: pointer;
+		}
+			
+		#text span::after {
+			content: '?';
+			/* position: absolute; */
+			position: relative;
+			right: -2px;
+			top: -10px;
+			background: #FFF;
+			padding: 0 5px;
+			border-radius: 50%;
+			text-align: center;
+			color: #000;
+			font-size: 12px;
+		}
+				
+		#down {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: wrap;
+			margin: 20px;
+		}
+		
+		#down p {
+			font-weight: bold;
+		}
+			
+		#down button {
+			transition: all .3s;
+			border: 0;
+			margin: 10px;
+			padding: 10px 50px;
+			color: #fff;
+			background: #666;
+			/* border-bottom:  5px solid #333;
+			border-right: 5px solid #333;
+			border-top: 5px solid #999;
+			border-left:5px solid #999; */
+			border: 8px ridge #999;
+			cursor: pointer;
+		}
+			
+		#down button:hover {
+			background: #4CAF50;
+			border: 8px ridge #999;
+		}
+		
+		#warn {
+			margin: 20px;
+			background: #FBBD12;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 30px 20px;
+			border-radius: 5px;
+		}
+		#warn svg {
+			width: 30px;
+			height: 30px;
+			margin-right: 5px;
+		}
+	</style>
+</html>
