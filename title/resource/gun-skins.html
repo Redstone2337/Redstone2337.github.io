@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>枪械皮肤</title>
+		<!-- <script src="https://unpkg.com/vue@next"></script> -->
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+	</head>
+	<body>
+   <div>
+   	<link rel="stylesheet" href="../css/styles.css">
+      <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+  <div class="menu" id="menu">
+    <ul>
+      <li><a href="https://redstone2337200.github.io/title/modpack.html">首页</a></li>
+      <li><a href="minecraft-launcher.html">启动器</a></li>
+      <li><a href="gun-skins.html" id="v2"><b>枪皮</b></a></li>
+      <li><a href="more-modpack.html">整合</a></li>
+      <li><a href="JavaRuntimeEnvironment.html">运行库</a></li>
+    </ul>
+   </div>
+   <script src="../js/script.js"></script>
+		<div id="app">
+			<img id="logo"
+				src="https://www.minecraft.net/content/dam/games/minecraft/key-art/PC_Bundle_Deluxe_Desktop.jpg?imwidth=2401" />
+
+			<div id="box">
+				<div id="title">
+					<h3>《Minecraft》模组制作的大佬们做的以资源包的形式加载的枪械皮肤</h3>
+				</div>
+				<div id="text">
+					这里专门存放《<span onclick="toUrl(0)">Minecraft</span>》大佬们的<span onclick="toUrl(4)">枪械皮肤</span>作品，可以免费下载使用，安装方法<span onclick="toUrl(1)">跟加载资源包</span>一样，且这些资源包大部分是<span onclick="toUrl(2)">1.16.5</span>版本的，但据我所知，高版本Java是兼容低版本资源包的，当然，有的在<span onclick="toUrl(3)">1.18.2</span>里面若没有对应的枪械资源的话，<span onclick="toUrl(2)">1.16.5</span>里面或许就有，所以基本都能用。		
+         		</div>
+				<div id="down">
+					<div id="title">
+						<h3>下载列表</h3>
+					</div>
+					<ul>
+						<li>
+							<p>沙漠之鹰-碧蓝档案：伊洛玛丽</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/iIYUI1giynra')">下载文件</button></p>
+						</li>
+						<li>
+							<p>M4A1-碧蓝档案：白洲梓</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/iCJYS1giyn4h')">下载文件</button></p>
+						</li>
+						<li>
+							<p>SCAR MK20-薯条魔法！！！</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/iBUNN1giyood')">下载文件</button></p>
+						</li>
+						<li>
+							<p>XM1014-千年之影</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/iZEN61gizcdg')">进入官网</button></p>
+						</li>
+						<li>
+							<p>Vector-千年之恋</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/i3M911gizbyb')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>Vector-笨笨小狼</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/iQRWC1gizbhe')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>UDP9-LOK1</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/iTYEQ1gizayf')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>UDP9-小月亮</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/iO1KZ1giza0b')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>UDP9-千年之约</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/i3M911gizbyb')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>UDP9-横扫饥饿</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/i14JB1giz8ed')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>SCAR_H-Sweet driver</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/iIJZW1giz7oh')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>MP7-无力抵抗</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/i47HE1giz79c')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>M249-光学幻境</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/i96UY1giz6ob')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>M249-北极狐</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/iJXK71glt6wb')">下载文件</button></p>
+						</li>	
+            			<li>
+							<p>M1911-Kimber Rapide</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/i0W851giz66d')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>M16-蒸汽机</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/i7F7P1giz5md')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>HK416-ZX81 彩色</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/i0THR1giyt9i')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>AWM-二西莫夫</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/iYRFY1giyssb')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>AK47-猎心者</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/iAHVV1giyrjg')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>长弓 95-ZX81 彩色</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/iP1MB1giyr0h')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>塔兰战术TR</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/i0HUG1giyqfg')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>重型工业-龙骨军工®</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/iT4AX1glt7di')">下载文件</button></p>
+						</li>	
+            			<li>
+							<p>MRAD-冰霜巨龙</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/i3C8F1glt74j')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>黑山集团RKS-1127精确步枪</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/i52KG1gm9w5g')">下载文件</button></p>
+						</li>
+            			<li>
+							<p>黑山集团BMT-1128k短管突击步枪</p>
+							<p><button onclick="down('https://wwp.lanzoup.com/iKXGE1gm9w0b')">下载文件</button></p>
+						</li>
+					</ul>
+				</div>
+				<div id="warn">
+					<svg t="1701315241516" class="icon" viewBox="0 0 1024 1024" version="1.1"
+						xmlns="http://www.w3.org/2000/svg" p-id="4291" width="200" height="200">
+						<path
+							d="M512 147.2C310.528 147.2 147.2 310.528 147.2 512S310.528 876.8 512 876.8 876.8 713.472 876.8 512 713.472 147.2 512 147.2z m0 64c166.144 0 300.8 134.656 300.8 300.8S678.144 812.8 512 812.8 211.2 678.144 211.2 512 345.856 211.2 512 211.2z"
+							fill="#FB553C" p-id="4292"></path>
+						<path
+							d="M478.72 462.3104m33.28 0l0 0q33.28 0 33.28 33.28l0 173.056q0 33.28-33.28 33.28l0 0q-33.28 0-33.28-33.28l0-173.056q0-33.28 33.28-33.28Z"
+							fill="#FB553C" p-id="4293"></path>
+						<path d="M512 370.7136m-48.64 0a48.64 48.64 0 1 0 97.28 0 48.64 48.64 0 1 0-97.28 0Z"
+							fill="#FB553C" p-id="4294"></path>
+					</svg>
+					<p>
+						页面内枪械皮肤可以免费下载，这些枪皮原作者已经开放了下载，大部分是1.16.5的，但是高版本Java是兼容低版本资源包的，用也能用，只是有的会有点bug，<b id="v1">重型工业-龙骨军工®</b>是一套系列枪械，内部包含14套枪械皮肤，若想转载的话，记得标明资源出处。
+					</p>
+				</div>
+				<div style="height: 100px;"></div>
+				<footer>
+					<p>Copyright ©2023 Felongkeji™.
+						Designed by <a rel="nofollow" href="https://redstone2337200.github.io/" target="_parent">Redstone233</a></p>
+				</footer>
+			</div>
+
+		</div>
+		<script type="text/javascript">
+			var downList = [
+				"https://www.minecraft.net/zh-hans",
+				"https://zh.minecraft.wiki/?curid=10215",
+				"https://zh.minecraft.wiki/?curid=74402",
+				"https://zh.minecraft.wiki/?curid=92349",
+				"../resource/gun-skins.html",
+				"https://www.mcmod.cn/class/5711.html",
+				"https://www.mcmod.cn/class/3048.html",
+				"https://www.mcmod.cn/class/5396.html",
+				"https://www.mcmod.cn/class/770.html",
+				"https://www.mcmod.cn/class/3838.html",
+				"https://www.mcmod.cn/class/260.html",
+				"https://www.mcmod.cn/class/4170.html",
+			]
+
+			function toUrl(num) {
+				window.location.href = this.downList[num]
+			}
+
+			function down(src) {
+				window.open(src)
+			}
+		</script>
+	</body>
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		#logo {
+			width: 100%;
+			max-height: 400px;
+			min-height: 200px;
+			object-fit: cover;
+		}
+
+		#box {
+			margin: 0 auto;
+			max-width: 1200px;
+		}
+
+		#title {
+			margin: 20px;
+		}
+
+		#title h3 {
+			position: relative;
+			padding-left: 10px;
+		}
+
+		#title h3::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 5px;
+			height: 100%;
+			background: red;
+		}
+
+		#text {
+			margin: 20px;
+			padding: 20px;
+			border-radius: 10px;
+			background: #777;
+			color: #FFF;
+			letter-spacing: 1px;
+			line-height: 30px;
+			word-break: break-all;
+			word-wrap: break-word;
+			font-size: 14px;
+		}
+
+		#text span {
+			position: relative;
+			margin: 0 5px;
+			padding: 1px 5px;
+			color: #00ff00;
+			border-radius: 10px;
+			cursor: pointer;
+		}
+
+		#text span::after {
+			content: '?';
+			/* position: absolute; */
+			position: relative;
+			right: -2px;
+			top: -10px;
+			background: #FFF;
+			padding: 0 5px;
+			border-radius: 50%;
+			text-align: center;
+			color: #000;
+			font-size: 12px;
+		}
+		#down ul{
+			margin: 20px;
+		}
+		#down ul li{
+			transition: all .3s;
+			font-size: 13px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			list-style-type: none;
+			border-radius: 10px;
+			border-bottom: 1px solid #333;
+			margin:10px;
+		}
+		
+		#down ul li:hover{
+			border-top:1px solid #333;
+			background: rgba(0, 0, 0, 0.3);
+			padding:20px;
+		}
+		#down p {
+			font-weight: bold;
+		}
+
+		#down button {
+			transition: all .3s;
+			border: 0;
+			margin: 10px;
+			padding: 5px 30px;
+			color: #fff;
+			background: #666;
+			/* border: 8px ridge #999; */
+			cursor: pointer;
+		}
+
+		#down button:hover {
+			background: #4CAF50;
+			/* border: 8px ridge #999; */
+		}
+
+		#warn {
+			margin: 20px;
+			background: #FBBD12;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 30px 20px;
+			border-radius: 5px;
+		}
+   
+		#warn svg {
+			width: 30px;
+			height: 30px;
+			margin-right: 5px;
+		}
+   
+   		#v1 {
+         color: blue;
+         font-size: 18px;
+         }
+		footer{
+			background: #333;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			padding: 20px 0;
+			color: #FFF;
+			text-align: center;
+			font-size: 0.8em;
+		}
+		footer a{
+			text-decoration: none;
+			color: dodgerblue;
+		}
+	</style>
+</html>
