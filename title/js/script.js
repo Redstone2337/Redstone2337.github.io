@@ -6,3 +6,12 @@ function toggleMenu() {
     menu.style.display = "none";
   }
 }
+
+function toggleDialog() {
+  var dialog = document.getElementById("dialog");
+  if (dialog.style.display === "none" || dialog.style.display === "") {
+    dialog.style.display = "block";
+  } else {
+    dialog.style.display = "none";
+  }
+}
