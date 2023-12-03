@@ -40,3 +40,28 @@
 .menu #v2 {
 	color: gold;
 }
+
+.dialog {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  z-index: 1;
+}
+
+.dialog-content {
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: #aaa;
+  font-size: 20px;
+  cursor: pointer;
+}
