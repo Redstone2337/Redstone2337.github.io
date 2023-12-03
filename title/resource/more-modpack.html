@@ -1,277 +1,346 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<title>更多整合包</title>
-		<!-- <script src="https://unpkg.com/vue@next"></script> -->
-		<meta name="viewport"
-			content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
-	</head>
-	<body>
-   <div>
-   	<link rel="stylesheet" href="../css/styles.css">
-      <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
-  <div class="menu" id="menu">
-    <ul>
-      <li><a href="https://redstone2337200.github.io/title/modpack.html">首页</a></li>
-      <li><a href="minecraft-launcher.html">启动器</a></li>
-      <li><a href="gun-skins.html">枪皮</a></li>
-      <li><a href="more-modpack.html" id="v2"><b>整合</b></a></li>
-      <li><a href="JavaRuntimeEnvironment.html">运行库</a></li>
-    </ul>
-   </div>
-   <script src="../js/script.js"></script>
-		<div id="app">
-			<img id="logo"
-				src="https://www.minecraft.net/content/dam/games/minecraft/key-art/PC_Bundle_Deluxe_Desktop.jpg?imwidth=2401" />
 
-			<div id="box">
-				<div id="title">
-					<h3>《Minecraft》开发者们的自制整合包</h3>
-				</div>
-				<div id="text">
-					这里专门存放《<span onclick="toUrl(0)">Minecraft</span>》开发者们的自制整合包，这里属于镜像站，有些群友们做的整合包，可以在这里找到下载位置，前提是都没有<span onclick="toUrl(1)">curseforge</span>帐号或者<span onclick="toUrl(2)">Modrinth</span>帐号，属于小型整合包合集，在这些整个包中，若有的整合包需要依赖<span onclick="toUrl(3)">Optifine</span>或者优化组合的话，会有专门标识，一般的话会用角标的形式表明，有时候或许是括号，<span onclick="toUrl(3)">Optifine</span>有两种安装方式，一种是在启动器里直接覆盖安装，另一种是直接将<span onclick="toUrl(3)">Optifine</span>文件丢到mods文件夹内。
-         		</div>
-				<div id="down">
-					<div id="title">
-						<h3>下载列表</h3>
-					</div>
-					<ul>
-						<li>
-							<p>Dragons' adventure for eternal technology in minecraft<b id="v3">®</b></p>
-							<p><button onclick="down('https://www.123pan.com/s/hSr9-Kfm5d.html')">下载文件</button></p>
-						</li>
-            			<li>
-							<p>早期联机整合包<b id="v2">™</b></p>
-							<p><button onclick="down('https://cloud.06dn.com/s/Z9jkS1')">下载文件</button></p>
-						</li>
-            			<li>
-							<p>Create and iceandfire_Update<b id="v2">™</b></p>
-							<p><button onclick="down('https://cloud.06dn.com/s/RO6WT3')">下载文件</button></p>
-						</li>
-            			<li>
-							<p>龙之冒险：更多的龙<b id="v3">®</b></p>
-							<p><button onclick="down('https://cloud.06dn.com/s/v3dKFe')">下载文件</button></p>
-						</li>	
-					</ul>
-				</div>
-				<div id="warn">
-					<svg t="1701315241516" class="icon" viewBox="0 0 1024 1024" version="1.1"
-						xmlns="http://www.w3.org/2000/svg" p-id="4291" width="200" height="200">
-						<path
-							d="M512 147.2C310.528 147.2 147.2 310.528 147.2 512S310.528 876.8 512 876.8 876.8 713.472 876.8 512 713.472 147.2 512 147.2z m0 64c166.144 0 300.8 134.656 300.8 300.8S678.144 812.8 512 812.8 211.2 678.144 211.2 512 345.856 211.2 512 211.2z"
-							fill="#FB553C" p-id="4292"></path>
-						<path
-							d="M478.72 462.3104m33.28 0l0 0q33.28 0 33.28 33.28l0 173.056q0 33.28-33.28 33.28l0 0q-33.28 0-33.28-33.28l0-173.056q0-33.28 33.28-33.28Z"
-							fill="#FB553C" p-id="4293"></path>
-						<path d="M512 370.7136m-48.64 0a48.64 48.64 0 1 0 97.28 0 48.64 48.64 0 1 0-97.28 0Z"
-							fill="#FB553C" p-id="4294"></path>
-					</svg>
-					<p>
-						页面内的整合包可以免费下载安装，若有的整合包需要高清修复的话，会有标明，不需要高清修复的话，就不会有标明，有的可能会显示优化组合，但这个优化组合就看整合包作者怎么搞了，带着<b id="v2">®</b>或者<b id="v2">™</b>之类符号的为<b id="v1">@Feilongkeji</b>的官方整合包，带<b id="v4">¹⁺</b>符号的为正式版整合包，带<b id="v5">¹⁻</b>符号为测试版整合包，若不存在那两个符号则默认为正式版。
-					</p>
-				</div>
-				<div style="height: 100px;"></div>
-				<footer>
-					<p>Copyright ©2023 Felongkeji™.
-						Designed by <a rel="nofollow" href="https://redstone2337200.github.io/" target="_parent">Redstone233</a></p>
-				</footer>
-			</div>
+<head>
+    <meta charset="utf-8" />
+    <title>更多整合包</title>
+    <!-- <script src="https://unpkg.com/vue@next"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+</head>
 
-		</div>
-		<script type="text/javascript">
-			var downList = [
-				"https://www.minecraft.net/zh-hans",
-				"https://www.curseforge.com/",
-				"https://modrinth.com/",
-				"https://optifine.net/home",
-				"../resource/gun-skins.html",
-				"https://www.mcmod.cn/class/5711.html",
-				"https://www.mcmod.cn/class/3048.html",
-				"https://www.mcmod.cn/class/5396.html",
-				"https://www.mcmod.cn/class/770.html",
-				"https://www.mcmod.cn/class/3838.html",
-				"https://www.mcmod.cn/class/260.html",
-				"https://www.mcmod.cn/class/4170.html",
-			]
+<body>
+    <div>
+        <link rel="stylesheet" href="../css/styles.css">
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+        <div class="menu" id="menu">
+            <ul>
+                <li><a href="https://redstone2337200.github.io/title/modpack.html">首页</a></li>
+                <li><a href="minecraft-launcher.html">启动器</a></li>
+                <li><a href="gun-skins.html">枪皮</a></li>
+                <li><a href="more-modpack.html" id="v2"><b>整合</b></a></li>
+                <li><a href="JavaRuntimeEnvironment.html">运行库</a></li>
+            </ul>
+        </div>
+        <script src="../js/script.js"></script>
+        <div id="app">
+            <img id="logo" src="https://www.minecraft.net/content/dam/games/minecraft/key-art/PC_Bundle_Deluxe_Desktop.jpg?imwidth=2401" />
 
-			function toUrl(num) {
-				window.location.href = this.downList[num]
+            <div id="box">
+                <div id="title">
+                    <h3>《Minecraft》开发者们的自制整合包</h3>
+                </div>
+                <div id="text">
+                    这里专门存放《<span onclick="toUrl(0)">Minecraft</span>》开发者们的自制整合包，这里属于镜像站，有些群友们做的整合包，可以在这里找到下载位置，前提是都没有<span onclick="toUrl(1)">curseforge</span>帐号或者<span onclick="toUrl(2)">Modrinth</span>帐号，属于小型整合包合集，在这些整个包中，若有的整合包需要依赖<span onclick="toUrl(3)">Optifine</span>或者优化组合的话，会有专门标识，一般的话会用角标的形式表明，有时候或许是括号，<span onclick="toUrl(3)">Optifine</span>有两种安装方式，一种是在启动器里直接覆盖安装，另一种是直接将<span onclick="toUrl(3)">Optifine</span>文件丢到mods文件夹内。
+                </div>
+                <div id="down">
+                    <div id="title">
+                        <h3>下载列表</h3>
+                    </div>
+                    <ul>
+                        <li onclick="toggleDialog()">
+                            <p>Dragons' adventure for eternal technology in minecraft<b id="v3">®</b></p>
+                            <p>Author：<b id="v7">@Feilongkeji</b></p>
+                            <p>Version：<b id="v4">1.1.2.2</b></p>
+                            <p>Description：<b id="v6">需要依赖<b onclick="optifine()" id="v9">Optifine</b>才可以启用</b></p>
+                            <p><button onclick="down('https://www.123pan.com/s/hSr9-Kfm5d.html')">下载文件</button></p>
+                        </li>
+                        <li>
+                            <p>早期联机整合包<b id="v2">™</b></p>
+                            <p>Author：<b id="v7">@Feilongkeji</b></p>
+                            <p>Versions：<b>未知</b></p>
+                            <p>Description：<b>#</b></p>
+                            <p><button onclick="down('https://cloud.06dn.com/s/Z9jkS1')">下载文件</button></p>
+                        </li>
+                        <li>
+                            <p>Create and iceandfire_Update<b id="v2">™</b></p>
+                            <p>Author：<b id="v7">@Feilongkeji</b></p>
+                            <p>Versions：<b>未知</b></p>
+                            <p>Description：<b>#</b></p>
+                            <p><button onclick="down('https://cloud.06dn.com/s/RO6WT3')">下载文件</button></p>
+                        </li>
+                        <li>
+                            <p>龙之冒险：更多的龙<b id="v3">®</b></p>
+                            <p>Author：<b id="v7">@Feilongkeji</b></p>
+                            <p>Version：<b id="v4">1.1.0</b></p>
+                            <p>Description：<b>#</b></p>
+                            <p><button onclick="down('https://cloud.06dn.com/s/v3dKFe')">下载文件</button></p>
+                        </li>
+                        <li>
+                            <p>CREATE ZOMBIE fix<b id="v4">¹⁺</b></p>
+                            <p>Author：<b>#</b></p>
+                            <p>Versions：<b>未知</b></p>
+                            <p>Description：<b>#</b></p>
+                            <p><button onclick="down('https://cloud.06dn.com/s/6jekuW')">下载文件</button></p>
+                        </li>
+                        <li>
+                            <p>The Minehattan Project<b id="v4">¹⁺</b></p>
+                            <p>Author：<b>#</b></p>
+                            <p>Version:<b id=v4>5.0.2</b></p>
+                            <p>Description：<b>#</b></p>
+                            <p><button onclick="down('https://wwp.lanzoup.com/i3M911gizbyb')">下载文件</button></p>
+                        </li>
+                        <li>
+                            <p>CrafttoExile-Harmony<b id="v4">¹⁺</b></p>
+                            <p>Author：<b>#</b></p>
+                            <p>Version：<b id="v4">2.3.2</b></p>
+                            <p>Description：<b>#</b></p>
+                            <p><button onclick="down('https://cloud.06dn.com/s/nKonTK')">下载文件</button></p>
+                        </li>
+                        <li>
+                            <p>畸变修仙科技<b onclick="down('https://files.minecraftforge.net/net/minecraftforge/forge/index_1.12.2.html')" id="v6">forge-14.23.5.2860</b><b id="v4">¹⁺</b></p>
+                            <p><button onclick="down('https://cloud.06dn.com/s/QKwEuJ')">下载文件</button></p>
+                            <p>Author：<b>#</b></p>
+                            <p>Versions：<b>未知</b></p>
+                            <p>Description：<b>#</b></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dialog" id="dialog">
+                    <div class="dialog-content">
+                        <span onclick="toggleDialog()" class="close">&times;</span>
+                        <p id="v8">需要<b onclick="optifine()" id="v7">Optifine</b>配合才能启用</p>
+                    </div>
+                </div>
+                <div id="warn">
+                    <svg t="1701315241516" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4291" width="200" height="200">
+                        <path d="M512 147.2C310.528 147.2 147.2 310.528 147.2 512S310.528 876.8 512 876.8 876.8 713.472 876.8 512 713.472 147.2 512 147.2z m0 64c166.144 0 300.8 134.656 300.8 300.8S678.144 812.8 512 812.8 211.2 678.144 211.2 512 345.856 211.2 512 211.2z" fill="#FB553C" p-id="4292"></path>
+                        <path d="M478.72 462.3104m33.28 0l0 0q33.28 0 33.28 33.28l0 173.056q0 33.28-33.28 33.28l0 0q-33.28 0-33.28-33.28l0-173.056q0-33.28 33.28-33.28Z" fill="#FB553C" p-id="4293"></path>
+                        <path d="M512 370.7136m-48.64 0a48.64 48.64 0 1 0 97.28 0 48.64 48.64 0 1 0-97.28 0Z" fill="#FB553C" p-id="4294"></path>
+                    </svg>
+                    <p>
+                        页面内的整合包可以免费下载安装，若有的整合包需要<b onclick="optifone()">Optifine</b>的话，会有标明，不需要<b onclick="optifone()">Optifine</b>的话，就不会有标明，有的可能会显示优化组合，但这个优化组合就看整合包作者怎么搞了，带着<b id="v2">®</b>或者<b id="v2">™</b>之类符号的为<b id="v1">@Feilongkeji</b>的官方整合包，带<b id="v4">¹⁺</b>符号的为正式版整合包，带<b id="v5">¹⁻</b>符号为测试版整合包，若不存在那两个符号则默认为正式版。若发现类似于带<b id="v6">forge-14.23.5.2860</b>这类红色高亮的这个包是要求需要的模组运行器，末达到对应的运行要求则进不去整合包。
+                    </p>
+                </div>
+                <div style="height: 100px;"></div>
+                <footer>
+                    <p>Copyright ©2023 Felongkeji™.
+                        Designed by <a rel="nofollow" href="https://redstone2337200.github.io/" target="_parent">Redstone233</a></p>
+                </footer>
+            </div>
+
+        </div>
+        <script type="text/javascript">
+            var downList = [
+                "https://www.minecraft.net/zh-hans",
+                "https://www.curseforge.com/",
+                "https://modrinth.com/",
+                "https://optifine.net/home",
+                "../resource/gun-skins.html",
+                "https://www.mcmod.cn/class/5711.html",
+                "https://www.mcmod.cn/class/3048.html",
+                "https://www.mcmod.cn/class/5396.html",
+                "https://www.mcmod.cn/class/770.html",
+                "https://www.mcmod.cn/class/3838.html",
+                "https://www.mcmod.cn/class/260.html",
+                "https://www.mcmod.cn/class/4170.html",
+            ]
+
+            function toUrl(num) {
+                window.location.href = this.downList[num]
+            }
+
+            function down(src) {
+                window.open(src)
+            }
+            function optifine(){
+    			window.location.href = "https://optifine.net/home"
 			}
+        </script>
+</body>
 
-			function down(src) {
-				window.open(src)
-			}
-		</script>
-	</body>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
 
-	<style>
-		* {
-			margin: 0;
-			padding: 0;
-		}
+    #logo {
+        width: 100%;
+        max-height: 400px;
+        min-height: 200px;
+        object-fit: cover;
+    }
 
-		#logo {
-			width: 100%;
-			max-height: 400px;
-			min-height: 200px;
-			object-fit: cover;
-		}
+    #box {
+        margin: 0 auto;
+        max-width: 1200px;
+    }
 
-		#box {
-			margin: 0 auto;
-			max-width: 1200px;
-		}
+    #title {
+        margin: 20px;
+    }
 
-		#title {
-			margin: 20px;
-		}
+    #title h3 {
+        position: relative;
+        padding-left: 10px;
+    }
 
-		#title h3 {
-			position: relative;
-			padding-left: 10px;
-		}
+    #title h3::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 5px;
+        height: 100%;
+        background: red;
+    }
 
-		#title h3::before {
-			content: '';
-			position: absolute;
-			left: 0;
-			top: 0;
-			width: 5px;
-			height: 100%;
-			background: red;
-		}
+    #text {
+        margin: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        background: #777;
+        color: #FFF;
+        letter-spacing: 1px;
+        line-height: 30px;
+        word-break: break-all;
+        word-wrap: break-word;
+        font-size: 14px;
+    }
 
-		#text {
-			margin: 20px;
-			padding: 20px;
-			border-radius: 10px;
-			background: #777;
-			color: #FFF;
-			letter-spacing: 1px;
-			line-height: 30px;
-			word-break: break-all;
-			word-wrap: break-word;
-			font-size: 14px;
-		}
+    #text span {
+        position: relative;
+        margin: 0 5px;
+        padding: 1px 5px;
+        color: #00ff00;
+        border-radius: 10px;
+        cursor: pointer;
+    }
 
-		#text span {
-			position: relative;
-			margin: 0 5px;
-			padding: 1px 5px;
-			color: #00ff00;
-			border-radius: 10px;
-			cursor: pointer;
-		}
+    #text span::after {
+        content: '?';
+        /* position: absolute; */
+        position: relative;
+        right: -2px;
+        top: -10px;
+        background: #FFF;
+        padding: 0 5px;
+        border-radius: 50%;
+        text-align: center;
+        color: #000;
+        font-size: 12px;
+    }
 
-		#text span::after {
-			content: '?';
-			/* position: absolute; */
-			position: relative;
-			right: -2px;
-			top: -10px;
-			background: #FFF;
-			padding: 0 5px;
-			border-radius: 50%;
-			text-align: center;
-			color: #000;
-			font-size: 12px;
-		}
-		#down ul{
-			margin: 20px;
-		}
-		#down ul li{
-			transition: all .3s;
-			font-size: 13px;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			flex-wrap: wrap;
-			list-style-type: none;
-			border-radius: 10px;
-			border-bottom: 1px solid #333;
-			margin:10px;
-		}
-		
-		#down ul li:hover{
-			border-top:1px solid #333;
-			background: rgba(0, 0, 0, 0.3);
-			padding:20px;
-		}
-		#down p {
-			font-weight: bold;
-		}
+    #down ul {
+        margin: 20px;
+    }
 
-		#down button {
-			transition: all .3s;
-			border: 0;
-			margin: 10px;
-			padding: 5px 30px;
-			color: #fff;
-			background: #666;
-			/* border: 8px ridge #999; */
-			cursor: pointer;
-		}
+    #down ul li {
+        transition: all .3s;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        list-style-type: none;
+        border-radius: 10px;
+        border-bottom: 1px solid #333;
+        margin: 10px;
+    }
 
-		#down button:hover {
-			background: #4CAF50;
-			/* border: 8px ridge #999; */
-		}
+    #down ul li:hover {
+        border-top: 1px solid #333;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 20px;
+    }
 
-		#warn {
-			margin: 20px;
-			background: #FBBD12;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			padding: 30px 20px;
-			border-radius: 5px;
-		}
-   
-		#warn svg {
-			width: 30px;
-			height: 30px;
-			margin-right: 5px;
-		}
-   
-   		#v1 {
-         color: blue;
-         font-size: 18px;
-         }
-         
-         #v2 {
-         color: green;
-         font-size: 20px;
-         }
-         
-         #v3 {
-         color: green;
-         font-size: 12px;
-         }
-         
-         #v4 {
-         color: darkgreen;
-         font-size: 15px;
-         }
-         
-         #v5 {
-         color: darkred;
-         font-size: 15px;
-         }
-		footer{
-			background: #333;
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			padding: 20px 0;
-			color: #FFF;
-			text-align: center;
-			font-size: 0.8em;
-		}
-		footer a{
-			text-decoration: none;
-			color: dodgerblue;
-		}
-	</style>
+    #down p {
+        font-weight: bold;
+    }
+
+    #down button {
+        transition: all .3s;
+        border: 0;
+        margin: 10px;
+        padding: 5px 30px;
+        color: #fff;
+        background: #666;
+        /* border: 8px ridge #999; */
+        cursor: pointer;
+    }
+
+    #down button:hover {
+        background: #4CAF50;
+        /* border: 8px ridge #999; */
+    }
+
+    #warn {
+        margin: 20px;
+        background: #FBBD12;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 20px;
+        border-radius: 5px;
+    }
+
+    #warn svg {
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+    }
+
+    #v1 {
+        color: blue;
+        font-size: 18px;
+    }
+
+    #v2 {
+        color: green;
+        font-size: 20px;
+    }
+
+    #v3 {
+        color: green;
+        font-size: 12px;
+    }
+
+    #v4 {
+        color: darkgreen;
+        font-size: 15px;
+    }
+
+    #v5 {
+        color: darkred;
+        font-size: 15px;
+    }
+
+    #v6 {
+        color: red;
+        font-size: 15px;
+    }
+
+    #v7 {
+        color: blue;
+        font-size: 15px;
+    }
+    
+    #v8 {
+        color: yellowgreen;
+        font-size: 15px;
+    }
+    
+    #v9 {
+    	color: gold;
+       	font-size: 15px;
+    }
+
+    footer {
+        background: #333;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+        color: #FFF;
+        text-align: center;
+        font-size: 0.8em;
+    }
+
+    footer a {
+        text-decoration: none;
+        color: dodgerblue;
+    }
+</style>
+
 </html>
