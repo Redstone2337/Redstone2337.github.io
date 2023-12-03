@@ -48,7 +48,7 @@
 						<h3>下载列表</h3>
 					</div>
 					<ul>
-						<li>
+						<li onclick="toggleDialog()">
 							<p>Dragons' adventure for eternal technology in minecraft</p>
 							<p><button onclick="down('https://www.123pan.com/s/hSr9-Kfm5d.html')">下载文件</button></p>
 						</li>
@@ -69,6 +69,11 @@
 							<p><button onclick="down('https://afdian.net/p/0164034c016c11ebafcb52540025c377')">进入官网</button></p>
 						</li>
 					</ul>
+						<div class="dialog" id="dialog">
+                    				<div class="dialog-content">
+                        			<span onclick="toggleDialog()" class="close">&times;</span>
+                        			<p id="v8">需要<b onclick="optifine()" id="v7">Optifine</b>配合才能启用</p>
+		    			</div>
 				</div>
 				<div id="warn">
 					<svg t="1701315241516" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -120,6 +125,7 @@
 			function down(src) {
 				window.open(src)
 			}
+			
 		</script>
 	</body>
 
@@ -266,5 +272,15 @@
 			text-decoration: none;
 			color: dodgerblue;
 		}
+
+		#v7 {
+        		color: blue;
+        		font-size: 15px;
+    		}
+    
+    		#v8 {
+        		color: yellowgreen;
+       			font-size: 15px;
+    		}
 	</style>
 </html>
