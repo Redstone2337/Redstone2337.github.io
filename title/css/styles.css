@@ -1,7 +1,8 @@
 #v1 {
   margin: 0;
   font-family: Arial, sans-serif;
-  text-align: right;
+  position: relative;
+  height: 100vh;
 }
 
 .menu-toggle {
@@ -11,15 +12,22 @@
   position: absolute;
   top: 10px;
   right: 10px;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 2px solid #000;
+  text-align: center;
+  line-height: 40px;
 }
 
 .menu {
   display: none;
   position: absolute;
-  top: 40px;
+  top: 60px;
   right: 10px;
-  background: #f4f4f4;
-  border: 1px solid #ccc;
+  width: 150px;
+  border: 1px solid #000;
+  background-color: #f4f4f4;
 }
 
 .menu ul {
@@ -30,6 +38,7 @@
 
 .menu li {
   padding: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
 .menu a {
@@ -37,6 +46,7 @@
   color: #000;
 }
 
+//自己增加的
 .menu #v2 {
 	color: gold;
 }
