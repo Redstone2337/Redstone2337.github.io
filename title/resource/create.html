@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>机械动力分支</title>
+    <!-- <script src="https://unpkg.com/vue@next"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+</head>
+
+<body>
+    <div>
+        <link rel="stylesheet" href="../css/styles.css">
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+        <div class="menu" id="menu">
+            <ul>
+                <li><a href="https://redstone2337200.github.io/title/modpack.html">首页</a></li>
+                <li><a href="minecraft-launcher.html">启动器</a></li>
+                <li><a href="gun-skins.html">枪皮</a></li>
+                <li><a href="more-modpack.html" id="v2"><b>整合</b></a></li>
+                <li><a href="JavaRuntimeEnvironment.html">运行库</a></li>
+            </ul>
+        </div>
+        <script src="../js/script.js"></script>
+        <div id="app">
+            <img id="logo" src="https://www.minecraft.net/content/dam/games/minecraft/key-art/PC_Bundle_Deluxe_Desktop.jpg?imwidth=2401" />
+
+            <div id="box">
+                <div id="title">
+                    <h3>机械动力分支官方整合包</h3>
+                </div>
+                <div id="text">
+                    这里是官方整合包的一个<span onclick="toUrl(10)">机械动力</span>分支，因为<span onclick="toUrl(11)">应用能源2</span>太卡了，所以直接用机械动力算了。
+                </div>
+                <div id="down">
+                    <div id="title">
+                        <h3>下载列表</h3>
+                    </div>
+                    <ul>
+           				<li>
+							<p>龙的冒险：永恒机械·重铸2.0</p>
+							<p><button onclick="down('https://www.123pan.com/s/hSr9-OKm5d.html')">下载文件</button></p>
+						</li>
+                    </ul>
+                </div>
+                <div class="dialog" id="dialog">
+                    <div class="dialog-content">
+                        <span onclick="toggleDialog()" class="close">&times;</span>
+                        <p id="v8">需要<b onclick="optifine()" id="v7">Optifine</b>配合才能启用</p>
+                    </div>
+                </div>
+                <div id="warn">
+                    <svg t="1701315241516" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4291" width="200" height="200">
+                        <path d="M512 147.2C310.528 147.2 147.2 310.528 147.2 512S310.528 876.8 512 876.8 876.8 713.472 876.8 512 713.472 147.2 512 147.2z m0 64c166.144 0 300.8 134.656 300.8 300.8S678.144 812.8 512 812.8 211.2 678.144 211.2 512 345.856 211.2 512 211.2z" fill="#FB553C" p-id="4292"></path>
+                        <path d="M478.72 462.3104m33.28 0l0 0q33.28 0 33.28 33.28l0 173.056q0 33.28-33.28 33.28l0 0q-33.28 0-33.28-33.28l0-173.056q0-33.28 33.28-33.28Z" fill="#FB553C" p-id="4293"></path>
+                        <path d="M512 370.7136m-48.64 0a48.64 48.64 0 1 0 97.28 0 48.64 48.64 0 1 0-97.28 0Z" fill="#FB553C" p-id="4294"></path>
+                    </svg>
+                    <p>
+                        页面内的机械动力分支整合包可以免费下载，但是需要<b onclick="optifone()" font-size: 15px;>Optifine</b>支持，不然无法进入整合包。
+                    </p>
+                </div>
+                <div style="height: 100px;"></div>
+                <footer>
+                    <p>Copyright ©2023 Felongkeji™.
+                        Designed by <a rel="nofollow" href="https://redstone2337200.github.io/" target="_parent">Redstone233</a></p>
+                </footer>
+            </div>
+
+        </div>
+        <script type="text/javascript">
+            var downList = [
+                "https://www.minecraft.net/zh-hans",
+                "https://www.curseforge.com/",
+                "https://modrinth.com/",
+                "https://optifine.net/home",
+                "../resource/gun-skins.html",
+                "https://www.mcmod.cn/class/5711.html",
+                "https://www.mcmod.cn/class/3048.html",
+                "https://www.mcmod.cn/class/5396.html",
+                "https://www.mcmod.cn/class/770.html",
+                "https://www.mcmod.cn/class/3838.html",
+                "https://www.mcmod.cn/class/2021.html",
+                "https://www.mcmod.cn/class/260.html",
+            ]
+
+            function toUrl(num) {
+                window.location.href = this.downList[num]
+            }
+
+            function down(src) {
+                window.open(src)
+            }
+            function optifine(){
+    			window.location.href = "https://optifine.net/home"
+			}
+        </script>
+</body>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #logo {
+        width: 100%;
+        max-height: 400px;
+        min-height: 200px;
+        object-fit: cover;
+    }
+
+    #box {
+        margin: 0 auto;
+        max-width: 1200px;
+    }
+
+    #title {
+        margin: 20px;
+    }
+
+    #title h3 {
+        position: relative;
+        padding-left: 10px;
+    }
+
+    #title h3::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 5px;
+        height: 100%;
+        background: red;
+    }
+
+    #text {
+        margin: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        background: #777;
+        color: #FFF;
+        letter-spacing: 1px;
+        line-height: 30px;
+        word-break: break-all;
+        word-wrap: break-word;
+        font-size: 14px;
+    }
+
+    #text span {
+        position: relative;
+        margin: 0 5px;
+        padding: 1px 5px;
+        color: #00ff00;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    #text span::after {
+        content: '?';
+        /* position: absolute; */
+        position: relative;
+        right: -2px;
+        top: -10px;
+        background: #FFF;
+        padding: 0 5px;
+        border-radius: 50%;
+        text-align: center;
+        color: #000;
+        font-size: 12px;
+    }
+
+    #down ul {
+        margin: 20px;
+    }
+
+    #down ul li {
+        transition: all .3s;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        list-style-type: none;
+        border-radius: 10px;
+        border-bottom: 1px solid #333;
+        margin: 10px;
+    }
+
+    #down ul li:hover {
+        border-top: 1px solid #333;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 20px;
+    }
+
+    #down p {
+        font-weight: bold;
+    }
+
+    #down button {
+        transition: all .3s;
+        border: 0;
+        margin: 10px;
+        padding: 5px 30px;
+        color: #fff;
+        background: #666;
+        /* border: 8px ridge #999; */
+        cursor: pointer;
+    }
+
+    #down button:hover {
+        background: #4CAF50;
+        /* border: 8px ridge #999; */
+    }
+
+    #warn {
+        margin: 20px;
+        background: #FBBD12;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 20px;
+        border-radius: 5px;
+    }
+
+    #warn svg {
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+    }
+
+    #v1 {
+        color: blue;
+        font-size: 18px;
+    }
+
+    #v2 {
+        color: green;
+        font-size: 20px;
+    }
+
+    #v3 {
+        color: green;
+        font-size: 12px;
+    }
+
+    #v4 {
+        color: darkgreen;
+        font-size: 15px;
+    }
+
+    #v5 {
+        color: darkred;
+        font-size: 15px;
+    }
+
+    #v6 {
+        color: red;
+        font-size: 15px;
+    }
+
+    #v7 {
+        color: blue;
+        font-size: 15px;
+    }
+    
+    #v8 {
+        color: yellowgreen;
+        font-size: 15px;
+    }
+    
+    #v9 {
+    	color: gold;
+       	font-size: 15px;
+    }
+
+    footer {
+        background: #333;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+        color: #FFF;
+        text-align: center;
+        font-size: 0.8em;
+    }
+
+    footer a {
+        text-decoration: none;
+        color: dodgerblue;
+    }
+</style>
+
+</html>
