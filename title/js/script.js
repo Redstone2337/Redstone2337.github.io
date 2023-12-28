@@ -15,3 +15,21 @@ function toggleDialog() {
     dialog.style.display = "none";
   }
 }
+
+function copyCode() {
+  var codeElement = document.getElementById("code");
+  var codeText = codeElement.innerText.trim();
+
+  var tempInput = document.createElement("input");
+  tempInput.value = codeText;
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempInput);
+
+  alert("提取码已复制: " + codeText);
+}
+
+document.querySelector('.dropdown-btn').addEventListener('click', function() {
+    this.classList.toggle('active');
+});
