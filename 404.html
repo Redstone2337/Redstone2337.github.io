@@ -1,77 +1,70 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Redstone233's Website | 404 - 页面未找到</title>
+  <head>
+    <title>404 Not Found</title>
     <style>
-        body {
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-
-        .container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        .error-code {
-            font-size: 400px;
-            font-weight: bold;
-            color: lightcoral;
-        }
-        
-        .error-message {
-            font-size: 50px;
-            color: #666;
-        }
-        
-        .home-link {
-            margin-top: 100px;
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            font-size: 3em;
-        }
-        
-        .home-link:hover {
-            background-color: #0056b3;
-        }
-
-        p {
-            font: 2em sans-serif;
-            color: skyblue;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
+      body {
+        background-color: #f8f8f8;
+        font-family: 'Roboto', sans-serif;
+      }
+      
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      
+      .error {
+        text-align: center;
+        padding: 30px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+      }
+      
+      .error-code {
+        font-size: 120px;
+        font-weight: bold;
+        color: #e74c3c;
+        margin-bottom: 20px;
+      }
+      
+      h1 {
+        font-size: 36px;
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+      
+      p {
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 20px;
+      }
+      
+      a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #e74c3c;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+      }
+      
+      a:hover {
+        background-color: #c0392b;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
+      <div class="error">
         <div class="error-code">404</div>
-        <div class="error-message">页面未找到或你访问的页面不存在</div>
-        <p id="hitokoto"></p>
-        <script>
-		// 一言的API接口
-		var url = "https://v1.hitokoto.cn/";
-
-		// 发送HTTP请求，获取一言内容
-		fetch(url)
-			.then(response => response.json())
-			.then(data => {
-				// 输出一言内容
-				document.getElementById("hitokoto").innerText = data.hitokoto;
-			})
-			.catch(error => console.error(error));
-	</script>
-        <a href="index.html" class="home-link">返回首页</a>
+        <h1>Oops! Page Not Found</h1>
+        <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+        <a href="/">Back to Home</a>
+      </div>
     </div>
-</body>
+  </body>
 </html>
