@@ -7,11 +7,11 @@
     "description": [
       {
         "lang": "en",
-        "text": "Fix some bug.\nAdd some features.\nFix some bugs, see github for details."
+        "text": "Fix some bug.\nAdd some features.\nFix some bugs, see gitee for details."
       },
       {
         "lang": "zh_CN",
-        "text": "FCL 1.1.6.1更新内容\n临时修复少许bug（jar执行闪退，增加手柄映射）"
+        "text": "BUG下载 1.1.0更新内容\n临时修复少许bug（无法正常检测，流畅度低）"
       }
     ],
     "netdiskUrl": "https://alist.8mi.tech/FCL",
