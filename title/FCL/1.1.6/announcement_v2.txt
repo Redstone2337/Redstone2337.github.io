@@ -1,0 +1,29 @@
+{
+  "id": 3,
+  "significant": true,
+  "outdated": false,
+  "minVersion": -1,
+  "maxVersion": -1,
+  "specificLang": [],
+  "title": [
+    {
+      "lang": "en",
+      "text": "About Fold Craft Launcher Server"
+    },
+    {
+      "lang": "zh_CN",
+      "text": "关于Fold Craft Launcher服务器客户端版"
+    }
+  ],
+  "date": "2024.04.29",
+  "content": [
+    {
+      "lang": "en",
+      "text": "This is a customized version of the client by Redstone233, the author of the direct installation package."
+    },
+    {
+      "lang": "zh_CN",
+      "text": "这是整合包开发者Redstone233的私人自定义测试客户端。"
+    }
+  ]
+}
