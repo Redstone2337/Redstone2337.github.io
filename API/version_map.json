@@ -3,7 +3,7 @@
     "type": "release",
     "versionCode": 1162,
     "versionName": "1.1.6.2",
-    "date": "2024.04.49",
+    "date": "2024.04.29",
     "description": [
       {
         "lang": "en",
@@ -11,7 +11,7 @@
       },
       {
         "lang": "zh_CN",
-        "text": "FCL 1.1.6.2更新内容\n临时修复少许bug（jar执行闪退，增加手柄映射）"
+        "text": "Redstone233特供版FCL1.1.6.2更新内容\n临时修复少许bug（jar执行闪退，增加手柄映射）"
       }
     ],
     "netdiskUrl": "https://alist.8mi.tech/FCL",
