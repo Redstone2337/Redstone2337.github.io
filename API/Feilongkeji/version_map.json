@@ -2,7 +2,7 @@
   {
     "type": "release",
     "versionCode": 1,
-    "versionName": "1.1.6.1",
+    "versionName": "1.0.0",
     "date": "2024.04.29",
     "description": [
       {
@@ -11,7 +11,7 @@
       },
       {
         "lang": "zh_CN",
-        "text": "BUG下载 1.0.0.1更新内容\n临时修复少许bug（无法正常检测，流畅度低）"
+        "text": "BUG下载 1.0.0更新内容\n临时修复少许bug（无法正常检测，流畅度低）"
       }
     ],
     "is_update": true,
