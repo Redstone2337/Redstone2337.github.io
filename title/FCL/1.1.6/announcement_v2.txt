@@ -8,7 +8,7 @@
   "title": [
     {
       "lang": "en",
-      "text": "About Redstone233 SE FCL"
+      "text": "About Redstone233's FCL"
     },
     {
       "lang": "zh_CN",
@@ -19,7 +19,7 @@
   "content": [
     {
       "lang": "en",
-      "text": "This is a customized version of the client by Redstone233, the author of the direct installation package."
+      "text": "This is a private custom test client for individual developer Redstone233."
     },
     {
       "lang": "zh_CN",
