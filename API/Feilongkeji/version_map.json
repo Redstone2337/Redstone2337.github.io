@@ -14,6 +14,7 @@
         "text": "BUG下载 1.0.0.1更新内容\n临时修复少许bug（无法正常检测，流畅度低）"
       }
     ],
+    "is_update": true,
     "netdiskUrl": "https://alist.8mi.tech/FCL",
     "url": "https://github.com/FCL-Team/FoldCraftLauncher/releases/download/1.1.6.1/FCL-release-1.1.6.1-all.apk"
   }
