@@ -15,7 +15,7 @@
       "text": "关于config.properties"
     }
   ],
-  "date": "2024.04.29",
+  "date": "2024.04.30",
   "content": [
     {
       "lang": "en",
