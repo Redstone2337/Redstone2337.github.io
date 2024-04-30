@@ -1,0 +1,20 @@
+[
+  {
+    "type": "release",
+    "versionCode": 1162,
+    "versionName": "1.1.6.2",
+    "date": "2024.04.29",
+    "description": [
+      {
+        "lang": "en",
+        "text": "Fix some bug.\nAdd some features.\nFix some bugs, see github for details."
+      },
+      {
+        "lang": "zh_CN",
+        "text": "Sofu Server Launcher1.1.6.2正式版修复了一些bug，同时又增加了一些bug。"
+      }
+    ],
+    "netdiskUrl": "https://alist.8mi.tech/FCL",
+    "url": "https://github.com/FCL-Team/FoldCraftLauncher/releases/download/1.1.6.1/FCL-release-1.1.6.1-all.apk"
+  }
+]
