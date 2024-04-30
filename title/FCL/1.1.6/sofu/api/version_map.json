@@ -1,17 +1,17 @@
 [
   {
-    "type": "release",
-    "versionCode": 1162,
-    "versionName": "1.1.6.2",
-    "date": "2024.04.29",
+    "type": "pre-release",
+    "versionCode": 1163,
+    "versionName": "1.1.6.3",
+    "date": "2024.04.30",
     "description": [
       {
         "lang": "en",
-        "text": "Fix some bug.\nAdd some features.\nFix some bugs, see github for details."
+        "text": "Test whether the push of remote update can be displayed normally."
       },
       {
         "lang": "zh_CN",
-        "text": "Sofu Server Launcher1.1.6.2正式版修复了一些bug，同时又增加了一些bug。"
+        "text": "测试一下更新推送能不能正常显示，可能会出现问题。"
       }
     ],
     "netdiskUrl": "https://alist.8mi.tech/FCL",
