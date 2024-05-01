@@ -12,18 +12,18 @@
     },
     {
       "lang": "zh_CN",
-      "text": "关于软件远程更新"
+      "text": "关于软件更新"
     }
   ],
   "date": "2024.05.01",
   "content": [
     {
       "lang": "en",
-      "text": "When the software is updated, \nplease do not click the download button, \ndirectly click the network disk-\n-button to get the latest download link."
+      "text": "When the software is updated, \nplease do not click the download button, \ndirectly click the network disk-\n-button to get the latest download link.\nMinecraft Java Edition does not support clipping, \nChinese for your ID into \na combination of English and numbers."
     },
     {
       "lang": "zh_CN",
-      "text": "当软件有更新时，\n请不要点击下载按钮，\n请选择网盘按钮以获取最新下载链接"
+      "text": "当软件有更新时，\n请不要点击下载按钮，\n请选择网盘按钮以获取最新下载链接。\n在我的世界JE版中，\n不支持英文和数字组合以外的任何语言的用户id，\n不要用简体中文为你的玩家名。"
     }
   ]
 }
