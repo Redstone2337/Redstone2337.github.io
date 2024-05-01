@@ -1,4 +1,4 @@
-{
+（{
   "id": 3,
   "significant": true,
   "outdated": false,
@@ -12,18 +12,18 @@
     },
     {
       "lang": "zh_CN",
-      "text": "关于软件远程更新"
+      "text": "关于软件更新"
     }
   ],
-  "date": "2024.05.01",
+  "date": "2024.05.02",
   "content": [
     {
       "lang": "en",
-      "text": "When the software is updated,\n please do not click the download button, \ndirectly click the network disk button to get the latest download link."
+      "text": "When the software is updated,\n please do not click the download button, \ndirectly click the network disk button to get the latest download link.\nMinecraft Java Edition does not support user ids in any language other than \nEnglish and number combinations.\nPlease use a combination of English and numbers to set your user ID."
     },
     {
       "lang": "zh_CN",
-      "text": "当软件有新更新时，\n请不要点击下载按钮，\n直接点击网盘按钮，\n以获取最新的下载链接"
+      "text": "当软件有新更新时，\n请不要点击下载按钮，\n直接点击网盘按钮，\n以获取最新的下载链接，\n我的世界Java版不支持除英文和数字以外的任\n何语言的文字为你的用户id，\n请使用英文和数字的组合为你的玩家名。"
     }
   ]
 }
