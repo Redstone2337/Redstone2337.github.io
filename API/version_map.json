@@ -1,17 +1,17 @@
 [
   {
     "type": "release",
-    "versionCode": 1162,
-    "versionName": "1.1.6.2",
-    "date": "2024.04.29",
+    "versionCode": 1163,
+    "versionName": "1.1.6.3",
+    "date": "2024.05.01",
     "description": [
       {
         "lang": "en",
-        "text": "Fix some bug.\nAdd some features.\nFix some bugs, see github for details."
+        "text": "Fixes an issue that doesn't work on devices above Android 10.\nThe memory of the installation package is reduced.\nBuilt-in addition, \nfabric versions of 1.20.5 and 1.20.4."
       },
       {
         "lang": "zh_CN",
-        "text": "Redstone233特供版FCL1.1.6.2更新内容\n临时修复少许bug（jar执行闪退，增加手柄映射）"
+        "text": "修复了安卓10以上的设备无法使用整合包的问题，\n减小了安装包内存。\n并内置1.20.5和1.20.4的fabric版本。"
       }
     ],
     "netdiskUrl": "https://alist.8mi.tech/FCL",
