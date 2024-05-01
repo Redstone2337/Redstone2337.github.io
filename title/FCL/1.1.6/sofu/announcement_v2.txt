@@ -8,22 +8,22 @@
   "title": [
     {
       "lang": "en",
-      "text": "About config.properties"
+      "text": "About software updates."
     },
     {
       "lang": "zh_CN",
-      "text": "关于config.properties"
+      "text": "关于软件远程更新"
     }
   ],
-  "date": "2024.04.30",
+  "date": "2024.05.01",
   "content": [
     {
       "lang": "en",
-      "text": "'Put-directory = fcl-server' indicates that the released files are in the external fcl-server folder. \n'EULA-URL = [protocol link]' a link indicating the protocol the initiator needs to acquire when it first loads. '. \n'enable -announcement = true' indicates that the in-software announcement is turned on. \n'announcement -url = [announcement link]' indicates the announcement to be obtained from the bulletin board on the main interface of the launcher. \n'check -update = true' Indicates whether remote update detection is turned on. \n'check -update-url = [update link]' indicates the link that the initiator gets when it is updated."
+      "text": "When the software is updated,\n please do not click the download button, \ndirectly click the network disk button to get the latest download link."
     },
     {
       "lang": "zh_CN",
-      "text": "“put-directory=FCL-Server”表明释放的文件在外部的FCL-Server文件夹中。\n“eula-url=[协议链接]”表明启动器初次加载时需要获取的协议的链接。\n“enable-announcement=true”表明开启软件内公告。\n“announcement-url=[公告链接]”表明启动器主界面的公告栏要获取的公告。\n“check-update=true”表明是否开启远程更新检测。\n“check-update-url=[更新链接]”表明启动器更新时会获取的链接。"
+      "text": "当软件有新更新时，\n请不要点击下载按钮，\n直接点击网盘按钮，\n以获取最新的下载链接"
     }
   ]
 }
