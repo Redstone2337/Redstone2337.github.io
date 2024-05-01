@@ -8,22 +8,22 @@
   "title": [
     {
       "lang": "en",
-      "text": "About Redstone233's FCL"
+      "text": "About software updates"
     },
     {
       "lang": "zh_CN",
-      "text": "Redstone233特供版FCL"
+      "text": "关于软件远程更新"
     }
   ],
   "date": "2024.04.29",
   "content": [
     {
       "lang": "en",
-      "text": "This is a private custom test client for individual developer Redstone233."
+      "text": "When the software is updated, \nplease do not click the download button, \ndirectly click the network disk-\n-button to get the latest download link."
     },
     {
       "lang": "zh_CN",
-      "text": "这是整合包个人开发者 Redstone233 的私人自定义测试客户端。"
+      "text": "当软件有更新时，\n请不要点击下载按钮，\n请选择网盘按钮以获取最新下载链接"
     }
   ]
 }
