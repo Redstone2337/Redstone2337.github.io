@@ -1,20 +1,20 @@
 [
   {
     "type": "release",
-    "versionCode": 1162,
-    "versionName": "1.1.6.2",
-    "date": "2024.04.30",
+    "versionCode": 1163,
+    "versionName": "1.1.6.3",
+    "date": "2024.05.03",
     "description": [
       {
         "lang": "en",
-        "text": "Test whether the push of remote update can be displayed normally."
+        "text": "Some icons and a bit of functionality have been updated, but there may still be bugs."
       },
       {
         "lang": "zh_CN",
-        "text": "测试一下更新推送能不能正常显示，可能会出现问题。"
+        "text": "版本又更新喽\n请使用网盘下载，\n启动器无法通过下载按钮更新，\n只能通过网盘更新。"
       }
     ],
-    "netdiskUrl": "https://alist.8mi.tech/FCL",
+    "netdiskUrl": "https://share.weiyun.com/RqB0cL6U",
     "url": "https://github.com/FCL-Team/FoldCraftLauncher/releases/download/1.1.6.1/FCL-release-1.1.6.1-all.apk"
   }
 ]
