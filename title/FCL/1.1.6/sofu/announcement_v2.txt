@@ -19,11 +19,11 @@
   "content": [
     {
       "lang": "en",
-      "text": "DevelopmentTeam：Flydragon Studios, Sofu Studio, TRS Studio\nFor more content, \nplease go to the review group.@730966609\nWhen the migration package suddenly stops logging, \nplease reinstall forge/fabric \nin the automatic installation of \nthe wrench icon.\n Powered by Flydragon Teams"
+      "text": "DevelopmentTeam：Flydragons Studios, Sofu Studio, TRS Studio\nFor more content, \nplease go to the review group.@730966609\nWhen the migration package suddenly stops logging, \nplease reinstall forge/fabric \nin the automatic installation of \nthe wrench icon.\nPowered by Flydragons Teams"
     },
     {
       "lang": "zh_CN",
-      "text": "开发团队：飞龙科技，豆腐团队，TRS团队\n想了解更多信息，请前往审核群@730966609.\n当遇到移植包突然卡日志的情况，\n请在扳手图标里的自动安装中重新安装forge/fabric。"
+      "text": "开发团队：飞龙科技，豆腐团队，TRS团队\n想了解更多信息，请前往审核群@730966609.\n当遇到移植包突然卡日志的情况，\n请在扳手图标里的自动安装中重新安装forge/fabric。\nPowered by Flydragons teams"
     }
   ]
 }
