@@ -1,0 +1,20 @@
+[
+  {
+    "type": "release",
+    "versionCode": 1162,
+    "versionName": "1.1.6.2",
+    "date": "2024.04.30",
+    "description": [
+      {
+        "lang": "en",
+        "text": "Test whether the push of remote update can be displayed normally."
+      },
+      {
+        "lang": "zh_CN",
+        "text": "测试一下更新推送能不能正常显示，可能会出现问题。"
+      }
+    ],
+    "netdiskUrl": "https://alist.8mi.tech/FCL",
+    "url": "https://github.com/FCL-Team/FoldCraftLauncher/releases/download/1.1.6.1/FCL-release-1.1.6.1-all.apk"
+  }
+]
