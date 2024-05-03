@@ -1,4 +1,4 @@
-（{
+{
   "id": 3,
   "significant": true,
   "outdated": false,
@@ -8,22 +8,22 @@
   "title": [
     {
       "lang": "en",
-      "text": "About software updates."
+      "text": "About the Modpack"
     },
     {
       "lang": "zh_CN",
-      "text": "关于软件更新"
+      "text": "关于整合包"
     }
   ],
-  "date": "2024.05.02",
+  "date": "2024.05.03",
   "content": [
     {
       "lang": "en",
-      "text": "When the software is updated,\n please do not click the download button, \ndirectly click the network disk button to get the latest download link.\nMinecraft Java Edition does not support user ids in any language other than \nEnglish and number combinations.\nPlease use a combination of English and numbers to set your user ID."
+      "text": "DevelopmentTeam：Flydragon Studios, Sofu Studio, TRS Studio\nFor more content, \nplease go to the review group.@730966609\nWhen the migration package suddenly stops logging, \nplease reinstall forge/fabric \nin the automatic installation of \nthe wrench icon.\n Powered by Flydragon Teams"
     },
     {
       "lang": "zh_CN",
-      "text": "当软件有新更新时，\n请不要点击下载按钮，\n直接点击网盘按钮，\n以获取最新的下载链接，\n我的世界Java版不支持除英文和数字以外的任\n何语言的文字为你的用户id，\n请使用英文和数字的组合为你的玩家名。"
+      "text": "开发团队：飞龙科技，豆腐团队，TRS团队\n想了解更多信息，请前往审核群@730966609.\n当遇到移植包突然卡日志的情况，\n请在扳手图标里的自动安装中重新安装forge/fabric。"
     }
   ]
 }
