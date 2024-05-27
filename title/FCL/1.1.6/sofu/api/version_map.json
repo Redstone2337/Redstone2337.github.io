@@ -1,20 +1,20 @@
 [
   {
     "type": "release",
-    "versionCode": 1163,
-    "versionName": "1.1.6.3",
-    "date": "2024.05.05",
+    "versionCode": 1164,
+    "versionName": "1.1.6.4",
+    "date": "2024.05.27",
     "description": [
       {
         "lang": "en",
-        "text": "Fixed some bugs and added some more."
+        "text": "Fixed some bugs and synchronized the content of FCL-Team official repository."
       },
       {
         "lang": "zh_CN",
-        "text": "修复了部分bug，又添加了部分bug。"
+        "text": "修复了部分bug，并且同步了FCL-Team官方仓库的内容"
       }
     ],
-    "netdiskUrl": "https://drive.uc.cn/s/c2eaad8bdb014",
-    "url": "https://github.com/Redstone2337200/FoldCraftLauncher/releases/download/V1.1.6.3/SofuClientLauncherInstall_1.1.6.3.apk"
+    "netdiskUrl": "https://share.feijipan.com/s/4EAIkYvL",
+    "url": "https://github.com/Redstone2337200/FoldCraftLauncher/releases/download/V1.1.6.x/TofuClientLauncherInstall_1.1.6.4.apk"
   }
 ]
