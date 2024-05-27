@@ -8,22 +8,22 @@
   "title": [
     {
       "lang": "en",
-      "text": "About the Modpack"
+      "text": "About the TCL"
     },
     {
       "lang": "zh_CN",
-      "text": "关于整合包"
+      "text": "关于TCL"
     }
   ],
-  "date": "2024.05.03",
+  "date": "2024.05.27",
   "content": [
     {
       "lang": "en",
-      "text": "DevelopmentTeam：Flydragons Studios, Sofu Studio, TRS Studio\nFor more content, \nplease go to the review group.@730966609\nWhen the migration package suddenly stops logging, \nplease reinstall forge/fabric \nin the automatic installation of \nthe wrench icon.\nPowered by Flydragons Teams"
+      "text": "DevelopmentTeam：Flydragons Studios, Sofu Studio, TRS Studio\nFor more content, \nplease go to the review group.@730966609\nWhen the migration package suddenly stops logging, \nplease reinstall forge/fabric \nin the automatic installation of \nthe wrench icon.\nThe custom launcher is the same as the original launcher and \ndoes not affect the original launcher. \nThe custom launcher has been hardened \nso you will not be able to change the source code of the software at will.\nPowered by Flydragons Teams"
     },
     {
       "lang": "zh_CN",
-      "text": "开发团队：飞龙科技，豆腐团队，TRS团队\n想了解更多信息，请前往审核群@730966609.\n当遇到移植包突然卡日志的情况，\n请在扳手图标里的自动安装中重新安装forge/fabric。\n定制版启动器与原版无异，并不会对原版造成影响。 \n该定制启动器已做加固处理，所以无法随意更改软件。 \nPowered by Flydragons teams"
+      "text": "开发团队：飞龙科技，豆腐团队，TRS团队\n想了解更多信息，请前往审核群@730966609.\n当遇到移植包突然卡日志的情况，\n请在扳手图标里的自动安装中重新安装forge/fabric。\n定制版启动器与原版启动器无异，\n并不会对原版启动器造成影响。 \n该定制启动器已做加固处理，\n所以您将无法随意更改软件的源代码。 \nPowered by Flydragons teams"
     }
   ]
 }
