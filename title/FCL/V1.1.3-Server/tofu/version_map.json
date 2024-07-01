@@ -1,0 +1,20 @@
+[
+  {
+    "type": "release",
+    "versionCode": 1164,
+    "versionName": "1.1.7.1",
+    "date": "2024.06.27",
+    "description": [
+      {
+        "lang": "en",
+        "text": "The version has been updated as follows:\n1.Changed the icon a little.\n2.Fixed some bugs and added some more."
+      },
+      {
+        "lang": "zh_CN",
+        "text": "版本更新了，更新内容如下：\n1.改了部分图标\n2.修复了一些bug，又增加了一些bug。"
+      }
+    ],
+    "netdiskUrl": "https://share.weiyun.com/HcC2VTwo",
+    "url": "https://github.com/Redstone2337200/FoldCraftLauncher/releases/download/V1.1.6.4/SofuClientLauncher_1.1.6.4.apk"
+  }
+]

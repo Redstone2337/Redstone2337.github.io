@@ -1,0 +1,26 @@
+{
+  "id": 2,
+  "significant": true,
+  "specificLang": "",
+  "title": [
+    {
+      "lang": "en",
+      "text": "About Downloading"
+    },
+    {
+      "lang": "zh_CN",
+      "text": "关于下载"
+    }
+  ],
+  "date": "2024.02.07",
+  "content": [
+    {
+      "lang": "en",
+      "text": "MCBBS server is under maintenance, please use other download sources."
+    },
+    {
+      "lang": "zh_CN",
+      "text": "MCBBS服务器正在维护，请使用其他下载源。"
+    }
+  ]
+}
