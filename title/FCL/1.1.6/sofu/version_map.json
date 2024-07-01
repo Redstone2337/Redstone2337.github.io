@@ -1,20 +1,20 @@
 [
   {
     "type": "release",
-    "versionCode": 1164,
-    "versionName": "1.1.7.1",
-    "date": "2024.06.27",
+    "versionCode": 41172,
+    "versionName": "4.1.1.7.2",
+    "date": "2024.07.01",
     "description": [
       {
         "lang": "en",
-        "text": "The version has been updated as follows:\n1.Changed the icon a little.\n2.Fixed some bugs and added some more."
+        "text": "Fix some fatal error.\nAdd some features. \nSee github for details."
       },
       {
         "lang": "zh_CN",
-        "text": "版本更新了，更新内容如下：\n1.改了部分图标\n2.修复了一些bug，又增加了一些bug。"
+        "text": "TCL4 4.1.1.7.2更新内容（若启动器内下载缓慢请使用网盘下载）\n1.修复java8相关的ipv6问题\n2.修复分享显示“文件不存在”的问题\n3.修复按键文件错误导致进启动器闪退的问题\n4.添加更多语言切换选项\n5.修复新安装的游戏无法自动设置为中文的bug\n6.修复mod下载页面的mc版本缺失bug"
       }
     ],
-    "netdiskUrl": "https://share.weiyun.com/HcC2VTwo",
-    "url": "https://github.com/Redstone2337200/FoldCraftLauncher/releases/download/V1.1.6.4/SofuClientLauncher_1.1.6.4.apk"
+    "netdiskUrl": "https://drive.uc.cn/s/b84465aa13414?public=1",
+    "url": "https://github.com/Redstone2337/TofuCraftLauncher/releases/download/1.1.7.2/TofuCraftLauncher4-v4-all-v4.1.1.7.2.apk"
   }
 ]
