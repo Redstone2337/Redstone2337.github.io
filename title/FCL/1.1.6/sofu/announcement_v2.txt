@@ -8,22 +8,22 @@
   "title": [
     {
       "lang": "en",
-      "text": "About the TCL"
+      "text": "Update on TCL4"
     },
     {
       "lang": "zh_CN",
-      "text": "关于TCL"
+      "text": "关于TCL4的更新"
     }
   ],
-  "date": "2024.06.27",
+  "date": "2024.07.21",
   "content": [
     {
       "lang": "en",
-      "text": "DevelopmentTeam：Flydragons Studios, Sofu Studio, TRS Studio\nFor more content, \nplease go to the review group.@730966609\nWhen the migration package suddenly stops logging, \nplease reinstall forge/fabric \nin the automatic installation of \nthe wrench icon.\nThe custom launcher is the same as the original launcher and \ndoes not affect the original launcher. \nThe custom launcher has been hardened \nso you will not be able to change the source code of the software at will.\nPowered by Flydragons Teams"
+      "text": "The launcher is updated to the 4th generation version, and the software registration is updated from the previous com.redstone233.fcl to com.redstone233.tcl, the 4th generation version, so when installing this version update, you need to uninstall the previous version to use, and the launcher version is updated to 4.1.1.7.2. The version number is updated to 41172, that is, the fourth generation launcher, although it is not very different from before, but this time some special adjustments have been made, which can be seen in the update log."
     },
     {
       "lang": "zh_CN",
-      "text": "开发团队：飞龙科技，豆腐团队，TRS团队\n想了解更多信息，请前往审核群@730966609.\n当遇到移植包突然卡日志的情况，\n请在扳手图标里的自动安装中重新安装forge/fabric。\n定制版启动器与原版启动器无异，\n并不会对原版启动器造成影响。 \n该定制启动器已做加固处理，\n所以您将无法随意更改软件的源代码。 \nPowered by Flydragons teams"
+      "text": "启动器更新到第4代版本，并且软件包名从之前的com.redstone233.fcl更新为com.redstone233.tcl，第4代版本，所以安装此版本更新时，需要卸载之前的版本才能使用，启动器版本更新为4.1.1.7.2，版本号更新为41172，也就是第4代启动器，虽然说跟之前区别不大，但是这次做了一些特别的调整，更新日志中可以查看"
     }
   ]
 }
