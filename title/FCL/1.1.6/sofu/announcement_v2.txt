@@ -19,11 +19,11 @@
   "content": [
     {
       "lang": "en",
-      "text": "The launcher is updated to the 4th generation version, and the software registration is updated from the previous com.redstone233.fcl to com.redstone233.tcl, the 4th generation version, so when installing this version update, you need to uninstall the previous version to use, and the launcher version is updated to 4.1.1.7.2. The version number is updated to 41172, that is, the fourth generation launcher, although it is not very different from before, but this time some special adjustments have been made, which can be seen in the update log."
+      "text": "The launcher has been updated to accommodate the Distant Horizons module. Check it out on github."
     },
     {
       "lang": "zh_CN",
-      "text": "启动器更新到第4代版本，并且软件包名从之前的com.redstone233.fcl更新为com.redstone233.tcl，第4代版本，所以安装此版本更新时，需要卸载之前的版本才能使用，启动器版本更新为4.1.1.7.2，版本号更新为41172，也就是第4代启动器，虽然说跟之前区别不大，但是这次做了一些特别的调整，更新日志中可以查看"
+      "text": "启动器已更新，已经对遥远的地平线模组进行适配，详情可以前往github查看。"
     }
   ]
 }
