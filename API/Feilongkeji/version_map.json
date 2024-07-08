@@ -2,16 +2,16 @@
   {
     "type": "release",
     "versionCode": 1,
-    "versionName": "1.0.0",
-    "date": "2024.04.29",
+    "versionName": "1.0.1",
+    "date": "2024.07.08",
     "description": [
       {
         "lang": "en",
-        "text": "Fix some bug.\nAdd some features.\nFix some bugs, see gitee for details."
+        "text": "Fix some bug.\nAdd some features.\nFix some bugs, see github for details."
       },
       {
         "lang": "zh_CN",
-        "text": "BUG下载 1.0.0更新内容\n临时修复少许bug（无法正常检测，流畅度低）"
+        "text": "测试软件 1.0.1更新内容\n临时修复少许bug（无法正常检测，流畅度低）"
       }
     ],
     "is_update": false,
