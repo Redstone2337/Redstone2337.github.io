@@ -1,9 +1,9 @@
 [
   {
-    "type": "release",
-    "versionCode": 41174,
-    "versionName": "4.1.1.7.4",
-    "date": "2024.07.06",
+    "type": "beta",
+    "versionCode": 41175,
+    "versionName": "4.1.1.7.5",
+    "date": "2024.07.21",
     "description": [
       {
         "lang": "en",
@@ -11,10 +11,10 @@
       },
       {
         "lang": "zh_CN",
-        "text": "TCL4 4.1.1.7.4更新内容（若启动器内下载缓慢请使用网盘下载,请下载all）\n1.修复按键文件损坏导致启动器无限闪退的bug\n2.修复读取“guiScale”错误可能导致闪退的bug\n3.允许zink使用系统Vulkan驱动\n4.修复删除版本可能导致启动器卡住闪退的bug\n5.增加libsqlite以支持部分模组（Distant Horizons)\n4.增加了github文件下载加速功能"
+        "text": "TCL4 4.1.1.7.5更新内容（若启动器内下载缓慢请使用网盘下载,请下载all）\n1.修复按键文件损坏导致启动器无限闪退的bug\n2.修复读取“guiScale”错误可能导致闪退的bug\n3.允许zink使用系统Vulkan驱动\n4.修复删除版本可能导致启动器卡住闪退的bug\n5.增加libsqlite以支持部分模组（Distant Horizons)\n4.修复了少量bug，但是预发布版"
       }
     ],
-    "netdiskUrl": "https://drive.uc.cn/s/01884b498ff94?public=1",
-    "url": "https://down.npee.cn/?https://github.com/Redstone2337/TofuCraftLauncher/releases/download/1.1.7.4/TofuCraftLauncher4_V4.1.1.7.4-RELEASE.apk"
+    "netdiskUrl": "https://www.123pan.com/s/hSr9-Emf5d.html",
+    "url": "https://down.npee.cn/?https://github.com/Redstone2337/TofuCraftLauncher/releases/download/1.1.7.5/TofuCraftLauncher4_V4.1.1.7.5.apk"
   }
 ]
