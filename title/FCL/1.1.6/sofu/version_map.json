@@ -1,9 +1,9 @@
 [
   {
     "type": "release",
-    "versionCode": 41177,
-    "versionName": "4.1.1.7.7",
-    "date": "2024.08.06",
+    "versionCode": 41178,
+    "versionName": "4.1.1.7.8",
+    "date": "2024.08.17",
     "description": [
       {
         "lang": "en",
@@ -11,10 +11,10 @@
       },
       {
         "lang": "zh_CN",
-        "text": "TCL 4.1.1.7.7更新内容（若启动器内下载缓慢请使用网盘下载）\n1.修复1.21 neoforge无法下载的bug\n2.增加功能:启动器默认主题色根据桌面壁纸自动调整\n3.自定义按键增加数值输入功能\n4.eula内置\n5.调整ui"
+        "text": "TCL4 1.1.7.8更新内容（若启动器内下载缓慢请使用网盘下载，不清楚的话，建议选择已混淆的版本）\n1.更新赞助链接\n2.更新turnip驱动\n3.允许使用外部应用选择文件\n4.移除xhook改为bytehook\n5.修复少量bug"
       }
     ],
-    "netdiskUrl": "https://drive.uc.cn/s/d9e74cdd051c4?public=1",
-    "url": "https://down.npee.cn/?https://github.com/Redstone2337/TofuCraftLauncher/releases/download/1.1.7.7/TofuCraftLauncher4_v2_obfuscated.apk"
+    "netdiskUrl": "https://www.123912.com/s/hSr9-pjf5d.html",
+    "url": "https://down.npee.cn/?https://github.com/Redstone2337/TofuCraftLauncher/releases/download/1.1.7.8/TCL4_obfuscated_1.1.7.8-all.apk"
   }
 ]
