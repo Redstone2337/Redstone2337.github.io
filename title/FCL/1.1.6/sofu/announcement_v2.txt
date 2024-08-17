@@ -8,22 +8,22 @@
   "title": [
     {
       "lang": "en",
-      "text": "Update on TCL4"
+      "text": "About this update"
     },
     {
       "lang": "zh_CN",
-      "text": "关于TCL4的更新"
+      "text": "关于这次更新"
     }
   ],
-  "date": "2024.07.22",
+  "date": "2024.08.17",
   "content": [
     {
       "lang": "en",
-      "text": "In this update, some modules have been adapted to the mobile phone, and some modules that need to modify the configuration file to run on the mobile phone have also been adapted. Please see github for details."
+      "text": "This update adds an acceleration link, but because the download speed is too fast, the progress bar does not read the software storage, but the speed is read, see github for details."
     },
     {
       "lang": "zh_CN",
-      "text": "这次更新给部分模组进行了手机端适配，并且需要修改配置文件才能在手机上运行的模组也进行了一定的适配，详情请见github。"
+      "text": "这次更新又加上了加速链接，但由于下载速度过快导致进度条没有读取到软件储存量，但速度是读取到了，详情请见github。"
     }
   ]
 }
