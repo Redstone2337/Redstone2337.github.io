@@ -3,7 +3,7 @@
     "type": "release",
     "versionCode": 41178,
     "versionName": "4.1.1.7.8",
-    "date": "2024.08.17",
+    "date": "2024.08.22",
     "description": [
       {
         "lang": "en",
@@ -11,10 +11,10 @@
       },
       {
         "lang": "zh_CN",
-        "text": "TCL4 1.1.7.8更新内容（若启动器内下载缓慢请使用网盘下载，不清楚的话，建议选择已混淆的版本）\n1.更新赞助链接\n2.更新turnip驱动\n3.允许使用外部应用选择文件\n4.移除xhook改为bytehook\n5.修复少量bug"
+        "text": "TCL4 1.1.7.8更新内容（若启动器内下载缓慢请使用网盘下载，不清楚的话，建议选择all的版本）\n1.更新赞助链接\n2.更新turnip驱动\n3.允许使用外部应用选择文件\n4.移除xhook改为bytehook\n5.修复少量bug"
       }
     ],
-    "netdiskUrl": "https://www.123912.com/s/hSr9-pjf5d.html",
-    "url": "https://down.npee.cn/?https://github.com/Redstone2337/TofuCraftLauncher/releases/download/1.1.7.8/TCL4_obfuscated_1.1.7.8-all.apk"
+    "netdiskUrl": "https://www.123pan.com/s/hSr9-7Ha5d.html",
+    "url": "https://down.npee.cn/?https://github.com/Redstone2337/TofuCraftLauncher/releases/download/1.1.7.8/TCL4_v1.1.7.8_all.apk"
   }
 ]
