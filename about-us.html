@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no"/>
+    <title>关于我们</title>
+    <link rel="stylesheet" href="./css/tiecode_widget.css"/>
+</head>
+<body ontouchstart>
+<div style="padding: 8px;">
+    <!-- 描述 -->
+    <div class="tie-setting-content">
+    我们是一群MC开发爱好者，从接触Addond开发开始，我们没有任何盈利项目，一直互帮互助、团结一致坚持开发，也在一直进步，如果你喜欢MC模组开发，那就分享给你身边的朋友吧。下面是我们的团队成员：
+    </div>
+<script type="text/javascript">
+    function writeItem(item) {
+        document.write(`
+            <div class="tie-setting-item tie-setting-item-arrow" onclick="openPage('${item.page}')">
+                <div class="tie-setting-item-icon">
+                    <img src="https://q1.qlogo.cn/headimg_dl?dst_uin=${item.qq}&spec=100"/>
+                </div>
+                <div class="tie-setting-item-content">
+                    <div class="tie-setting-item-title">${item.name}</div>
+                </div>
+                <div class="tie-setting-item-action">
+                    <div class="tie-setting-item-arrow-text"></div>
+                </div>
+            </div>`)
+    }
+    let items = [
+        {name: "Minecraft - Redstone233", qq: "3356168312", page: "introduction/master.html"},
+         {name: "Minecraft - 白熊BEX", qq: "1787733152", page: "introduction/vice.html"},
+    ]
+    for(let item of items) {
+        writeItem(item)
+    }
+</script>
+</div>
+<footer class="container-layout-foot">
+    <p>2024/8/24编辑，解释权归<a href="http://Redstone2337.github.io">TRS项目团队</a>所有</p>
+</footer>
+</body>
+<script type="text/javascript">
+    function openPage(url) {
+        window.open(url)
+    }
+</script>
+</html>

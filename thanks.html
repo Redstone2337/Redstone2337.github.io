@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no"/>
+    <title>鸣谢-感谢支持</title>
+    <link rel="stylesheet" href="./css/tiecode_widget.css"/>
+</head>
+<body ontouchstart>
+<div style="padding: 8px;">
+    <script type="text/javascript">
+        function writeItem(item) {
+            if (item.title != undefined) {
+                document.write(`<div class="tie-setting-title"><strong>${item.title}</strong></div>`)
+            }
+            document.write(`
+                <div class="tie-setting-item tie-setting-item-arrow" onclick="openQQ(${item.qq})">
+                    <div class="tie-setting-item-icon">
+                        <img src="https://q1.qlogo.cn/headimg_dl?dst_uin=${item.qq}&spec=100"/>
+                    </div>
+                    <div class="tie-setting-item-content">
+                        <div class="tie-setting-item-title">${item.name}</div>
+                    </div>
+                    <div class="tie-setting-item-action">
+                        <div class="tie-setting-item-arrow-text"></div>
+                    </div>
+                </div>`)
+        }
+
+        let items = [
+            {name: "Redstone233", qq: "3356168312", title: "提供软件开发的技术支持"},
+            
+            {name: "白熊BEX", qq: "1787733152", title: "提供模组纹理和模型开发"},
+            {name: "名里克-普运", qq: "2321283185"},
+            
+            {name: "绪山真寻噢", qq: "3044138612", title: "提供软件测试与错误修复"},
+            
+            {name: "挽悦云X", qq: "0", title: "提供稳定的软件接口"},
+        ]
+
+        for (let item of items) {
+            writeItem(item)
+        }
+    </script>
+</div>
+<footer class="container-layout-foot">
+    <p>2024/8/24编辑，解释权归<a href="http://Redstone2337.github.io">TRS项目团队</a>所有</p>
+</footer>
+</body>
+<script type="text/javascript" src="./js/tiecode_widget.js"></script>
+<script type="text/javascript">
+    function openQQ(qq) {
+        window.open('mqq://card/show_pslcard?src_type=internal&source=sharecard&version=1&uin=' + qq);
+    }
+</script>
+</html>

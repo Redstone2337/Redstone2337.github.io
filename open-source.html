@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no">
+        <title>开源相关</title>
+        <link rel="stylesheet" href="./css/tiecode_widget.css">
+    </head>
+    <body ontouchstart>
+        <div style="padding: 8px;">
+            <script type="text/javascript">
+        function writeItem(item) {
+            document.write(`
+                <div class="tie-card" onclick="openUrl(${item.url})">
+                    <div class="tie-card-cnt">
+                        <div class="tie-card-header">
+                            <div class="tie-card-header-title">
+                                <strong>${item.title}</strong>
+                            </div>
+                        </div>
+                        <div class="tie-card-content">${item.description}</div>
+                        <div class="tie-card-action">
+                            <p class="float-left">${item.groupId}</p>
+                            <p class="float-right">${item.author}</p>
+                        </div>
+                    </div>
+                </div>`)
+        }
+        let items = [
+             {
+                title: "DialogX",
+                description: "DialogX对话框组件库，更加方便易用，可自定义程度更高，扩展性更强，轻松实现各种对话框、菜单和提示效果，更有Material You、iOS、MIUI等主题扩展可选",
+                groupId: "https://github.com/kongzue/DialogX",
+                author: "kongzue",
+                url: ""
+             },
+             {
+                title: "Lottie动画",
+                description: "Lottie动画是一种轻量级动画格式，它允许设计师在各种平台上以原生方式呈现复杂的动画效果。这种格式支持JSON数据，可以轻松地在iOS、Android和Web应用中实现，无需额外的编码工作。Lottie动画以其流畅性能和兼容性广而受到开发者和设计师的喜爱。Lottie 是一种基于JSON的动画文件格式，它使设计人员能够轻松地在任何平台上播放动画。它适用于任何设备，可以放大或缩小而不会出现像素化。",
+                groupId: "http://lottie.club/",
+                author: "network",
+                url: "http://lottie.club/"
+             }
+        ]
+        for (let item of items) {
+            writeItem(item)
+        }
+    </script>
+        </div>
+        <script type="text/javascript" src="./js/tiecode_widget.js"></script>
+        <script type="text/javascript">
+    function openUrl(url) {
+        window.open(url);
+    }
+</script>
+    </body>
+</html>
