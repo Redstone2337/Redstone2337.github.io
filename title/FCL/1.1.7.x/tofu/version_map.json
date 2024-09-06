@@ -1,9 +1,9 @@
 [
   {
     "type": "release",
-    "versionCode": 1177,
-    "versionName": "1.1.7.7",
-    "date": "2024.08.04",
+    "versionCode": 1180,
+    "versionName": "1.1.8.0",
+    "date": "2024.09.06",
     "description": [
       {
         "lang": "en",
@@ -11,10 +11,10 @@
       },
       {
         "lang": "zh_CN",
-        "text": "TCL 4.1.1.7.6更新内容（若启动器内下载缓慢请使用网盘下载 \n1.增加功能'允许调用TCL5安装.apk/.apk.1'\n2.修复一个由于部分系统时间格式获取错误导致下载闪退的bug\n3.新增功能'禁止在崩溃界面截图'\n4.允许直接浏览FCL日志目录（FCL/log）\n5.修改公告内链接颜色\n6.优化部分删除功能，防止启动器卡住导致的崩溃\n7.自动居中鼠标\n8.修复皮肤手臂与腿底部贴图错误的bug"
+        "text": "TCL5 1.1.8更新内容（若启动器内下载缓慢请使用网盘下载,64位的请下载arm64，不知道该下哪个的请下载all）\n1.修复删除文本时错误触发返回的bug\n2.修复语言为非中文或英文时无法使用微软登录的bug\n3.更新HolyGL4ES\n4.增加游戏内光标偏移调节的功能"
       }
     ],
-    "netdiskUrl": "https://cloud.06dn.com/s/aoYoSL",
-    "url": "https://down.npee.cn/?https://github.com/Redstone2337/TofuCraftLauncher/releases/download/1.1.7.6/TofuCraftLauncher4_V4.1.1.7.6-RELEASE.apk"
+    "netdiskUrl": "https://www.123pan.com/s/hSr9-9ga5d.html",
+    "url": "https://mirror.ghproxy.com/?q=https://github.com/Redstone2337/TofuCraftLauncher/releases/download/1.1.8.0/TofuCraftLauncher5_V1.1.8.0-all-release.apk"
   }
 ]
