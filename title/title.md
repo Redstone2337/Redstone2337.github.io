@@ -10,7 +10,7 @@
 **若遇到问题请联系原开发者！**
 
 * **更多信息**
->**[作者官网](https://redstone2337200.github.io/,"进入作者官网")**
+>**[作者官网](https://redstone233-git.netlify.app/,"进入作者官网")**
 >
 >**[LabyMod](https://www.labymod.net/,"进入客户端官网")**
 >

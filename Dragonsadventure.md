@@ -10,7 +10,7 @@
 7. 新增“/cleartime”指令和格式，用于调整自动清理的启动时间
 8. 新增可能会“出现卡岩的进度条”功能
 9. 优化指令布局
-10. ~~加入“/pos”指令及格式~~[已弃用](https://redstone2337200.github.io/title/modpack.html)
+10. ~~加入“/pos”指令及格式~~[已弃用](https://redstone233-git.netlify.app/title/modpack.html)
  
 > 修复
 1. 修复“/book”指令的部分问题
@@ -31,7 +31,7 @@ V2版本将会是一个大更新，增加更多功能，同时又修复部分bug
   - 企鹅号：3356168312  
   - 微信号：RTX-Redstone233  
   - [爱发电](https://afdian.net/a/Redstone2337200)  
-  - [个人主页](https://redstone2337200.github.io/)  
+  - [个人主页](https://redstone233-git.netlify.app/)  
 
 
 >> 其他方式  
@@ -151,7 +151,7 @@ onEvent("command.registry", event => {
                                 event.server.tell([Text.green('龙的冒险：永恒机械·重铸2.0整合包').bold()]);
                                 event.server.runCommandSilent('tellraw @p [{"text":"§a§l尊敬的冒险家","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false},{"selector":"@p","bold":true,"color":"yellow"},{"text":"§a§l先生,"}]');
                                 event.server.tell([Text.green('在这个充满龙的世界中,玩家可以选择当龙骑士耀武扬威,\n也可以选择化身为龙,体验龙的生活,\n玩家还可以选择发展科技实现自动化工厂,\n还能以枪为武器,大战巨龙,成为猎龙人,\n这是一个未知的世界,在这个世界,活下去吧！').bold()]);
-                                event.server.runCommandSilent('tellraw @a [{"text":"§a§lV2.0.2 Powered by ","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false},{"text":"§a§lRedstone233","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"open_url","value":"https://redstone2337200.github.io/"},"hoverEvent":{"action":"show_text","value":"Click here to enter."}}]');
+                                event.server.runCommandSilent('tellraw @a [{"text":"§a§lV2.0.2 Powered by ","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false},{"text":"§a§lRedstone233","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"open_url","value":"https://redstone233-git.netlify.app/"},"hoverEvent":{"action":"show_text","value":"Click here to enter."}}]');
                                 event.server.tell([Text.green('Copyright ©2024 Felongkeji™.').bold()]);
                                 event.server.tell([Text.green('===============介绍===============').bold()]);
                             }
@@ -232,7 +232,7 @@ onEvent("command.registry", event => {
                                 //event.server.tell([Text.green('龙的冒险：永恒机械·重铸2.0整合包').bold()]);
                                 //event.server.runCommandSilent('tellraw @p [{"text":"§a§l尊敬的冒险家","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false},{"selector":"@p","bold":true,"color":"yellow"},{"text":"§a§l先生,"}]');
                                 //event.server.tell([Text.green('在这个充满龙的世界中,玩家可以选择当龙骑士耀武扬威,\n也可以选择化身为龙,体验龙的生活,\n玩家还可以选择发展科技实现自动化工厂,\n还能以枪为武器,大战巨龙,成为猎龙人,\n这是一个未知的世界,在这个世界,活下去吧！').bold()]);
-                                event.server.runCommandSilent('tellraw @p [{"text":"§a§lV2.0.2 Powered by ","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false},{"text":"§a§lRedstone233","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"open_url","value":"https://redstone2337200.github.io/"},"hoverEvent":{"action":"show_text","value":"Click here to enter."}}]');
+                                event.server.runCommandSilent('tellraw @p [{"text":"§a§lV2.0.2 Powered by ","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false},{"text":"§a§lRedstone233","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"open_url","value":"https://redstone233-git.netlify.app/"},"hoverEvent":{"action":"show_text","value":"Click here to enter."}}]');
                                 event.server.tell([Text.green('Copyright ©2024 Felongkeji™.').bold()]);
                                 //event.server.tell([Text.green('===============介绍===============').bold()]);
                             } else if (target == player && type == types[1] && bool == true) {
@@ -241,7 +241,7 @@ onEvent("command.registry", event => {
                                 event.server.tell([Text.green('龙的冒险：永恒机械·重铸2.0整合包').bold()]);
                                 //event.server.runCommandSilent('tellraw @p [{"text":"§a§l尊敬的冒险家","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false},{"selector":"@p","bold":true,"color":"yellow"},{"text":"§a§l先生,"}]');
                                 //event.server.tell([Text.green('在这个充满龙的世界中,玩家可以选择当龙骑士耀武扬威,\n也可以选择化身为龙,体验龙的生活,\n玩家还可以选择发展科技实现自动化工厂,\n还能以枪为武器,大战巨龙,成为猎龙人,\n这是一个未知的世界,在这个世界,活下去吧！').bold()]);
-                                //event.server.runCommandSilent('tellraw @p [{"text":"§a§lV2.0.0 Powered by ","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false},{"text":"§a§lRedstone233","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"open_url","value":"https://redstone2337200.github.io/"},"hoverEvent":{"action":"show_text","value":"Click here to enter."}}]');
+                                //event.server.runCommandSilent('tellraw @p [{"text":"§a§lV2.0.0 Powered by ","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false},{"text":"§a§lRedstone233","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"open_url","value":"https://redstone233-git.netlify.app/"},"hoverEvent":{"action":"show_text","value":"Click here to enter."}}]');
                                 event.server.tell([Text.green('Copyright ©2024 Felongkeji™.').bold()]);
                                 //event.server.tell([Text.green('===============介绍===============').bold()]);
                             } else if (target == player && type == types[2] && bool == true) {
@@ -250,7 +250,7 @@ onEvent("command.registry", event => {
                                 event.server.tell([Text.green('龙的冒险：永恒机械·重铸2.0整合包').bold()]);
                                 event.server.runCommandSilent('tellraw @p [{"text":"§a§l尊敬的冒险家","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false},{"selector":"@p","bold":true,"color":"yellow"},{"text":"§a§l先生,"}]');
                                 event.server.tell([Text.green('在这个充满龙的世界中,玩家可以选择当龙骑士耀武扬威,\n也可以选择化身为龙,体验龙的生活,\n玩家还可以选择发展科技实现自动化工厂,\n还能以枪为武器,大战巨龙,成为猎龙人,\n这是一个未知的世界,在这个世界,活下去吧！').bold()]);
-                                event.server.runCommandSilent('tellraw @p [{"text":"§a§lV2.0.2 Powered by ","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false},{"text":"§a§lRedstone233","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"open_url","value":"https://redstone2337200.github.io/"},"hoverEvent":{"action":"show_text","value":"Click here to enter."}}]');
+                                event.server.runCommandSilent('tellraw @p [{"text":"§a§lV2.0.2 Powered by ","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false},{"text":"§a§lRedstone233","bold":true,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"open_url","value":"https://redstone233-git.netlify.app/"},"hoverEvent":{"action":"show_text","value":"Click here to enter."}}]');
                                 event.server.tell([Text.green('Copyright ©2024 Felongkeji™.').bold()]);
                                 event.server.tell([Text.green('===============介绍===============').bold()]);
                             } else if (target == player && type == types[3] && bool == true) {
