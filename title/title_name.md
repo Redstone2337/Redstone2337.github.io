@@ -5,6 +5,6 @@
 **若遇到问题请联系原开发者！** <br>
 **若遇到问题请联系原开发者！** <br>
 * **扩展信息**
->**[作者官网](https://redstone233-git.netlify.app/,"点击快速前往")**
+>**[作者官网](https://redstone233.netlify.app/,"点击快速前往")**
 >
 >**[LabyMod](https://www.labymod.net/en/download,"点击快速前往")**

@@ -5,6 +5,6 @@
   若遇到问题请联系原开发者！<br>
   若遇到问题请联系原开发者！<br>
   若遇到问题请联系原开发者！<br>
-    <b><a href="https://redstone233-git.netlify.app/" target="_blank" title="点击即可跳转作者主页">作者主页</a><br></b>
+    <b><a href="https://redstone233.netlify.app/" target="_blank" title="点击即可跳转作者主页">作者主页</a><br></b>
     <b><a href="https://www.labymod.net/" target="_blank" title="进入官网">LabyMod</a></b>
 </div>
