@@ -148,3 +148,23 @@ html {
     --back_filter_color: #00000030;
     --fill:#ffffff;
 }
+
+html {
+    /*图片背景+黑色svg**/
+    --name: 自定义主题1;
+    --main_bg_color: url(https://hub.fuxsto.cn/type/image/furry/?dirs=a4×3&size=300);
+    --main_text_color: #000000;
+    --gradient: linear-gradient(120deg, #bd34fe, #e0321b 30%, #41d1ff 60%);
+    --purple_text_color: #747bff;
+    --text_bg_color: rgb(240 243 247);
+    --item_bg_color: rgb(247 247 247);
+    --item_hover_color: rgba(244, 245, 246, 0.5);
+    --item_left_title_color: #000000;
+    --item_left_text_color: #494949;
+    --footer_text_color: #222222;
+    --left_tag_item: #ffffff;
+    --card_filter: 0px;
+    --back_filter: 0px;
+    --back_filter_color: #00000000;
+     --fill:#000000;
+}
