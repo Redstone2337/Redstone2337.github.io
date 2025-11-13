@@ -152,7 +152,7 @@ html {
 html {
     /*图片模糊背景＋黑色透明卡片+白色svg**/
     --name: 自定义主题2;
-    --main_bg_color: url(https://hub.fuxsto.cn/type/image/furry/?dirs=a4×3&size=300);
+    --main_bg_color: url(https://api.fuxsto.cn/api/furry/get?dirs=a16×9&size=640);
     --main_text_color: #eeeeee;
     --gradient: linear-gradient(120deg, #bd34fe, #e0321b 30%, #41d1ff 60%);
     --purple_text_color: #747bff;
@@ -164,7 +164,7 @@ html {
     --footer_text_color: #ffffff;
     --left_tag_item: rgb(27 42 57 / 20%);
     --card_filter: 0px;
-    --back_filter: 19px;
+    --back_filter: 0px;
     --back_filter_color: #00000030;
     --fill:#ffffff;
 }
