@@ -96,8 +96,14 @@ html {
     justify-content: center;
 }
 
+/* 在现有CSS中找到body样式，修改为： */
 body {
     background-color: #48494A;
+    background-image: url("https://api.fuxsto.cn/api/furry/get?dirs=a1×1&size=640"); /* 添加这行 */
+    background-size: cover; /* 添加这行 */
+    background-attachment: fixed; /* 添加这行 */
+    background-position: center; /* 添加这行 */
+    background-repeat: no-repeat; /* 添加这行 */
     height: 100%;
     margin: 0;
     min-width: 330px;
@@ -105,6 +111,19 @@ body {
     position: relative;
     scrollbar-width: none;
     -webkit-user-select: none;
+}
+
+/* 在body样式后添加半透明遮罩 */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* 调整透明度 (0.3 = 30%) */
+    z-index: -1;
+    pointer-events: none;
 }
 
 dispaly-area {
