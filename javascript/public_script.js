@@ -143,80 +143,122 @@ window.addEventListener('load', function () {
     logManager.log("页面加载耗时: " + loadTime + "ms");
 });
 
-// 页面加载时缓存音效文件
-const cacheName = 'audio-cache';
-window.onload = async function () {
-    if ('caches' in window) {
-        try {
-            const cache = await caches.open(cacheName);
-            await cache.addAll([soundPaths['click'], soundPaths['button'], soundPaths['open'], soundPaths['close']]);
-            logManager.log("音效文件已缓存!");
-        } catch (error) {
-            logManager.log("音效文件缓存失败: " + error, 'error');
-        }
-    }
-};
+// ==================== 音效系统 (方案2) ====================
 
-async function getCachedAudio(filePath) {
-    if ('caches' in window) {
-        try {
-            const cache = await caches.open(cacheName);
-            const response = await cache.match(filePath);
-            if (response) {
-                const blob = await response.blob();
-                const audioURL = URL.createObjectURL(blob);
-                logManager.log("从缓存获取音效文件");
-                return new Audio(audioURL); // 返回缓存中的音效
-            } else {
-                logManager.log("缓存中未找到音效文件,尝试直接从链接加载");
-            }
-        } catch (error) {
-            logManager.log("从缓存获取音效文件失败: " + error, 'error');
-        }
-    } else {
-        logManager.log("浏览器不支持缓存API,直接加载音效");
-    }
-    // 如果缓存获取失败直接返回网络资源
-    return new Audio(filePath);
-}
-
-// 音效设置
+// 音效设置 - 使用相对路径
 const soundPaths = {
-    click: rootPath + '/sounds/click.ogg',
-    button: rootPath + '/sounds/button.ogg',
-    pop: rootPath + '/sounds/pop.ogg',
-    hide: rootPath + '/sounds/hide.ogg',
-    open: rootPath + '/sounds/drawer_open.ogg',
-    close: rootPath + '/sounds/drawer_close.ogg',
-    toast: rootPath + '/sounds/toast.ogg'
+    click: './sounds/click.ogg',
+    button: './sounds/button.ogg',
+    pop: './sounds/pop.ogg',
+    hide: './sounds/hide.ogg',
+    open: './sounds/drawer_open.ogg',
+    close: './sounds/drawer_close.ogg',
+    toast: './sounds/toast.ogg'
 };
 
-function playSound(type) {
-    const soundPath = soundPaths[type];
-    if (!soundPath) {
-        logManager.log(`未知的音效类型: ${type}`, 'error');
-        return;
-    }
+// 音效播放器对象
+const soundPlayers = {};
 
-    getCachedAudio(soundPath).then(audio => {
-        audio.play().then(() => {
-            logManager.log(`${type}音效播放成功!`);
-        }).catch(error => {
-            logManager.log(`${type}音效播放失败: ${error}`, 'error');
-        });
-    }).catch(error => {
-        logManager.log(`获取${type}音效失败: ${error}`, 'error');
+// 初始化音效播放器
+function initSoundPlayers() {
+    Object.keys(soundPaths).forEach(type => {
+        try {
+            soundPlayers[type] = {
+                audio: new Audio(soundPaths[type]),
+                isPlaying: false,
+                isLoaded: false
+            };
+            
+            // 设置预加载
+            soundPlayers[type].audio.preload = 'auto';
+            
+            // 加载音效
+            soundPlayers[type].audio.load();
+            
+            // 监听加载完成
+            soundPlayers[type].audio.addEventListener('canplaythrough', function() {
+                soundPlayers[type].isLoaded = true;
+                logManager.log(`${type}音效加载完成`);
+            });
+            
+            // 监听播放结束
+            soundPlayers[type].audio.addEventListener('ended', function() {
+                soundPlayers[type].isPlaying = false;
+            });
+            
+            // 监听加载错误
+            soundPlayers[type].audio.addEventListener('error', function(e) {
+                logManager.log(`${type}音效加载失败: ${e.message}`, 'error');
+            });
+            
+        } catch (error) {
+            logManager.log(`初始化${type}音效失败: ${error.message}`, 'error');
+        }
     });
+    logManager.log("音效播放器初始化完成");
 }
 
-// 按键音效
-function playSoundType(button) {
-    if (button.classList.contains('normal_btn') || button.classList.contains('red_btn') || button.classList.contains('sidebar_btn') || (button.classList.contains('tab_bar_btn') && button.classList.contains('no_active')) || button.classList.contains('close_btn') || button.classList.contains('header_item')) {
-        playSound('click');
-    } else if (button.classList.contains('green_btn')) {
-        playSound('button');
+// 播放音效
+function playSound(type) {
+    // 如果音效类型不存在，使用click音效作为默认
+    if (!soundPaths[type]) {
+        logManager.log(`音效类型 ${type} 未定义，使用click音效代替`, 'warn');
+        type = 'click';
+    }
+    
+    // 如果播放器未初始化，立即初始化
+    if (!soundPlayers[type]) {
+        try {
+            soundPlayers[type] = {
+                audio: new Audio(soundPaths[type]),
+                isPlaying: false,
+                isLoaded: false
+            };
+            soundPlayers[type].audio.preload = 'auto';
+            soundPlayers[type].audio.load();
+            logManager.log(`${type}音效动态初始化`);
+        } catch (error) {
+            logManager.log(`动态初始化${type}音效失败: ${error.message}`, 'error');
+            return;
+        }
+    }
+    
+    const player = soundPlayers[type];
+    
+    // 如果音效正在播放，重置并重新播放
+    if (player.isPlaying) {
+        player.audio.currentTime = 0;
+    } else {
+        player.isPlaying = true;
+    }
+    
+    // 播放音效
+    const playPromise = player.audio.play();
+    
+    if (playPromise !== undefined) {
+        playPromise
+            .then(() => {
+                logManager.log(`${type}音效播放成功`);
+            })
+            .catch(error => {
+                player.isPlaying = false;
+                // 如果不是用户交互导致的错误，记录日志
+                if (!error.message.includes('user gesture')) {
+                    logManager.log(`${type}音效播放失败: ${error.message}`, 'error');
+                }
+            });
     }
 }
+
+// 简化的按钮音效播放
+function playSoundType(button) {
+    playSound('click'); // 统一使用click音效
+}
+
+// 页面加载时初始化音效系统
+document.addEventListener('DOMContentLoaded', initSoundPlayers);
+
+// ==================== 原有关键功能 ====================
 
 // 点击返回按钮事件
 function clickedBack() {
