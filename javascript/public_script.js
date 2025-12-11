@@ -61,7 +61,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // 点击顶栏回到顶部
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelector('.header_logo').addEventListener('click', scrollToTop);
+    const headerLogo = document.querySelector('.header_logo');
+    if (headerLogo) {
+        headerLogo.addEventListener('click', scrollToTop);
+    }
 });
 
 // 跳转判定
@@ -143,7 +146,7 @@ window.addEventListener('load', function () {
     logManager.log("页面加载耗时: " + loadTime + "ms");
 });
 
-// ==================== 音效系统 (方案2) ====================
+// ==================== 音效系统 (修复版) ====================
 
 // 音效设置 - 使用相对路径
 const soundPaths = {
@@ -258,7 +261,90 @@ function playSoundType(button) {
 // 页面加载时初始化音效系统
 document.addEventListener('DOMContentLoaded', initSoundPlayers);
 
-// ==================== 原有关键功能 ====================
+// ==================== 链接跳转系统 (修复版) ====================
+
+// 打开链接函数 - 修复版
+function openLink(url, target = '_blank') {
+    try {
+        logManager.log(`尝试打开链接: ${url}`);
+        
+        // 播放点击音效
+        playSound('click');
+        
+        // 延迟一小段时间确保音效开始播放
+        setTimeout(() => {
+            try {
+                // 检查URL是否有效
+                if (!url || typeof url !== 'string') {
+                    logManager.log('链接地址无效', 'error');
+                    return;
+                }
+                
+                // 如果是相对路径，转换为完整URL
+                let fullUrl = url;
+                if (url.startsWith('./') || url.startsWith('../') || url.startsWith('/')) {
+                    // 使用当前页面的基础URL
+                    const baseUrl = window.location.origin;
+                    fullUrl = new URL(url, baseUrl).href;
+                } else if (!url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('mailto:') && !url.startsWith('tel:')) {
+                    // 如果不是标准协议，添加https://
+                    fullUrl = 'https://' + url;
+                }
+                
+                // 打开链接
+                window.open(fullUrl, target);
+                logManager.log(`链接已打开: ${fullUrl}`);
+                
+            } catch (error) {
+                logManager.log(`打开链接失败: ${error.message}`, 'error');
+                // 尝试直接设置location作为备选方案
+                try {
+                    window.location.href = url;
+                } catch (fallbackError) {
+                    logManager.log(`备选跳转也失败: ${fallbackError.message}`, 'error');
+                }
+            }
+        }, 50); // 50ms延迟确保音效播放
+    } catch (error) {
+        logManager.log(`openLink函数执行出错: ${error.message}`, 'error');
+    }
+}
+
+// 延时打开链接
+function delayedOpenLink(url, delay = 1500, target = '_blank') {
+    playSound('click');
+    setTimeout(() => {
+        openLink(url, target);
+    }, delay);
+}
+
+// 直接跳转（在当前窗口打开）
+function redirectTo(url) {
+    playSound('click');
+    setTimeout(() => {
+        try {
+            window.location.href = url;
+            logManager.log(`跳转到: ${url}`);
+        } catch (error) {
+            logManager.log(`跳转失败: ${error.message}`, 'error');
+        }
+    }, 50);
+}
+
+// 启动应用（用于深度链接）
+function launchApplication(deeplink) {
+    playSound('click');
+    setTimeout(() => {
+        try {
+            window.location.assign(deeplink);
+            logManager.log(`启动应用: ${deeplink}`);
+        } catch (error) {
+            logManager.log(`启动应用失败: ${error.message}`, 'error');
+        }
+    }, 50);
+}
+
+// ==================== 页面导航功能 ====================
 
 // 点击返回按钮事件
 function clickedBack() {
@@ -267,7 +353,11 @@ function clickedBack() {
     setTimeout(function () {
         if (window.history.length <= 1) {
             logManager.log("关闭窗口");
-            window.close();
+            try {
+                window.close();
+            } catch (error) {
+                logManager.log("无法关闭窗口，浏览器可能限制了此操作", 'warn');
+            }
         } else {
             logManager.log("返回上一级页面");
             window.history.back();
@@ -275,36 +365,71 @@ function clickedBack() {
     }, 600);
 }
 
-// 打开网页
-function openLink(url) {
-    if (url.includes('mcarc.github.io')) { // TODO 在移除全部相关链接后删除判定
-        ifNavigating('open', '/minecraft_repository_test/default/error_not-found.html');
-    } else {
-        ifNavigating('open', url);
+// 滚动到网页顶部
+function scrollToTop() {
+    try {
+        const mainScrollContainer = document.querySelector('.primary_scroll_container') || 
+                                   document.querySelector('.main_scroll_view') ||
+                                   document.documentElement;
+        
+        mainScrollContainer.scrollTo({
+            top: 0, 
+            behavior: 'smooth'
+        });
+        logManager.log("成功执行回到顶部操作");
+    } catch (error) {
+        logManager.log(`回到顶部失败: ${error.message}`, 'error');
     }
 }
 
-function delayedOpenLink(url) { // TODO 在页面完成迭代后移除
-    setTimeout(function () {
-        ifNavigating('open', url);
-    }, 1500);
-}
-
-function launchApplication(deeplink) {
-    window.location.assign(deeplink);
-}
-
-// 滚动到网页顶部
-function scrollToTop() {
-    mainScrollContainer.scrollTo({
-        top: 0, behavior: 'smooth'
-    });
-    console.log("成功执行回到顶部操作");
-}
-
-// 跳转到网页顶部
+// 跳转到网页顶部（无动画）
 function toTop() {
-    mainScrollContainer.scrollTo({
-        top: 0, behavior: 'instant'
-    });
+    try {
+        const mainScrollContainer = document.querySelector('.primary_scroll_container') || 
+                                   document.querySelector('.main_scroll_view') ||
+                                   document.documentElement;
+        
+        mainScrollContainer.scrollTo({
+            top: 0, 
+            behavior: 'instant'
+        });
+        logManager.log("立即跳转到顶部");
+    } catch (error) {
+        logManager.log(`跳转到顶部失败: ${error.message}`, 'error');
+    }
 }
+
+// ==================== 工具函数 ====================
+
+// 显示提示消息
+function showMessage(message, duration = 3000) {
+    try {
+        const popArea = document.getElementById('pop_area');
+        if (popArea) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'pop_message';
+            messageDiv.textContent = message;
+            popArea.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                if (messageDiv.parentNode === popArea) {
+                    popArea.removeChild(messageDiv);
+                }
+            }, duration);
+            
+            logManager.log(`显示消息: ${message}`);
+        }
+    } catch (error) {
+        logManager.log(`显示消息失败: ${error.message}`, 'error');
+    }
+}
+
+// 全局暴露函数
+window.openLink = openLink;
+window.delayedOpenLink = delayedOpenLink;
+window.redirectTo = redirectTo;
+window.launchApplication = launchApplication;
+window.clickedBack = clickedBack;
+window.scrollToTop = scrollToTop;
+window.toTop = toTop;
+window.showMessage = showMessage;
