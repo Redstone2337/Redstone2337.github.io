@@ -337,7 +337,6 @@
             flex: 1;
             flex-direction: column;
             padding: 0 20px;
-            position: relative;
         }
 
         .sidebar_item {
@@ -353,7 +352,7 @@
             padding: 12px 15px;
             transition: all 0.2s;
             position: relative;
-            z-index: 1;
+            overflow: hidden;
         }
 
         .sidebar_item:hover {
@@ -368,14 +367,45 @@
         }
 
         .sidebar_item.active {
-            background-color: #3C8527;
-            border-color: #2A641C;
+            background-color: #58585A;
+            border-color: #6D6D6E;
         }
 
         .sidebar_item_icon {
             height: 24px;
             margin-right: 12px;
             width: 24px;
+        }
+
+        /* 侧边栏滑块效果 - 类似于主页面的滑块 */
+        .sidebar_slider {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(60, 133, 39, 0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+            z-index: 0;
+        }
+
+        .sidebar_item:hover .sidebar_slider {
+            transform: translateX(100%);
+        }
+
+        .sidebar_item.active .sidebar_slider {
+            background: linear-gradient(90deg, transparent, rgba(60, 133, 39, 0.6), transparent);
+            transform: translateX(100%);
+        }
+
+        /* 侧边栏项目内容 */
+        .sidebar_item_content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            width: 100%;
         }
 
         .sidebar_footer {
@@ -410,25 +440,6 @@
             display: block;
         }
 
-        /* 侧边栏滑块效果 */
-        .sidebar_slider {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 4px;
-            height: 48px; /* 与侧边栏项目高度匹配 */
-            background-color: #3C8527;
-            border-radius: 0 4px 4px 0;
-            transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1), height 0.3s ease;
-            z-index: 0;
-            opacity: 0.9;
-        }
-
-        .sidebar_item:hover ~ .sidebar_slider,
-        .sidebar_item.active ~ .sidebar_slider {
-            background-color: #4CAF50; /* 悬停时滑块颜色变化 */
-        }
-
         /* 修复：为header设置更高的z-index，防止被弹窗遮罩层覆盖 */
         header {
             position: relative;
@@ -442,7 +453,7 @@
             /* 降低z-index，使其在header之下 */
         }
 
-        /* 响应式设计 */
+        /* 响应式设计 - 横屏模式适配 */
         @media (max-width: 768px) {
             .project_list {
                 grid-template-columns: 1fr;
@@ -464,7 +475,286 @@
             }
         }
 
-        @media (min-width: 1200px) {
+        /* 横屏模式适配 */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .sidebar {
+                max-height: 80vh;
+                overflow-y: auto;
+                top: 50px;
+            }
+            
+            .sidebar_content {
+                padding: 10px 0;
+            }
+            
+            .sidebar_header {
+                padding: 15px 20px 10px;
+            }
+            
+            .sidebar_avatar {
+                height: 60px;
+                width: 60px;
+                margin-bottom: 10px;
+            }
+            
+            .sidebar_username {
+                font-size: 16px;
+            }
+            
+            .sidebar_nav {
+                padding: 0 15px;
+            }
+            
+            .sidebar_item {
+                padding: 8px 12px;
+                margin: 5px 0;
+                font-size: 14px;
+            }
+            
+            .sidebar_item_icon {
+                height: 20px;
+                width: 20px;
+                margin-right: 10px;
+            }
+            
+            .sidebar_footer {
+                padding: 10px 15px;
+                font-size: 10px;
+            }
+        }
+
+        /* 小屏幕横屏 */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .sidebar {
+                max-height: 70vh;
+            }
+            
+            .sidebar_header {
+                padding: 10px 15px 5px;
+            }
+            
+            .sidebar_avatar {
+                height: 50px;
+                width: 50px;
+                border-width: 2px;
+                margin-bottom: 5px;
+            }
+            
+            .sidebar_nav {
+                padding: 0 10px;
+            }
+            
+            .sidebar_item {
+                padding: 6px 10px;
+                margin: 4px 0;
+            }
+        }
+
+        /* 大屏适配：1440px 以上 */
+        @media (min-width: 1440px) {
+            /* 增加内容最大宽度并居中 */
+            .main_scroll_view.with_sidebar {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            
+            /* 增加项目列表列数 */
+            .project_list {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 30px;
+                margin: 30px;
+            }
+            
+            /* 调整标题大小 */
+            .main_title_span_main {
+                font-size: 40px;
+            }
+            
+            .main_title_span_sub {
+                font-size: 24px;
+            }
+            
+            /* 增大个人头像 */
+            .profile_img {
+                height: 150px;
+                width: 150px;
+                margin: 30px auto;
+            }
+            
+            /* 增大社交图标容器 */
+            .icon_container {
+                gap: 25px;
+                margin: 30px 0;
+            }
+            
+            .icon_item {
+                width: 90px;
+            }
+            
+            .icon_item svg {
+                width: 50px;
+                height: 50px;
+                margin-bottom: 10px;
+            }
+            
+            .icon_tip {
+                font-size: 14px;
+            }
+            
+            /* 增大分区标题 */
+            .section_title {
+                font-size: 30px;
+                margin: 40px 0 20px 0;
+                padding-left: 30px;
+            }
+            
+            /* 增大标签容器 */
+            .tag_container {
+                gap: 15px;
+                margin: 30px;
+            }
+            
+            .tag_item {
+                padding: 8px 16px;
+                font-size: 16px;
+            }
+            
+            /* 增大时间轴 */
+            .timeline {
+                margin: 30px;
+            }
+            
+            .timeline_content div:first-child {
+                font-size: 18px;
+            }
+            
+            .timeline_content div:last-child {
+                font-size: 16px;
+            }
+            
+            /* 调整侧边栏大小和位置 */
+            .sidebar {
+                width: 280px;
+                left: calc(50% - 700px); /* 居中时侧边栏位置 */
+            }
+            
+            .sidebar_avatar {
+                height: 100px;
+                width: 100px;
+            }
+            
+            .sidebar_username {
+                font-size: 24px;
+            }
+            
+            .sidebar_item {
+                padding: 15px 20px;
+                font-size: 16px;
+            }
+            
+            .sidebar_item_icon {
+                height: 28px;
+                width: 28px;
+            }
+        }
+
+        /* 超宽屏适配：1920px 以上 */
+        @media (min-width: 1920px) {
+            .main_scroll_view.with_sidebar {
+                max-width: 1600px;
+            }
+            
+            .project_list {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                gap: 35px;
+                margin: 35px;
+            }
+            
+            .main_title_span_main {
+                font-size: 44px;
+            }
+            
+            .main_title_span_sub {
+                font-size: 26px;
+            }
+            
+            .profile_img {
+                height: 160px;
+                width: 160px;
+            }
+            
+            .icon_container {
+                gap: 30px;
+            }
+            
+            .section_title {
+                font-size: 32px;
+                margin: 45px 0 25px 0;
+            }
+            
+            .sidebar {
+                width: 300px;
+                left: calc(50% - 800px);
+            }
+        }
+
+        /* 超大屏适配：2560px 以上 (2K屏) */
+        @media (min-width: 2560px) {
+            .main_scroll_view.with_sidebar {
+                max-width: 2000px;
+            }
+            
+            .project_list {
+                grid-template-columns: repeat(4, minmax(300px, 1fr));
+                gap: 40px;
+                margin: 40px;
+            }
+            
+            .main_title_span_main {
+                font-size: 48px;
+            }
+            
+            .main_title_span_sub {
+                font-size: 28px;
+            }
+            
+            .profile_img {
+                height: 180px;
+                width: 180px;
+                border-width: 5px;
+            }
+            
+            .icon_container {
+                gap: 40px;
+                margin: 40px 0;
+            }
+            
+            .icon_item {
+                width: 110px;
+            }
+            
+            .icon_item svg {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .icon_tip {
+                font-size: 16px;
+            }
+            
+            .section_title {
+                font-size: 36px;
+                margin: 50px 0 30px 0;
+            }
+            
+            .sidebar {
+                width: 320px;
+                left: calc(50% - 1000px);
+            }
+        }
+
+        /* 桌面端（1200px-1439px） */
+        @media (min-width: 1200px) and (max-width: 1439px) {
             .project_list {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -486,6 +776,137 @@
 
             .sidebar_overlay {
                 display: none !important;
+            }
+        }
+
+        /* 横向布局容器 - 新增 */
+        .horizontal_layout_container {
+            display: flex;
+            flex-direction: column;
+            margin: 20px;
+        }
+
+        /* 横向布局 - 电脑模式 */
+        .horizontal_layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .horizontal_layout_item {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            background-color: #313233;
+            border: 2px solid #58585A;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .horizontal_layout_item:hover {
+            border-color: #6D6D6E;
+            background-color: #58585A;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 纵向布局 - 手机模式（默认） */
+        .vertical_layout {
+            display: block;
+        }
+
+        .vertical_layout_item {
+            margin-bottom: 30px;
+        }
+
+        /* 横向布局标题 */
+        .horizontal_section_title {
+            font-family: "Minecraft Ten", sans-serif;
+            font-size: 24px;
+            color: #E6E8EB;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3C8527;
+            text-align: center;
+        }
+
+        /* 横向布局的时间轴样式 */
+        .horizontal_timeline {
+            margin: 0;
+        }
+
+        .horizontal_timeline::before {
+            left: 15px;
+        }
+
+        .horizontal_timeline_item {
+            margin-bottom: 20px;
+        }
+
+        /* 横向布局的项目列表 */
+        .horizontal_project_list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 0;
+        }
+
+        .horizontal_project_item {
+            background-color: #48494A;
+            border: 2px solid #58585A;
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .horizontal_project_item:hover {
+            border-color: #6D6D6E;
+            background-color: #58585A;
+            transform: translateX(5px);
+        }
+
+        /* 响应式调整 - 动态布局切换 */
+        @media (max-width: 1199px) {
+            /* 手机/平板 - 纵向布局 */
+            .horizontal_layout {
+                display: block;
+            }
+            
+            .horizontal_layout_item {
+                max-width: 100%;
+                margin-bottom: 25px;
+            }
+            
+            /* 隐藏横向布局的特定元素，显示纵向布局的 */
+            .horizontal_section_title {
+                display: none;
+            }
+            
+            .section_title {
+                display: block;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            /* 电脑 - 横向布局 */
+            .horizontal_layout {
+                display: flex;
+            }
+            
+            /* 隐藏纵向布局的标题，显示横向布局的标题 */
+            .section_title {
+                display: none;
+            }
+            
+            .horizontal_section_title {
+                display: block;
             }
         }
 
@@ -577,11 +998,6 @@
             <div class="header_item header_item_left" onclick="toggleSidebar();">
                 <img alt="菜单" class="header_left_icon" src="./images/Menu.png">
             </div>
-            <!--
-            <div class="header_logo">
-                <div class="header_title">Redstone233</div>
-            </div>
-            -->
             <!-- 修改后的标题部分 - 使用图片 -->
             <div class="header_logo">
                 <img src="./images/handler_logo.png" alt="Redstone233" class="header_title_img">
@@ -602,28 +1018,34 @@
                 </div>
 
                 <div class="sidebar_nav">
-                    <!-- 滑块 -->
-                    <div class="sidebar_slider" id="sidebar_slider"></div>
-                    
                     <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
-                    <div class="sidebar_item active" data-index="0" onclick="openLink('https://redstone2337.github.io/');">
-                        <img alt="个人主页" class="sidebar_item_icon"
-                            src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640" />
-                        <span>个人主页</span>
+                    <div class="sidebar_item active" onclick="openLink('https://redstone2337.github.io/');">
+                        <div class="sidebar_slider"></div>
+                        <div class="sidebar_item_content">
+                            <img alt="个人主页" class="sidebar_item_icon"
+                                src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640" />
+                            <span>个人主页</span>
+                        </div>
                     </div>
 
                     <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
-                    <div class="sidebar_item" data-index="1" onclick="openLink('https://redstone2337.github.io/title/modpack.html');">
-                        <img alt="整合包主页" class="sidebar_item_icon"
-                            src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640" />
-                        <span>整合包主页</span>
+                    <div class="sidebar_item" onclick="openLink('https://redstone2337.github.io/title/modpack.html');">
+                        <div class="sidebar_slider"></div>
+                        <div class="sidebar_item_content">
+                            <img alt="整合包主页" class="sidebar_item_icon"
+                                src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640" />
+                            <span>整合包主页</span>
+                        </div>
                     </div>
 
                     <!-- 修改：保持playSound调用，因为showModal不跳转链接 -->
-                    <div class="sidebar_item" data-index="2" onclick="playSound('click');showModal('sponsor_modal');toggleSidebar();">
-                        <img alt="赞助" class="sidebar_item_icon"
-                            src="https://api.fuxsto.cn/api/furry/get?dirs=a1×1&size=640" />
-                        <span>赞助</span>
+                    <div class="sidebar_item" onclick="playSound('click');showModal('sponsor_modal');toggleSidebar();">
+                        <div class="sidebar_slider"></div>
+                        <div class="sidebar_item_content">
+                            <img alt="赞助" class="sidebar_item_icon"
+                                src="https://api.fuxsto.cn/api/furry/get?dirs=a1×1&size=640" />
+                            <span>赞助</span>
+                        </div>
                     </div>
                 </div>
 
@@ -733,107 +1155,216 @@
                             </div>
                         </div>
 
-                        <div class="section_title">网站导航</div>
+                        <!-- 新增：横向布局容器 -->
+                        <div class="horizontal_layout_container" id="horizontal_layout_container">
+                            <div class="horizontal_layout" id="horizontal_layout">
+                                <!-- 网站导航区块 -->
+                                <div class="horizontal_layout_item">
+                                    <div class="horizontal_section_title">网站导航</div>
+                                    <div class="horizontal_project_list">
+                                        <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
+                                        <a class="horizontal_project_item" onclick="openLink('https://pan.quark.cn/s/5fbfcdc4157f');">
+                                            <div class="project_item_left">
+                                                <h1>小刚移植</h1>
+                                                <p>整合包移植团队</p>
+                                            </div>
+                                            <div class="project_item_right">
+                                                <img src="https://q1.qlogo.cn/headimg_dl?dst_uin=3561989295&spec=640"
+                                                    alt="小刚移植">
+                                            </div>
+                                        </a>
 
-                        <div class="main main_block">
-                            <div class="main_block_content">
-                                <div class="project_list">
-                                    <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
-                                    <a class="project_item" onclick="openLink('https://pan.quark.cn/s/5fbfcdc4157f');">
-                                        <div class="project_item_left">
-                                            <h1>小刚移植</h1>
-                                            <p>整合包移植团队</p>
-                                        </div>
-                                        <div class="project_item_right">
-                                            <img src="https://q1.qlogo.cn/headimg_dl?dst_uin=3561989295&spec=640"
-                                                alt="小刚移植">
-                                        </div>
-                                    </a>
+                                        <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
+                                        <a class="horizontal_project_item" onclick="openLink('https://redstone2337.github.io/');">
+                                            <div class="project_item_left">
+                                                <h1>核心人物</h1>
+                                                <p>核心人物个人官网</p>
+                                            </div>
+                                            <div class="project_item_right">
+                                                <img src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640"
+                                                    alt="核心人物">
+                                            </div>
+                                        </a>
 
-                                    <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
-                                    <a class="project_item" onclick="openLink('https://redstone2337.github.io/');">
-                                        <div class="project_item_left">
-                                            <h1>核心人物</h1>
-                                            <p>核心人物个人官网</p>
-                                        </div>
-                                        <div class="project_item_right">
-                                            <img src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640"
-                                                alt="核心人物">
-                                        </div>
-                                    </a>
+                                        <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
+                                        <a class="horizontal_project_item" onclick="openLink('https://redstone2337.github.io/title/modpack.html');">
+                                            <div class="project_item_left">
+                                                <h1>整合官网</h1>
+                                                <p>Redstone233的整合包官方网站</p>
+                                            </div>
+                                            <div class="project_item_right">
+                                                <img src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640"
+                                                    alt="整合官网">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
 
-                                    <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
-                                    <a class="project_item" onclick="openLink('https://redstone2337.github.io/title/modpack.html');">
-                                        <div class="project_item_left">
-                                            <h1>整合官网</h1>
-                                            <p>Redstone233的整合包官方网站</p>
+                                <!-- 项目展示区块 -->
+                                <div class="horizontal_layout_item">
+                                    <div class="horizontal_section_title">项目展示</div>
+                                    <div class="horizontal_project_list">
+                                        <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
+                                        <a class="horizontal_project_item" onclick="openLink('https://redstone2337.github.io/title/modpack.html');">
+                                            <div class="project_item_left">
+                                                <h1>整合主页</h1>
+                                                <p>Redstone233的整合包引导页</p>
+                                            </div>
+                                            <div class="project_item_right">
+                                                <img src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640"
+                                                    alt="整合主页">
+                                            </div>
+                                        </a>
+
+                                        <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
+                                        <a class="horizontal_project_item" onclick="openLink('https://redstone2337.github.io/');">
+                                            <div class="project_item_left">
+                                                <h1>模组网站</h1>
+                                                <p>Redstone233开发的模组专属网站(即将更新)</p>
+                                            </div>
+                                            <div class="project_item_right">
+                                                <img src="https://api.fuxsto.cn/api/furry/get?dirs=a1×1&size=640" alt="模组网站">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- 时间轴区块 -->
+                                <div class="horizontal_layout_item">
+                                    <div class="horizontal_section_title">时间轴</div>
+                                    <div class="horizontal_timeline">
+                                        <div class="horizontal_timeline_item">
+                                            <div class="timeline_dot"></div>
+                                            <div class="timeline_content">
+                                                <div>敬请期待</div>
+                                                <div>2024.1</div>
+                                            </div>
                                         </div>
-                                        <div class="project_item_right">
-                                            <img src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640"
-                                                alt="整合官网">
+
+                                        <div class="horizontal_timeline_item">
+                                            <div class="timeline_dot"></div>
+                                            <div class="timeline_content">
+                                                <div>转向模组开发</div>
+                                                <div>2023.6</div>
+                                            </div>
                                         </div>
-                                    </a>
+
+                                        <div class="horizontal_timeline_item">
+                                            <div class="timeline_dot"></div>
+                                            <div class="timeline_content">
+                                                <div>搭建第一个网站</div>
+                                                <div>2021.6</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="section_title">项目展示</div>
+                        <!-- 原有纵向布局（在移动端显示，电脑端隐藏） -->
+                        <div class="vertical_layout" id="vertical_layout">
+                            <div class="section_title">网站导航</div>
 
-                        <div class="main main_block">
-                            <div class="main_block_content">
-                                <div class="project_list">
-                                    <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
-                                    <a class="project_item" onclick="openLink('https://redstone2337.github.io/title/modpack.html');">
-                                        <div class="project_item_left">
-                                            <h1>整合主页</h1>
-                                            <p>Redstone233的整合包引导页</p>
-                                        </div>
-                                        <div class="project_item_right">
-                                            <img src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640"
-                                                alt="整合主页">
-                                        </div>
-                                    </a>
+                            <div class="main main_block vertical_layout_item">
+                                <div class="main_block_content">
+                                    <div class="project_list">
+                                        <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
+                                        <a class="project_item" onclick="openLink('https://pan.quark.cn/s/5fbfcdc4157f');">
+                                            <div class="project_item_left">
+                                                <h1>小刚移植</h1>
+                                                <p>整合包移植团队</p>
+                                            </div>
+                                            <div class="project_item_right">
+                                                <img src="https://q1.qlogo.cn/headimg_dl?dst_uin=3561989295&spec=640"
+                                                    alt="小刚移植">
+                                            </div>
+                                        </a>
 
-                                    <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
-                                    <a class="project_item" onclick="openLink('https://redstone2337.github.io/');">
-                                        <div class="project_item_left">
-                                            <h1>模组网站</h1>
-                                            <p>Redstone233开发的模组专属网站(即将更新)</p>
-                                        </div>
-                                        <div class="project_item_right">
-                                            <img src="https://api.fuxsto.cn/api/furry/get?dirs=a1×1&size=640" alt="模组网站">
-                                        </div>
-                                    </a>
+                                        <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
+                                        <a class="project_item" onclick="openLink('https://redstone2337.github.io/');">
+                                            <div class="project_item_left">
+                                                <h1>核心人物</h1>
+                                                <p>核心人物个人官网</p>
+                                            </div>
+                                            <div class="project_item_right">
+                                                <img src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640"
+                                                    alt="核心人物">
+                                            </div>
+                                        </a>
+
+                                        <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
+                                        <a class="project_item" onclick="openLink('https://redstone2337.github.io/title/modpack.html');">
+                                            <div class="project_item_left">
+                                                <h1>整合官网</h1>
+                                                <p>Redstone233的整合包官方网站</p>
+                                            </div>
+                                            <div class="project_item_right">
+                                                <img src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640"
+                                                    alt="整合官网">
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="section_title">时间轴</div>
+                            <div class="section_title">项目展示</div>
 
-                        <div class="main main_block">
-                            <div class="main_block_content">
-                                <div class="timeline">
-                                    <div class="timeline_item">
-                                        <div class="timeline_dot"></div>
-                                        <div class="timeline_content">
-                                            <div>敬请期待</div>
-                                            <div>2024.1</div>
-                                        </div>
+                            <div class="main main_block vertical_layout_item">
+                                <div class="main_block_content">
+                                    <div class="project_list">
+                                        <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
+                                        <a class="project_item" onclick="openLink('https://redstone2337.github.io/title/modpack.html');">
+                                            <div class="project_item_left">
+                                                <h1>整合主页</h1>
+                                                <p>Redstone233的整合包引导页</p>
+                                            </div>
+                                            <div class="project_item_right">
+                                                <img src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640"
+                                                    alt="整合主页">
+                                            </div>
+                                        </a>
+
+                                        <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
+                                        <a class="project_item" onclick="openLink('https://redstone2337.github.io/');">
+                                            <div class="project_item_left">
+                                                <h1>模组网站</h1>
+                                                <p>Redstone233开发的模组专属网站(即将更新)</p>
+                                            </div>
+                                            <div class="project_item_right">
+                                                <img src="https://api.fuxsto.cn/api/furry/get?dirs=a1×1&size=640" alt="模组网站">
+                                            </div>
+                                        </a>
                                     </div>
+                                </div>
+                            </div>
 
-                                    <div class="timeline_item">
-                                        <div class="timeline_dot"></div>
-                                        <div class="timeline_content">
-                                            <div>转向模组开发</div>
-                                            <div>2023.6</div>
+                            <div class="section_title">时间轴</div>
+
+                            <div class="main main_block vertical_layout_item">
+                                <div class="main_block_content">
+                                    <div class="timeline">
+                                        <div class="timeline_item">
+                                            <div class="timeline_dot"></div>
+                                            <div class="timeline_content">
+                                                <div>敬请期待</div>
+                                                <div>2024.1</div>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="timeline_item">
-                                        <div class="timeline_dot"></div>
-                                        <div class="timeline_content">
-                                            <div>搭建第一个网站</div>
-                                            <div>2021.6</div>
+                                        <div class="timeline_item">
+                                            <div class="timeline_dot"></div>
+                                            <div class="timeline_content">
+                                                <div>转向模组开发</div>
+                                                <div>2023.6</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="timeline_item">
+                                            <div class="timeline_dot"></div>
+                                            <div class="timeline_content">
+                                                <div>搭建第一个网站</div>
+                                                <div>2021.6</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -864,7 +1395,7 @@
                 <modal_title>赞助支持</modal_title>
                 <!-- 保持原样：关闭弹窗不需要打开链接 -->
                 <modal_close_btn onclick="playSoundType(this);hideModal('sponsor_modal');">
-                    <img alt="关闭" class="modal_close_btn_img" src="./images/Back.png" />
+                    <img alt="关闭" class="modal_close_btn_img" src="./images/close.png" />
                 </modal_close_btn>
             </modal_title_area>
             <modal_content>
@@ -912,72 +1443,59 @@
         }
     }
 
-    // 侧边栏滑块效果初始化
-    function initSidebarSlider() {
-        const slider = document.getElementById('sidebar_slider');
-        const menuItems = document.querySelectorAll('.sidebar_item');
-        
-        if (!slider || menuItems.length === 0) return;
-        
-        // 设置滑块初始位置（第一个菜单项为默认激活）
-        const activeItem = document.querySelector('.sidebar_item.active');
-        let initialIndex = 0;
-        
-        if (activeItem) {
-            initialIndex = parseInt(activeItem.getAttribute('data-index')) || 0;
-        }
-        
-        // 计算滑块位置（每个菜单项高度约52px）
-        slider.style.top = `${initialIndex * 52}px`;
-        
-        // 悬停效果
-        menuItems.forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                const index = parseInt(this.getAttribute('data-index')) || 0;
-                slider.style.top = `${index * 52}px`;
-            });
-            
-            // 点击效果
-            item.addEventListener('click', function() {
-                // 移除所有active类
-                menuItems.forEach(i => i.classList.remove('active'));
-                // 添加active类到当前项
-                this.classList.add('active');
-                // 移动滑块到点击的位置
-                const index = parseInt(this.getAttribute('data-index')) || 0;
-                slider.style.top = `${index * 52}px`;
-            });
-        });
-        
-        // 侧边栏鼠标离开时滑块回到激活项
-        const sidebarNav = document.querySelector('.sidebar_nav');
-        if (sidebarNav) {
-            sidebarNav.addEventListener('mouseleave', function() {
-                const activeItem = document.querySelector('.sidebar_item.active');
-                if (activeItem) {
-                    const index = parseInt(activeItem.getAttribute('data-index')) || 0;
-                    slider.style.top = `${index * 52}px`;
-                }
-            });
-        }
-    }
-
     // 自定义弹出函数
     function pop(message) {
         showPop(message, 3000);
     }
 
-    // 确保全局函数可用
-    window.toggleSidebar = toggleSidebar;
-    window.openLink = openLink;
-    window.playSound = playSound;
-    window.playSoundType = playSoundType;
-    window.showModal = showModal; // 假设showModal函数在其他文件中定义
-    window.hideModal = hideModal; // 假设hideModal函数在其他文件中定义
-    window.initSidebarSlider = initSidebarSlider;
+    // 动态布局切换函数
+    function updateLayout() {
+        const horizontalLayout = document.getElementById('horizontal_layout_container');
+        const verticalLayout = document.getElementById('vertical_layout');
+        const screenWidth = window.innerWidth;
+        
+        if (screenWidth >= 1200) {
+            // 电脑模式：显示横向布局，隐藏纵向布局
+            if (horizontalLayout) horizontalLayout.style.display = 'block';
+            if (verticalLayout) verticalLayout.style.display = 'none';
+        } else {
+            // 手机/平板模式：显示纵向布局，隐藏横向布局
+            if (horizontalLayout) horizontalLayout.style.display = 'none';
+            if (verticalLayout) verticalLayout.style.display = 'block';
+        }
+        
+        // 动态调整横向布局的列数
+        const horizontalItems = document.querySelectorAll('.horizontal_layout_item');
+        if (horizontalItems.length > 0) {
+            if (screenWidth >= 1920) {
+                // 超宽屏：3列
+                horizontalItems.forEach(item => {
+                    item.style.flex = '0 0 calc(33.333% - 20px)';
+                    item.style.minWidth = '300px';
+                });
+            } else if (screenWidth >= 1440) {
+                // 大屏：3列
+                horizontalItems.forEach(item => {
+                    item.style.flex = '0 0 calc(33.333% - 20px)';
+                    item.style.minWidth = '280px';
+                });
+            } else if (screenWidth >= 1200) {
+                // 标准电脑屏：3列，但可以换行
+                horizontalItems.forEach(item => {
+                    item.style.flex = '1';
+                    item.style.minWidth = '300px';
+                });
+            }
+        }
+    }
 
-    // 页面加载完成后初始化
-    document.addEventListener('DOMContentLoaded', function () {
+    // 初始化布局
+    function initLayout() {
+        updateLayout();
+        
+        // 添加窗口大小变化监听
+        window.addEventListener('resize', updateLayout);
+        
         // 初始化侧边栏滑块
         initSidebarSlider();
         
@@ -988,10 +1506,61 @@
                 sidebar.classList.remove('show');
             }
         }
+    }
+
+    // 侧边栏滑块效果初始化
+    function initSidebarSlider() {
+        const menuItems = document.querySelectorAll('.sidebar_item');
+        
+        menuItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const slider = this.querySelector('.sidebar_slider');
+                if (slider) {
+                    slider.style.transform = 'translateX(100%)';
+                }
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                const slider = this.querySelector('.sidebar_slider');
+                const isActive = this.classList.contains('active');
+                if (slider) {
+                    if (isActive) {
+                        slider.style.transform = 'translateX(100%)';
+                    } else {
+                        slider.style.transform = 'translateX(-100%)';
+                    }
+                }
+            });
+            
+            // 点击效果
+            item.addEventListener('click', function() {
+                // 移除所有active类
+                menuItems.forEach(i => i.classList.remove('active'));
+                // 添加active类到当前项
+                this.classList.add('active');
+            });
+        });
+    }
+
+    // 确保全局函数可用
+    window.toggleSidebar = toggleSidebar;
+    window.openLink = openLink;
+    window.playSound = playSound;
+    window.playSoundType = playSoundType;
+    window.showModal = showModal; // 假设showModal函数在其他文件中定义
+    window.hideModal = hideModal; // 假设hideModal函数在其他文件中定义
+    window.updateLayout = updateLayout;
+    window.initLayout = initLayout;
+
+    // 页面加载完成后初始化
+    document.addEventListener('DOMContentLoaded', function () {
+        initLayout();
     });
 
-    // 窗口大小变化时调整侧边栏
+    // 窗口大小变化时调整布局和侧边栏
     window.addEventListener('resize', function () {
+        updateLayout();
+        
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('sidebar_overlay');
 
