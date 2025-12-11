@@ -337,6 +337,7 @@
             flex: 1;
             flex-direction: column;
             padding: 0 20px;
+            position: relative;
         }
 
         .sidebar_item {
@@ -351,6 +352,8 @@
             margin: 8px 0;
             padding: 12px 15px;
             transition: all 0.2s;
+            position: relative;
+            z-index: 1;
         }
 
         .sidebar_item:hover {
@@ -360,6 +363,11 @@
         }
 
         .sidebar_item:active {
+            background-color: #3C8527;
+            border-color: #2A641C;
+        }
+
+        .sidebar_item.active {
             background-color: #3C8527;
             border-color: #2A641C;
         }
@@ -400,6 +408,25 @@
 
         .sidebar_overlay.show {
             display: block;
+        }
+
+        /* 侧边栏滑块效果 */
+        .sidebar_slider {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 48px; /* 与侧边栏项目高度匹配 */
+            background-color: #3C8527;
+            border-radius: 0 4px 4px 0;
+            transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1), height 0.3s ease;
+            z-index: 0;
+            opacity: 0.9;
+        }
+
+        .sidebar_item:hover ~ .sidebar_slider,
+        .sidebar_item.active ~ .sidebar_slider {
+            background-color: #4CAF50; /* 悬停时滑块颜色变化 */
         }
 
         /* 修复：为header设置更高的z-index，防止被弹窗遮罩层覆盖 */
@@ -575,22 +602,25 @@
                 </div>
 
                 <div class="sidebar_nav">
+                    <!-- 滑块 -->
+                    <div class="sidebar_slider" id="sidebar_slider"></div>
+                    
                     <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
-                    <div class="sidebar_item" onclick="openLink('https://redstone2337.github.io/');">
+                    <div class="sidebar_item active" data-index="0" onclick="openLink('https://redstone2337.github.io/');">
                         <img alt="个人主页" class="sidebar_item_icon"
                             src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640" />
                         <span>个人主页</span>
                     </div>
 
                     <!-- 修改：移除了playSound调用，openLink内部已处理音效 -->
-                    <div class="sidebar_item" onclick="openLink('https://redstone2337.github.io/title/modpack.html');">
+                    <div class="sidebar_item" data-index="1" onclick="openLink('https://redstone2337.github.io/title/modpack.html');">
                         <img alt="整合包主页" class="sidebar_item_icon"
                             src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640" />
                         <span>整合包主页</span>
                     </div>
 
                     <!-- 修改：保持playSound调用，因为showModal不跳转链接 -->
-                    <div class="sidebar_item" onclick="playSound('click');showModal('sponsor_modal');toggleSidebar();">
+                    <div class="sidebar_item" data-index="2" onclick="playSound('click');showModal('sponsor_modal');toggleSidebar();">
                         <img alt="赞助" class="sidebar_item_icon"
                             src="https://api.fuxsto.cn/api/furry/get?dirs=a1×1&size=640" />
                         <span>赞助</span>
@@ -834,7 +864,7 @@
                 <modal_title>赞助支持</modal_title>
                 <!-- 保持原样：关闭弹窗不需要打开链接 -->
                 <modal_close_btn onclick="playSoundType(this);hideModal('sponsor_modal');">
-                    <img alt="关闭" class="modal_close_btn_img" src="./images/close.png" />
+                    <img alt="关闭" class="modal_close_btn_img" src="./images/Back.png" />
                 </modal_close_btn>
             </modal_title_area>
             <modal_content>
@@ -882,6 +912,56 @@
         }
     }
 
+    // 侧边栏滑块效果初始化
+    function initSidebarSlider() {
+        const slider = document.getElementById('sidebar_slider');
+        const menuItems = document.querySelectorAll('.sidebar_item');
+        
+        if (!slider || menuItems.length === 0) return;
+        
+        // 设置滑块初始位置（第一个菜单项为默认激活）
+        const activeItem = document.querySelector('.sidebar_item.active');
+        let initialIndex = 0;
+        
+        if (activeItem) {
+            initialIndex = parseInt(activeItem.getAttribute('data-index')) || 0;
+        }
+        
+        // 计算滑块位置（每个菜单项高度约52px）
+        slider.style.top = `${initialIndex * 52}px`;
+        
+        // 悬停效果
+        menuItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const index = parseInt(this.getAttribute('data-index')) || 0;
+                slider.style.top = `${index * 52}px`;
+            });
+            
+            // 点击效果
+            item.addEventListener('click', function() {
+                // 移除所有active类
+                menuItems.forEach(i => i.classList.remove('active'));
+                // 添加active类到当前项
+                this.classList.add('active');
+                // 移动滑块到点击的位置
+                const index = parseInt(this.getAttribute('data-index')) || 0;
+                slider.style.top = `${index * 52}px`;
+            });
+        });
+        
+        // 侧边栏鼠标离开时滑块回到激活项
+        const sidebarNav = document.querySelector('.sidebar_nav');
+        if (sidebarNav) {
+            sidebarNav.addEventListener('mouseleave', function() {
+                const activeItem = document.querySelector('.sidebar_item.active');
+                if (activeItem) {
+                    const index = parseInt(activeItem.getAttribute('data-index')) || 0;
+                    slider.style.top = `${index * 52}px`;
+                }
+            });
+        }
+    }
+
     // 自定义弹出函数
     function pop(message) {
         showPop(message, 3000);
@@ -894,9 +974,13 @@
     window.playSoundType = playSoundType;
     window.showModal = showModal; // 假设showModal函数在其他文件中定义
     window.hideModal = hideModal; // 假设hideModal函数在其他文件中定义
+    window.initSidebarSlider = initSidebarSlider;
 
     // 页面加载完成后初始化
     document.addEventListener('DOMContentLoaded', function () {
+        // 初始化侧边栏滑块
+        initSidebarSlider();
+        
         // 在桌面端不再自动显示侧边栏，改为点击菜单按钮显示
         if (window.innerWidth >= 1200) {
             const sidebar = document.getElementById('sidebar');
