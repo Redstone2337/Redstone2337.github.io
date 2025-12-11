@@ -1,0 +1,542 @@
+<!--
+ * @Author: Spectrollay
+ * @WebUI: OreUI V2
+ -->
+<!--
+  ~ Copyright © 2020. Spectrollay
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <base href="./"><!-- 项目根路径 -->
+    <meta charset="utf-8" />
+    <link rel="fluid-icon" href="https://redstone2337200.github.io/official.png" title="Flydragons Studios">
+    <link rel="icon" type="image/x-icon" href="https://redstone2337200.github.io/official.png">
+    <title>整合包信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    
+    <!-- OreUI 样式 -->
+    <link as="image" href="./images/Loading_white.gif" rel="preload">
+    <link href="./stylesheet/loading_mask.css" rel="stylesheet">
+    <link href="./stylesheet/public_style.css" rel="stylesheet">
+    <link href="./stylesheet/oreui.css" rel="stylesheet">
+    
+    <style>
+        /* 自定义样式 */
+        .header_logo {
+            justify-content: left;
+        }
+
+        .header_title {
+            margin-left: 30px;
+        }
+        
+        /* 整合包图片 */
+        .pack_header_img {
+            margin-top: 20px;
+            max-width: 100%;
+            width: 100%;
+            max-height: 400px;
+            min-height: 200px;
+            object-fit: cover;
+        }
+        
+        /* 内容区域 */
+        .main_content {
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+        
+        .pack_title_area {
+            margin: 10px 20px;
+        }
+
+        .pack_title_span_main {
+            font-family: "Minecraft Ten", sans-serif;
+            font-size: 28px;
+            margin: 10px 0;
+            color: #FFFFFF;
+        }
+
+        .pack_title_span_sub {
+            font-size: 20px;
+            margin: 4px 0;
+            color: #D0D1D4;
+        }
+        
+        /* 描述区域 */
+        .pack_description {
+            margin: 20px;
+            padding: 20px;
+            background-color: rgba(49, 50, 51, 0.8);
+            border: 2px solid #333334;
+            border-radius: 5px;
+            color: #FFFFFF;
+            line-height: 1.6;
+            font-family: "NotoSans Bold", sans-serif;
+        }
+        
+        .pack_description span {
+            color: #6CC349;
+            cursor: pointer;
+            padding: 0 2px;
+        }
+        
+        .pack_description span:hover {
+            text-decoration: underline;
+        }
+        
+        /* 下载区域 */
+        .download_section {
+            margin: 20px;
+        }
+        
+        .download_item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(49, 50, 51, 0.8);
+            border: 2px solid #333334;
+            padding: 15px 20px;
+            margin: 10px 0;
+            transition: all 0.3s;
+        }
+        
+        .download_item:hover {
+            background-color: rgba(72, 73, 74, 0.9);
+            border-color: #5A5B5C;
+        }
+        
+        .download_info {
+            flex: 1;
+        }
+        
+        .download_info p {
+            margin: 5px 0;
+            font-family: "NotoSans Bold", sans-serif;
+            color: #FFFFFF;
+        }
+        
+        /* 警告区域 */
+        .warning_section {
+            margin: 20px;
+        }
+        
+        /* 页脚 */
+        .footer_info {
+            align-items: center;
+            color: #FFFFFF;
+            display: flex;
+            font-family: "Minecraft Seven", sans-serif;
+            font-size: 16px;
+            height: 60px;
+            justify-content: center;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .footer_info a {
+            color: #8CB3FF;
+            text-decoration: none;
+        }
+        
+        .footer_info a:hover {
+            text-decoration: underline;
+        }
+        
+        /* 按钮组 */
+        .btn_group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        /* 下拉菜单容器 */
+        .dropdown-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        /* 链接块样式 */
+        .description_block {
+            cursor: unset;
+            width: 240px;
+        }
+    </style>
+    <title>《我的世界》整合包 | OreUI</title>
+</head>
+
+<!-- Loading 遮罩 -->
+<div class="loading_mask" id="loading_mask">
+    <div>
+        <div class="spinner"><img alt="" id="spinner_img" src="./images/Loading_white.gif"/></div>
+        <div class="spinner">
+            <div class="spinner"><span class="spinner_text">加载整合包信息中...</span></div>
+        </div>
+        <noscript>
+            <style>
+                #spinner_img, .spinner_text {
+                    display: none;
+                }
+            </style>
+            <div class="spinner"><img alt="" id="spinner_img_error" src="./images/ErrorMessage.png"/></div>
+            <div class="spinner">
+                <div class="spinner"><span class="spinner_text_error">页面无法加载: 当前环境不支持或已禁用脚本.<br>请更换支持脚本的环境或在设置中允许脚本后访问本站.</span></div>
+            </div>
+        </noscript>
+    </div>
+</div>
+
+<body>
+<dispaly-area>
+    <!-- 顶部标题栏 -->
+    <header>
+        <!-- 左侧菜单按钮 -->
+        <div class="header_item header_item_left" onclick="playSoundType(this);toggleSidebar()">
+            <img alt="菜单" class="header_left_icon" src="./images/Menu.png"/>
+        </div>
+        
+        <!-- 标题 -->
+        <div class="header_logo">
+            <div class="header_title">《我的世界》整合包</div>
+        </div>
+        
+        <!-- 右侧主页按钮 -->
+        <div class="header_item header_item_right" onclick="playSoundType(this);openLink('https://redstone2337200.github.io/')">
+            <img alt="主页" class="header_right_icon" src="./images/Home.png"/>
+        </div>
+    </header>
+    
+    <display-body>
+        <!-- 侧边栏菜单 -->
+        <scroll-view class="main_scroll_view" id="sidebar_view" style="display: none;">
+            <scroll-container class="primary_scroll_container">
+                <main class="scroll_container">
+                    <div class="main main_block">
+                        <div class="main_block_content">
+                            <div class="btn_group">
+                                <custom-button data="sidebar_btn|normal||home|false||" 
+                                              js="openLink('https://redstone2337.github.io/title/modpack.html')" 
+                                              text="首页"></custom-button>
+                                <custom-button data="sidebar_btn|normal||launcher|false||" 
+                                              js="openLink('resource/minecraft-launcher.html')" 
+                                              text="启动器"></custom-button>
+                                <custom-button data="sidebar_btn|normal||gunskins|false||" 
+                                              js="openLink('resource/gun-skins.html')" 
+                                              text="枪皮"></custom-button>
+                                <custom-button data="sidebar_btn|normal||modpacks|false||" 
+                                              js="openLink('resource/more-modpack.html')" 
+                                              text="整合包"></custom-button>
+                                <custom-button data="sidebar_btn|normal||runtime|false||" 
+                                              js="openLink('resource/JavaRuntimeEnvironment.html')" 
+                                              text="运行库"></custom-button>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </scroll-container>
+            <custom-scrollbar class="primary_custom_scrollbar">
+                <custom-scrollbar-track></custom-scrollbar-track>
+                <custom-scrollbar-thumb></custom-scrollbar-thumb>
+            </custom-scrollbar>
+        </scroll-view>
+        
+        <!-- 主内容区域 -->
+        <scroll-view class="main_scroll_view animate">
+            <scroll-container class="primary_scroll_container">
+                <main class="scroll_container" id="main">
+                    <!-- 整合包标题区域 -->
+                    <div class="main_title">
+                        <div class="pack_title_area">
+                            <img alt="Minecraft ArtWork" class="pack_header_img" 
+                                 src="https://www.minecraft.net/content/dam/games/minecraft/key-art/PC_Bundle_Deluxe_Desktop.jpg?imwidth=2401"/>
+                            <div class="pack_title_span_main">《我的世界》中龙的永恒技术冒险</div>
+                            <div class="pack_title_span_sub">Dragons' adventure for eternal technology in minecraft</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 整合包介绍 -->
+                    <div class="main main_block">
+                        <div class="main_block_content">
+                            <div class="pack_description">
+                                <p>
+                                    Dragons' adventure for eternal technology in minecraft
+                                    (《<span onclick="toUrl(0)">Minecraft</span>》中龙的永恒技术冒险)整合包，整合包版本<span onclick="toUrl(1)">1.1.2.2正式版</span>，
+                                    上个版本新增了<span onclick="toUrl(2)">Tips</span>和<span onclick="toUrl(3)">Public GUI
+                                    Announcement</span>以及<span onclick="toUrl(4)">ModernWorldCreation</span>三个模组，
+                                    本次版本新增了<span onclick="toUrl(5)">[可选]RPG-Hud</span>，<span onclick="toUrl(6)">ItemZoom</span>和<span
+                                    onclick="toUrl(7)">Legendary Tooltips</span>三个模组，这次版本新增了部分<span onclick="toUrl(14)">枪械皮肤</span>，以及<span onclick="toUrl(12)">First-person Model</span>模组及其<span onclick="toUrl(13)">前置</span>，共两个模组。
+                                </p>
+                                <p>
+                                    由于<span onclick="toUrl(5)">[可选]RPG-Hud</span>模组启用之后，会极大影响帧率，所以默认禁用，可以选择开启，
+                                    不过建议不要开启，如果是电脑设备的话，就不需要了。
+                                </p>
+                                <p>
+                                    尊敬的冒险家，在这个充满龙的世界中，
+                                    玩家可以选择当<span onclick="toUrl(8)">龙骑士耀武扬威</span>，也可以选择<span
+                                    onclick="toUrl(9)">化身为龙，体验龙的生活</span>，玩家还可以选择发展<span onclick="toUrl(10)">科技实现自动化工厂</span>，
+                                    还能以<span onclick="toUrl(11)">枪为武器，大战巨龙，成为猎龙人</span>，这是一个未知的世界，在这个世界，活下去吧！
+                                </p>
+                                
+                                <!-- 其他版本下拉菜单 -->
+                                <div class="dropdown-container">
+                                    <custom-dropdown id="version_dropdown" 
+                                                   data-option='["永恒机械", "敬请期待", "敬请期待"]'
+                                                   data-selected="1"
+                                                   unselected-text="其他版本"
+                                                   status="enabled"></custom-dropdown>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 下载列表 -->
+                    <div class="main main_block">
+                        <div class="main_block_content">
+                            <div class="download_section">
+                                <h3 class="section_title" style="color: #FFFFFF; margin-bottom: 20px;">下载列表</h3>
+                                
+                                <div class="download_item">
+                                    <div class="download_info">
+                                        <p><strong>Dragons' adventure for eternal technology in minecraft</strong></p>
+                                        <p style="color: #FFE866; font-size: 14px;">需要 Optifine 配合才能启用</p>
+                                    </div>
+                                    <div>
+                                        <custom-button data="default|green|small|download_main|false||" 
+                                                      js="downloadMain()" 
+                                                      text="下载文件"></custom-button>
+                                    </div>
+                                </div>
+                                
+                                <div class="download_item">
+                                    <div class="download_info">
+                                        <p><strong>Fold Craft Launcher下载站</strong></p>
+                                    </div>
+                                    <div>
+                                        <custom-button data="default|normal|small|download_fcl|false||" 
+                                                      js="down('https://foldcraftlauncher.cn/')" 
+                                                      text="立即前往"></custom-button>
+                                    </div>
+                                </div>
+                                
+                                <div class="download_item">
+                                    <div class="download_info">
+                                        <p><strong>重型工业-龙骨军工®</strong></p>
+                                    </div>
+                                    <div>
+                                        <custom-button data="default|green|small|download_heavy|false||" 
+                                                      js="down('https://wwp.lanzoup.com/iT4AX1glt7di')" 
+                                                      text="下载文件"></custom-button>
+                                    </div>
+                                </div>
+                                
+                                <div class="download_item">
+                                    <div class="download_info">
+                                        <p><strong>Hello！MineCraft Launcher官网</strong></p>
+                                    </div>
+                                    <div>
+                                        <custom-button data="default|normal|small|download_hmcl|false||" 
+                                                      js="down('https://hmcl.huangyuhui.net/download/')" 
+                                                      text="进入官网"></custom-button>
+                                    </div>
+                                </div>
+                                
+                                <div class="download_item">
+                                    <div class="download_info">
+                                        <p><strong>Plain Craft Launcher 2官网</strong></p>
+                                    </div>
+                                    <div>
+                                        <custom-button data="default|normal|small|download_pcl|false||" 
+                                                      js="down('https://afdian.net/p/0164034c016c11ebafcb52540025c377')" 
+                                                      text="进入官网"></custom-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 警告信息 -->
+                    <div class="main main_block">
+                        <div class="main_block_content">
+                            <div class="warning_section">
+                                <div class="important_banner banner">
+                                    <p>
+                                        整合包内<span onclick="down('https://optifine.net/adloadx?f=OptiFine_1.18.2_HD_U_H9.jar&x=ff8d')" style="color: #C33636; cursor: pointer; font-weight: bold;">[可选]OptiFine_1.18.2_HD_U_H9</span>
+                                        模组默认是禁用的状态，需要手动启用<span onclick="down('https://optifine.net/adloadx?f=OptiFine_1.18.2_HD_U_H9.jar&x=ff8d')" style="color: #C33636; cursor: pointer; font-weight: bold;">[可选]OptiFine_1.18.2_HD_U_H9</span>
+                                        模组才正常启用整合包。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 页脚 -->
+                    <div class="footer_info">
+                        <div>Copyright ©2023 Felongkeji™. Designed by <a href="https://redstone2337200.github.io/" target="_blank">Redstone233</a></div>
+                    </div>
+                    
+                    <!-- 占位区域 -->
+                    <div style="height: 100px;"></div>
+                </main>
+            </scroll-container>
+            <custom-scrollbar class="primary_custom_scrollbar">
+                <custom-scrollbar-track></custom-scrollbar-track>
+                <custom-scrollbar-thumb></custom-scrollbar-thumb>
+            </custom-scrollbar>
+        </scroll-view>
+    </display-body>
+</dispaly-area>
+
+<!-- OreUI 模态框区域 -->
+<modal_area class="normal_modal" id="optifine_modal">
+    <modal>
+        <modal_title_area>
+            <modal_title>提示</modal_title>
+            <modal_close_btn onclick="playSoundType(this);hideModal('optifine_modal');">
+                <img alt="关闭" class="modal_close_btn_img" src="./images/Close.png"/>
+            </modal_close_btn>
+        </modal_title_area>
+        <modal_content>
+            <p>此整合包需要 <a href="https://optifine.net/home" style="color: #8CB3FF; font-weight: bold;">Optifine</a> 配合才能启用</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #D0D1D4;">下载后请手动启用 Optifine 模组</p>
+        </modal_content>
+        <modal_button_area>
+            <modal_button_group>
+                <custom-button data="default|green|middle||false||" 
+                              js="hideModal('optifine_modal');" 
+                              text="确认"></custom-button>
+            </modal_button_group>
+        </modal_button_area>
+    </modal>
+</modal_area>
+
+<div class="overlay normal_overlay" id="overlay_optifine_modal"></div>
+
+<!-- 弹出通知区域 -->
+<div class="pop_area" id="pop_area"></div>
+
+<script>
+    // OreUI 需要的路径配置
+    const rootPath = '/';
+    
+    // 原功能函数
+    var downList = [
+        "https://www.minecraft.net/zh-hans",
+        "https://redstone2337.github.io/",
+        "https://www.mcmod.cn/class/3666.html",
+        "https://www.mcmod.cn/class/5200.html",
+        "https://www.mcmod.cn/class/10311.html",
+        "https://www.mcmod.cn/class/5711.html",
+        "https://www.mcmod.cn/class/3048.html",
+        "https://www.mcmod.cn/class/5396.html",
+        "https://www.mcmod.cn/class/770.html",
+        "https://www.mcmod.cn/class/3838.html",
+        "https://www.mcmod.cn/class/260.html",
+        "https://www.mcmod.cn/class/4170.html",
+        "https://www.mcmod.cn/class/4391.html",
+        "https://www.mcmod.cn/class/4378.html",
+        "resource/gun-skins.html",
+    ];
+
+    function toUrl(num) {
+        if (num >= 0 && num < downList.length) {
+            window.location.href = downList[num];
+        }
+    }
+
+    function down(src) {
+        window.open(src);
+    }
+    
+    function optifine() {
+        window.location.href = "https://optifine.net/home";
+    }
+    
+    // 主下载函数
+    function downloadMain() {
+        // 显示提示模态框
+        showModal('optifine_modal');
+        
+        // 延迟执行下载
+        setTimeout(() => {
+            down('https://www.123pan.com/s/hSr9-sYm5d.html');
+        }, 500);
+        
+        // 显示下载通知
+        setTimeout(() => {
+            showPop('开始下载整合包...', 3000, 'process');
+        }, 100);
+    }
+    
+    // 侧边栏切换
+    function toggleSidebar() {
+        const sidebarView = document.getElementById('sidebar_view');
+        const mainView = document.querySelector('.main_scroll_view.animate');
+        
+        if (sidebarView.style.display === 'none' || sidebarView.style.display === '') {
+            sidebarView.style.display = 'block';
+            mainView.classList.add('with_sidebar');
+            showPop('打开侧边栏', 2000, 'process');
+        } else {
+            sidebarView.style.display = 'none';
+            mainView.classList.remove('with_sidebar');
+        }
+    }
+    
+    // OreUI 辅助函数
+    function openLink(url) {
+        window.location.href = url;
+    }
+    
+    // 初始化事件
+    document.addEventListener('DOMContentLoaded', function() {
+        // 为下拉菜单添加事件
+        const versionDropdown = document.getElementById('version_dropdown');
+        if (versionDropdown) {
+            versionDropdown.addEventListener('dropdown-value-change', function(e) {
+                const value = e.detail.value;
+                if (value === '1') {
+                    window.location.href = 'resource/create.html';
+                } else if (value === '2' || value === '3') {
+                    window.location.href = 'resource/staytuned.html';
+                    showPop('功能开发中，敬请期待！', 3000, 'process');
+                }
+            });
+        }
+        
+        // 显示欢迎消息
+        setTimeout(() => {
+            showPop('欢迎访问《我的世界》整合包页面！', 3000, 'success');
+        }, 1500);
+    });
+</script>
+
+<!-- OreUI 脚本 -->
+<script src="./javascript/loading.js"></script>
+<script src="./library/accessibility.js"></script>
+<script src="./javascript/public_script.js"></script>
+<script src="./javascript/oreui.js"></script>
+</body>
+</html>

@@ -1,0 +1,796 @@
+<!--
+ * @Author: Redstone233
+ * @WebUI: OreUI V2
+ -->
+<!--
+  ~ Copyright © 2024. Redstone233
+  ~
+  ~ 基于 OreUI V2 设计的个人主页
+  -->
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <base href="./"><!-- 项目根路径 -->
+    <meta charset="UTF-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="webkit" name="renderer">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Redstone233 - MC自由开发者</title>
+    <meta name="description" content="一个MC自由开发者兼团队团长和工作室室长的个人主页">
+    <meta name="keywords" content="redstone233,红石233,REDSTONE233,红石二三三主页,REDSTONE233引导页,hongshiersansan">
+    <link rel="icon" href="./static/img/favicon.ico">
+    <link rel="fluid-icon" href="https://redstone2337200.github.io/official.png" title="Flydragons Studios">
+    
+    <!-- OreUI 样式 -->
+    <link as="image" href="./images/Loading_white.gif" rel="preload">
+    <link href="./stylesheet/loading_mask.css" rel="stylesheet">
+    <link href="./stylesheet/public_style.css" rel="stylesheet">
+    <link href="./stylesheet/oreui.css" rel="stylesheet">
+    
+    <style>
+        /* 自定义样式 */
+        .header_logo {
+            justify-content: left;
+        }
+
+        .header_title {
+            margin-left: 30px;
+            font-family: "Minecraft Ten", sans-serif;
+            font-size: 28px;
+            color: #FFFFFF;
+        }
+        
+        /* 个人主页样式 */
+        .profile_container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+        
+        .avatar_container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 30px 0;
+        }
+        
+        .avatar_img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid #3C8527;
+            box-shadow: 0 0 20px rgba(60, 133, 39, 0.5);
+            object-fit: cover;
+        }
+        
+        .avatar_frame {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 240px;
+            height: 240px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .profile_info {
+            text-align: center;
+            margin: 20px 0 40px 0;
+        }
+        
+        .profile_name {
+            font-family: "Minecraft Ten", sans-serif;
+            font-size: 36px;
+            color: #FFFFFF;
+            margin: 10px 0;
+        }
+        
+        .profile_title {
+            font-family: "Minecraft Seven", sans-serif;
+            font-size: 24px;
+            color: #D0D1D4;
+            margin: 5px 0;
+        }
+        
+        .profile_description {
+            font-family: "NotoSans Bold", sans-serif;
+            font-size: 18px;
+            color: #B1B2B5;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        
+        .highlight_text {
+            color: #6CC349;
+            font-weight: bold;
+        }
+        
+        .purple_text {
+            color: #8CB3FF;
+        }
+        
+        /* 标签区域 */
+        .tags_container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+            max-width: 800px;
+        }
+        
+        .tag_item {
+            background-color: rgba(60, 133, 39, 0.2);
+            border: 2px solid #3C8527;
+            color: #6CC349;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-family: "NotoSans Bold", sans-serif;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        /* 社交链接 */
+        .social_container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .social_item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 120px;
+            text-decoration: none;
+        }
+        
+        .social_icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .social_icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .social_label {
+            font-family: "NotoSans Bold", sans-serif;
+            font-size: 14px;
+            color: #FFFFFF;
+            text-align: center;
+        }
+        
+        /* 时间线 */
+        .timeline_container {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .timeline_item {
+            display: flex;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .timeline_dot {
+            width: 16px;
+            height: 16px;
+            background-color: #3C8527;
+            border: 3px solid #1E1E1F;
+            border-radius: 50%;
+            position: absolute;
+            left: -8px;
+            top: 0;
+            z-index: 2;
+        }
+        
+        .timeline_content {
+            margin-left: 40px;
+            padding: 15px;
+            background-color: rgba(49, 50, 51, 0.8);
+            border: 2px solid #333334;
+            border-radius: 5px;
+            flex: 1;
+        }
+        
+        .timeline_date {
+            font-family: "Minecraft Seven", sans-serif;
+            font-size: 16px;
+            color: #8CB3FF;
+            margin-bottom: 5px;
+        }
+        
+        .timeline_text {
+            font-family: "NotoSans Bold", sans-serif;
+            color: #FFFFFF;
+        }
+        
+        /* 项目展示 */
+        .projects_container {
+            margin: 60px 0;
+            width: 100%;
+        }
+        
+        .projects_grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .project_card {
+            background-color: rgba(49, 50, 51, 0.8);
+            border: 2px solid #333334;
+            border-radius: 5px;
+            padding: 20px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .project_card:hover {
+            background-color: rgba(72, 73, 74, 0.9);
+            border-color: #5A5B5C;
+            transform: translateY(-5px);
+        }
+        
+        .project_header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .project_icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        .project_title {
+            font-family: "Minecraft Seven", sans-serif;
+            font-size: 20px;
+            color: #FFFFFF;
+            margin: 0;
+        }
+        
+        .project_description {
+            font-family: "NotoSans Bold", sans-serif;
+            color: #D0D1D4;
+            line-height: 1.5;
+        }
+        
+        /* 技能展示 */
+        .skills_container {
+            margin: 60px 0;
+            width: 100%;
+        }
+        
+        .skills_content {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        /* 页脚 */
+        .footer_info {
+            align-items: center;
+            color: #FFFFFF;
+            display: flex;
+            font-family: "Minecraft Seven", sans-serif;
+            font-size: 16px;
+            height: 80px;
+            justify-content: center;
+            text-align: center;
+            margin-top: 60px;
+            background-color: rgba(31, 31, 31, 0.8);
+            width: 100%;
+        }
+        
+        .footer_info a {
+            color: #8CB3FF;
+            text-decoration: none;
+        }
+        
+        .footer_info a:hover {
+            text-decoration: underline;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .projects_grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social_container {
+                gap: 15px;
+            }
+            
+            .social_item {
+                width: 90px;
+            }
+            
+            .header_title {
+                font-size: 22px;
+                margin-left: 15px;
+            }
+            
+            .profile_name {
+                font-size: 28px;
+            }
+            
+            .profile_title {
+                font-size: 20px;
+            }
+        }
+        
+        /* 主题切换 */
+        .theme_switch {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<!-- Loading 遮罩 -->
+<div class="loading_mask" id="loading_mask">
+    <div>
+        <div class="spinner"><img alt="" id="spinner_img" src="./images/Loading_white.gif"/></div>
+        <div class="spinner">
+            <div class="spinner"><span class="spinner_text">加载个人主页中...</span></div>
+        </div>
+        <noscript>
+            <style>
+                #spinner_img, .spinner_text {
+                    display: none;
+                }
+            </style>
+            <div class="spinner"><img alt="" id="spinner_img_error" src="./images/ErrorMessage.png"/></div>
+            <div class="spinner">
+                <div class="spinner"><span class="spinner_text_error">页面无法加载: 当前环境不支持或已禁用脚本.<br>请更换支持脚本的环境或在设置中允许脚本后访问本站.</span></div>
+            </div>
+        </noscript>
+    </div>
+</div>
+
+<body>
+<dispaly-area>
+    <!-- 顶部标题栏 -->
+    <header>
+        <!-- 左侧菜单按钮 -->
+        <div class="header_item header_item_left" onclick="playSoundType(this);toggleSidebar()">
+            <img alt="菜单" class="header_left_icon" src="./images/Menu.png"/>
+        </div>
+        
+        <!-- 标题 -->
+        <div class="header_logo">
+            <div class="header_title">Redstone233 - MC自由开发者</div>
+        </div>
+        
+        <!-- 右侧主页按钮 -->
+        <div class="header_item header_item_right" onclick="playSoundType(this);openLink('https://redstone2337200.github.io/')">
+            <img alt="主页" class="header_right_icon" src="./images/Home.png"/>
+        </div>
+    </header>
+    
+    <display-body>
+        <!-- 侧边栏菜单 -->
+        <scroll-view class="main_scroll_view" id="sidebar_view" style="display: none;">
+            <scroll-container class="primary_scroll_container">
+                <main class="scroll_container">
+                    <div class="main main_block">
+                        <div class="main_block_content">
+                            <div class="btn_group">
+                                <custom-button data="sidebar_btn|normal||home|false||" 
+                                              js="openLink('https://redstone2337.github.io/')" 
+                                              text="个人主页"></custom-button>
+                                <custom-button data="sidebar_btn|normal||modpack|false||" 
+                                              js="openLink('https://redstone2337.github.io/title/modpack.html')" 
+                                              text="整合官网"></custom-button>
+                                <custom-button data="sidebar_btn|normal||github|false||" 
+                                              js="openLink('https://github.com/Redstone2337')" 
+                                              text="Github"></custom-button>
+                                <custom-button data="sidebar_btn|normal||bilibili|false||" 
+                                              js="openLink('https://b23.tv/dBG8GD9')" 
+                                              text="BiliBili"></custom-button>
+                                <custom-button data="sidebar_btn|normal||discord|false||" 
+                                              js="openLink('https://discord.com/invite/hsBjVDAYYW')" 
+                                              text="Discord"></custom-button>
+                                <custom-button data="sidebar_btn|normal||afdian|false||" 
+                                              js="openLink('https://afdian.com/a/Redstone2337')" 
+                                              text="爱发电"></custom-button>
+                            </div>
+                            
+                            <!-- 主题切换 -->
+                            <div class="theme_switch">
+                                <custom-switch id="theme_switch" active="off" status="enabled"></custom-switch>
+                                <label for="theme_switch" style="color: #FFFFFF; margin-left: 10px;">深色模式</label>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </scroll-container>
+            <custom-scrollbar class="primary_custom_scrollbar">
+                <custom-scrollbar-track></custom-scrollbar-track>
+                <custom-scrollbar-thumb></custom-scrollbar-thumb>
+            </custom-scrollbar>
+        </scroll-view>
+        
+        <!-- 主内容区域 -->
+        <scroll-view class="main_scroll_view animate">
+            <scroll-container class="primary_scroll_container">
+                <main class="scroll_container" id="main">
+                    <div class="profile_container">
+                        <!-- 头像区域 -->
+                        <div class="avatar_container">
+                            <img alt="Redstone233" class="avatar_img" 
+                                 src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640"/>
+                            <img alt="头像框" class="avatar_frame" src="./static/img/logokuang.png"/>
+                        </div>
+                        
+                        <!-- 个人信息 -->
+                        <div class="profile_info">
+                            <div class="profile_name">Redstone233</div>
+                            <div class="profile_title">MC 模组的自由开发者</div>
+                            
+                            <div class="profile_description">
+                                👦 对于我来说，<span class="highlight_text">最好的事</span> 一定是
+                                <span class="highlight_text">做</span> 你最喜欢做的事。
+                            </div>
+                            
+                            <div class="profile_description">
+                                📍 湖北黄冈 · 中国
+                            </div>
+                        </div>
+                        
+                        <!-- 标签区域 -->
+                        <div class="tags_container">
+                            <div class="tag_item">软件开发者</div>
+                            <div class="tag_item">MC自由开发者</div>
+                            <div class="tag_item">TRS团队团长</div>
+                            <div class="tag_item">飞龙工作室室长</div>
+                            <div class="tag_item">飞龙科技有限公司</div>
+                            <div class="tag_item">MC指令老玩家</div>
+                            <div class="tag_item">MC数据包制作者</div>
+                            <div class="tag_item">MC模组创作者</div>
+                        </div>
+                        
+                        <!-- 社交链接 -->
+                        <div class="social_container">
+                            <a class="social_item" href="https://github.com/Redstone2337" target="_blank">
+                                <img alt="Github" class="social_icon" src="./images/Github.png"/>
+                                <div class="social_label">Github</div>
+                            </a>
+                            
+                            <a class="social_item" href="https://b23.tv/dBG8GD9" target="_blank">
+                                <img alt="BiliBili" class="social_icon" src="./images/Bilibili.png"/>
+                                <div class="social_label">BiliBili</div>
+                            </a>
+                            
+                            <a class="social_item" href="https://discord.com/invite/hsBjVDAYYW" target="_blank">
+                                <img alt="Discord" class="social_icon" src="./images/Discord.png"/>
+                                <div class="social_label">Discord</div>
+                            </a>
+                            
+                            <a class="social_item" href="https://gitee.com/tianjie-jun" target="_blank">
+                                <img alt="码云" class="social_icon" src="./images/Gitee.png"/>
+                                <div class="social_label">码云</div>
+                            </a>
+                            
+                            <a class="social_item" href="javascript:void(0)" onclick="showSponsor()">
+                                <img alt="赞助" class="social_icon" src="./images/Sponsor.png"/>
+                                <div class="social_label">赞助</div>
+                            </a>
+                            
+                            <a class="social_item" href="mqq://card/show_pslcard?src_type=internal&source=sharecard&version=1&uin=3356168312">
+                                <img alt="QQ" class="social_icon" src="./images/QQ.png"/>
+                                <div class="social_label">QQ</div>
+                            </a>
+                        </div>
+                        
+                        <!-- 时间线 -->
+                        <div class="timeline_container">
+                            <h3 style="color: #FFFFFF; font-family: 'Minecraft Seven', sans-serif; margin-bottom: 30px;">发展历程</h3>
+                            
+                            <div class="timeline_item">
+                                <div class="timeline_dot"></div>
+                                <div class="timeline_content">
+                                    <div class="timeline_date">2024.1</div>
+                                    <div class="timeline_text">敬请期待</div>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline_item">
+                                <div class="timeline_dot"></div>
+                                <div class="timeline_content">
+                                    <div class="timeline_date">2023.6</div>
+                                    <div class="timeline_text">转向模组开发</div>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline_item">
+                                <div class="timeline_dot"></div>
+                                <div class="timeline_content">
+                                    <div class="timeline_date">2021.6</div>
+                                    <div class="timeline_text">搭建第一个网站</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 项目展示 -->
+                        <div class="projects_container">
+                            <h3 style="color: #FFFFFF; font-family: 'Minecraft Seven', sans-serif; margin-bottom: 30px;">项目展示</h3>
+                            
+                            <div class="projects_grid">
+                                <a class="project_card" href="https://pan.quark.cn/s/5fbfcdc4157f" target="_blank">
+                                    <div class="project_header">
+                                        <img alt="小刚移植" class="project_icon" 
+                                             src="https://q1.qlogo.cn/headimg_dl?dst_uin=3561989295&spec=640"/>
+                                        <div>
+                                            <div class="project_title">小刚移植</div>
+                                            <div class="project_description">整合包移植团队</div>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                                <a class="project_card" href="https://redstone2337.github.io/" target="_blank">
+                                    <div class="project_header">
+                                        <img alt="核心人物" class="project_icon" 
+                                             src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640"/>
+                                        <div>
+                                            <div class="project_title">核心人物</div>
+                                            <div class="project_description">核心人物个人官网</div>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                                <a class="project_card" href="https://redstone2337.github.io/title/modpack.html" target="_blank">
+                                    <div class="project_header">
+                                        <img alt="整合官网" class="project_icon" 
+                                             src="https://q1.qlogo.cn/headimg_dl?dst_uin=3356168312&spec=640"/>
+                                        <div>
+                                            <div class="project_title">整合官网</div>
+                                            <div class="project_description">Redstone233的整合包官方网站</div>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                                <a class="project_card" href="https://redstone2337.github.io/" target="_blank">
+                                    <div class="project_header">
+                                        <img alt="模组网站" class="project_icon" src="./static/img/i4.png"/>
+                                        <div>
+                                            <div class="project_title">模组网站</div>
+                                            <div class="project_description">Redstone233开发的模组专属网站(即将更新)</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- 技能展示 -->
+                        <div class="skills_container">
+                            <h3 style="color: #FFFFFF; font-family: 'Minecraft Seven', sans-serif; margin-bottom: 30px;">技能专长</h3>
+                            <div class="skills_content">
+                                <img alt="技能图" style="max-width: 100%; height: auto;" src="./static/svg/skillPc.svg"/>
+                            </div>
+                        </div>
+                        
+                        <!-- 页脚 -->
+                        <div class="footer_info">
+                            <div>
+                                Copyright © 2024 <a href="https://redstone2337.github.io/">Redstone233 Studios</a>. All rights reserved.<br>
+                                Design: <a href="https://redstone2337.github.io/" target="_blank">Flydragons Team</a>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </scroll-container>
+            <custom-scrollbar class="primary_custom_scrollbar">
+                <custom-scrollbar-track></custom-scrollbar-track>
+                <custom-scrollbar-thumb></custom-scrollbar-thumb>
+            </custom-scrollbar>
+        </scroll-view>
+    </display-body>
+</dispaly-area>
+
+<!-- 赞助二维码模态框 -->
+<modal_area class="normal_modal" id="sponsor_modal">
+    <modal>
+        <modal_title_area>
+            <modal_title>赞助支持</modal_title>
+            <modal_close_btn onclick="playSoundType(this);hideModal('sponsor_modal');">
+                <img alt="关闭" class="modal_close_btn_img" src="./images/Close.png"/>
+            </modal_close_btn>
+        </modal_title_area>
+        <modal_content>
+            <p style="text-align: center; margin-bottom: 20px;">
+                感谢您的支持！您的赞助将帮助我继续创作更好的内容。
+            </p>
+            <div style="text-align: center;">
+                <img alt="微信赞赏码" id="sponsor_qrcode" style="max-width: 200px; border-radius: 5px;" src="./static/img/wxzsm.png"/>
+            </div>
+            <p style="text-align: center; margin-top: 20px; font-size: 14px; color: #D0D1D4;">
+                扫描二维码进行赞助
+            </p>
+        </modal_content>
+        <modal_button_area>
+            <modal_button_group>
+                <custom-button data="default|green|middle||false||" 
+                              js="hideModal('sponsor_modal');" 
+                              text="确认"></custom-button>
+            </modal_button_group>
+        </modal_button_area>
+    </modal>
+</modal_area>
+
+<div class="overlay normal_overlay" id="overlay_sponsor_modal"></div>
+
+<!-- QQ二维码模态框 -->
+<modal_area class="normal_modal" id="qq_modal">
+    <modal>
+        <modal_title_area>
+            <modal_title>QQ联系</modal_title>
+            <modal_close_btn onclick="playSoundType(this);hideModal('qq_modal');">
+                <img alt="关闭" class="modal_close_btn_img" src="./images/Close.png"/>
+            </modal_close_btn>
+        </modal_title_area>
+        <modal_content>
+            <p style="text-align: center; margin-bottom: 20px;">
+                QQ: 3356168312<br>
+                扫描二维码添加好友
+            </p>
+            <div style="text-align: center;">
+                <img alt="QQ二维码" id="qq_qrcode" style="max-width: 200px; border-radius: 5px;" src="./static/img/qq.jpg"/>
+            </div>
+        </modal_content>
+        <modal_button_area>
+            <modal_button_group>
+                <custom-button data="default|green|middle||false||" 
+                              js="hideModal('qq_modal');" 
+                              text="确认"></custom-button>
+            </modal_button_group>
+        </modal_button_area>
+    </modal>
+</modal_area>
+
+<div class="overlay normal_overlay" id="overlay_qq_modal"></div>
+
+<!-- 弹出通知区域 -->
+<div class="pop_area" id="pop_area"></div>
+
+<!-- 音乐播放器容器 -->
+<div id="xf-MusicPlayer" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;" data-songChart="热歌榜"></div>
+
+<script>
+    // OreUI 需要的路径配置
+    const rootPath = '/';
+    
+    // 侧边栏切换
+    function toggleSidebar() {
+        const sidebarView = document.getElementById('sidebar_view');
+        const mainView = document.querySelector('.main_scroll_view.animate');
+        
+        if (sidebarView.style.display === 'none' || sidebarView.style.display === '') {
+            sidebarView.style.display = 'block';
+            mainView.classList.add('with_sidebar');
+            showPop('打开侧边栏', 2000, 'process');
+        } else {
+            sidebarView.style.display = 'none';
+            mainView.classList.remove('with_sidebar');
+        }
+    }
+    
+    // 显示赞助二维码
+    function showSponsor() {
+        showModal('sponsor_modal');
+    }
+    
+    // 显示QQ二维码
+    function showQQ() {
+        showModal('qq_modal');
+    }
+    
+    // OreUI 辅助函数
+    function openLink(url) {
+        window.location.href = url;
+    }
+    
+    // 主题切换
+    function initTheme() {
+        const themeSwitch = document.getElementById('theme_switch');
+        if (themeSwitch) {
+            // 从本地存储获取主题设置
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                themeSwitch.setAttribute('active', 'on');
+                document.body.classList.add('dark-theme');
+            }
+            
+            // 监听主题切换
+            themeSwitch.addEventListener('switch-value-change', function() {
+                const isDark = themeSwitch.getAttribute('active') === 'on';
+                if (isDark) {
+                    document.body.classList.add('dark-theme');
+                    localStorage.setItem('theme', 'dark');
+                    showPop('切换到深色主题', 3000, 'success');
+                } else {
+                    document.body.classList.remove('dark-theme');
+                    localStorage.setItem('theme', 'light');
+                    showPop('切换到浅色主题', 3000, 'success');
+                }
+            });
+        }
+    }
+    
+    // 初始化事件
+    document.addEventListener('DOMContentLoaded', function() {
+        // 初始化主题
+        initTheme();
+        
+        // 为QQ链接添加点击事件
+        const qqLink = document.querySelector('a[href*="mqq://"]');
+        if (qqLink) {
+            qqLink.onclick = function(e) {
+                e.preventDefault();
+                showQQ();
+                showPop('显示QQ二维码', 2000, 'process');
+            };
+        }
+        
+        // 显示欢迎消息
+        setTimeout(() => {
+            showPop('欢迎访问 Redstone233 的个人主页！', 3000, 'success');
+        }, 1500);
+        
+        // 加载音乐播放器
+        setTimeout(() => {
+            if (typeof window.xfMusicPlayer !== 'undefined') {
+                window.xfMusicPlayer.init({
+                    container: 'xf-MusicPlayer',
+                    autoplay: false,
+                    volume: 0.5
+                });
+                showPop('音乐播放器已加载', 2000, 'process');
+            }
+        }, 2000);
+    });
+    
+    // 为爱发电链接添加点击事件
+    document.querySelector('a[href*="afdian"]')?.addEventListener('click', function(e) {
+        showPop('正在跳转到爱发电...', 2000, 'process');
+    });
+    
+    // 为所有外部链接添加点击反馈
+    document.querySelectorAll('a[href^="http"]:not([href*="'+window.location.hostname+'"])').forEach(link => {
+        link.addEventListener('click', function() {
+            showPop('正在跳转到外部链接...', 2000, 'process');
+        });
+    });
+</script>
+
+<!-- OreUI 脚本 -->
+<script src="./javascript/loading.js"></script>
+<script src="./library/accessibility.js"></script>
+<script src="./javascript/public_script.js"></script>
+<script src="./javascript/oreui.js"></script>
+
+<!-- 音乐播放器 -->
+<script src="https://player.xfyun.club/js/xf-MusicPlayer/js/xf-MusicPlayer.min.js"></script>
+
+<!-- 统计代码 -->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>
+    LA.init({ id: "KFqltKSkJgQTGD9l", ck: "KFqltKSkJgQTGD9l" });
+</script>
+</body>
+</html>
