@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>精致五子棋游戏</title>
     <style>
         * {
@@ -18,50 +18,61 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 10px;
+            overflow-x: hidden;
         }
 
         .game-container {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            max-width: 900px;
+            padding: 20px;
             width: 100%;
+            max-width: 95vw;
+            height: 95vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         .game-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
+            flex-shrink: 0;
         }
 
         .game-title {
-            font-size: 36px;
+            font-size: clamp(24px, 4vw, 36px);
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .game-subtitle {
-            font-size: 16px;
+            font-size: clamp(12px, 2vw, 16px);
             color: #666;
         }
 
         .main-controls {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .control-btn {
-            padding: 12px 30px;
-            font-size: 16px;
+            padding: clamp(8px, 1.5vw, 12px) clamp(15px, 2.5vw, 30px);
+            font-size: clamp(12px, 1.8vw, 16px);
             font-weight: bold;
             border: none;
             border-radius: 25px;
             cursor: pointer;
-            margin: 0 10px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            min-width: 80px;
         }
 
         .btn-start {
@@ -94,16 +105,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding: 0 50px;
+            margin-bottom: 15px;
+            padding: 0 clamp(10px, 2vw, 50px);
+            flex-shrink: 0;
         }
 
         .player-area {
             text-align: center;
-            padding: 20px;
+            padding: clamp(10px, 1.5vw, 20px);
             border-radius: 15px;
             transition: all 0.3s ease;
-            min-width: 150px;
+            min-width: clamp(100px, 15vw, 150px);
         }
 
         .player-area.active {
@@ -120,14 +132,14 @@
         }
 
         .player-icon {
-            width: 60px;
-            height: 60px;
+            width: clamp(40px, 5vw, 60px);
+            height: clamp(40px, 5vw, 60px);
             border-radius: 50%;
-            margin: 0 auto 10px;
+            margin: 0 auto 5px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: clamp(16px, 2.5vw, 24px);
             font-weight: bold;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -145,41 +157,47 @@
         }
 
         .player-name {
-            font-size: 18px;
+            font-size: clamp(14px, 2vw, 18px);
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
 
         .player-status {
-            font-size: 14px;
+            font-size: clamp(10px, 1.5vw, 14px);
             opacity: 0.8;
         }
 
         .timer {
-            font-size: 16px;
+            font-size: clamp(12px, 1.8vw, 16px);
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .thinking-time {
-            font-size: 12px;
+            font-size: clamp(10px, 1.2vw, 12px);
             color: #ff6b6b;
-            margin-top: 5px;
-            height: 16px;
+            margin-top: 3px;
+            height: clamp(12px, 1.5vw, 16px);
         }
 
         .board-container {
             display: flex;
             justify-content: center;
-            margin: 30px 0;
+            align-items: center;
+            flex: 1;
+            margin: 15px 0;
+            overflow: hidden;
         }
 
         .game-board {
             background: #DEB887;
-            padding: 20px;
+            padding: clamp(10px, 2vw, 20px);
             border-radius: 10px;
             box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
             border: 3px solid #8B4513;
+            display: inline-block;
+            max-width: 100%;
+            max-height: 100%;
         }
 
         .board-row {
@@ -187,13 +205,14 @@
         }
 
         .cell {
-            width: 35px;
-            height: 35px;
             border: 1px solid #8B4513;
             background: transparent;
             cursor: pointer;
             position: relative;
             transition: all 0.2s ease;
+            aspect-ratio: 1;
+            min-width: 20px;
+            min-height: 20px;
         }
 
         .cell:hover:not(.occupied) {
@@ -206,26 +225,25 @@
         }
 
         .piece {
-            width: 30px;
-            height: 30px;
             border-radius: 50%;
             position: absolute;
-            top: 2.5px;
-            left: 2.5px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             animation: placePiece 0.3s ease-out;
             box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
         }
 
         @keyframes placePiece {
             0% {
-                transform: scale(0);
+                transform: translate(-50%, -50%) scale(0);
                 opacity: 0;
             }
             50% {
-                transform: scale(1.2);
+                transform: translate(-50%, -50%) scale(1.2);
             }
             100% {
-                transform: scale(1);
+                transform: translate(-50%, -50%) scale(1);
                 opacity: 1;
             }
         }
@@ -244,56 +262,41 @@
             box-shadow: 0 0 15px #ff6b6b, 2px 2px 6px rgba(0, 0, 0, 0.3);
         }
 
-        .controls {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: #f8f9fa;
-            color: #333;
-            border: 2px solid #dee2e6;
-        }
-
-        .btn-secondary:hover {
-            background: #e9ecef;
-            transform: translateY(-2px);
-        }
-
         .game-info {
             text-align: center;
-            margin-top: 20px;
-            padding: 15px;
+            padding: clamp(8px, 1.5vw, 15px);
             background: #f8f9fa;
             border-radius: 10px;
-            font-size: 14px;
+            font-size: clamp(10px, 1.5vw, 14px);
             color: #666;
+            min-width: clamp(80px, 12vw, 120px);
+        }
+
+        .controls {
+            text-align: center;
+            margin-top: 15px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .move-history {
-            margin-top: 20px;
-            max-height: 150px;
+            margin-top: 15px;
+            max-height: clamp(100px, 15vh, 150px);
             overflow-y: auto;
             background: white;
             border-radius: 10px;
-            padding: 15px;
+            padding: clamp(10px, 1.5vw, 15px);
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
         }
 
         .move-item {
-            padding: 5px 0;
+            padding: clamp(3px, 0.8vw, 5px) 0;
             border-bottom: 1px solid #eee;
-            font-size: 14px;
+            font-size: clamp(10px, 1.3vw, 14px);
         }
 
         .move-item:last-child {
@@ -314,38 +317,40 @@
 
         .settings-content {
             background-color: white;
-            margin: 15% auto;
-            padding: 30px;
+            margin: 10% auto;
+            padding: clamp(20px, 3vw, 30px);
             border-radius: 15px;
-            width: 400px;
+            width: clamp(300px, 80vw, 400px);
+            max-width: 90vw;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .settings-header {
             text-align: center;
-            margin-bottom: 20px;
-            font-size: 24px;
+            margin-bottom: clamp(15px, 2vw, 20px);
+            font-size: clamp(18px, 3vw, 24px);
             font-weight: bold;
             color: #333;
         }
 
         .setting-item {
-            margin-bottom: 20px;
+            margin-bottom: clamp(15px, 2vw, 20px);
         }
 
         .setting-label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: clamp(5px, 1vw, 8px);
             font-weight: bold;
             color: #555;
+            font-size: clamp(12px, 1.8vw, 16px);
         }
 
         .setting-input {
             width: 100%;
-            padding: 10px;
+            padding: clamp(8px, 1.5vw, 10px);
             border: 2px solid #ddd;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: clamp(14px, 2vw, 16px);
         }
 
         .setting-input:focus {
@@ -354,14 +359,18 @@
         }
 
         .setting-description {
-            font-size: 12px;
+            font-size: clamp(10px, 1.3vw, 12px);
             color: #888;
-            margin-top: 5px;
+            margin-top: clamp(3px, 0.5vw, 5px);
         }
 
         .settings-buttons {
             text-align: center;
-            margin-top: 30px;
+            margin-top: clamp(20px, 3vw, 30px);
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .time-warning {
@@ -370,11 +379,14 @@
             right: 20px;
             background: #ff6b6b;
             color: white;
-            padding: 15px 20px;
+            padding: clamp(10px, 1.5vw, 15px) clamp(15px, 2vw, 20px);
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
             animation: slideIn 0.3s ease-out;
             z-index: 1001;
+            font-size: clamp(12px, 1.8vw, 16px);
+            max-width: 80vw;
+            text-align: center;
         }
 
         @keyframes slideIn {
@@ -394,12 +406,15 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: white;
-            padding: 40px;
+            padding: clamp(25px, 4vw, 40px);
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             text-align: center;
             z-index: 1002;
             animation: winnerPopup 0.5s ease-out;
+            max-width: 90vw;
+            max-height: 80vh;
+            overflow-y: auto;
         }
 
         @keyframes winnerPopup {
@@ -414,9 +429,9 @@
         }
 
         .winner-text {
-            font-size: 28px;
+            font-size: clamp(20px, 4vw, 28px);
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: clamp(15px, 2vw, 20px);
             color: #333;
         }
 
@@ -432,10 +447,179 @@
 
         .game-status {
             text-align: center;
-            margin: 20px 0;
-            font-size: 18px;
+            margin: clamp(10px, 1.5vw, 20px) 0;
+            font-size: clamp(14px, 2vw, 18px);
             font-weight: bold;
             color: #667eea;
+            flex-shrink: 0;
+        }
+
+        /* 横屏模式优化 */
+        @media screen and (orientation: landscape) and (max-height: 600px) {
+            .game-container {
+                height: 98vh;
+                padding: 10px;
+            }
+            
+            .game-header {
+                margin-bottom: 10px;
+            }
+            
+            .game-title {
+                font-size: 20px;
+                margin-bottom: 3px;
+            }
+            
+            .main-controls {
+                margin-bottom: 10px;
+            }
+            
+            .control-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+                min-width: 60px;
+            }
+            
+            .players-section {
+                margin-bottom: 10px;
+                padding: 0 20px;
+            }
+            
+            .player-area {
+                padding: 8px;
+                min-width: 80px;
+            }
+            
+            .player-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 14px;
+            }
+            
+            .player-name {
+                font-size: 12px;
+            }
+            
+            .player-status {
+                font-size: 10px;
+            }
+            
+            .timer {
+                font-size: 11px;
+            }
+            
+            .thinking-time {
+                font-size: 9px;
+                height: 12px;
+            }
+            
+            .board-container {
+                margin: 10px 0;
+            }
+            
+            .game-board {
+                padding: 8px;
+            }
+            
+            .controls {
+                margin-top: 10px;
+            }
+            
+            .move-history {
+                margin-top: 10px;
+                max-height: 80px;
+                padding: 8px;
+            }
+            
+            .move-item {
+                padding: 2px 0;
+                font-size: 10px;
+            }
+        }
+
+        /* 平板横屏优化 */
+        @media screen and (min-width: 768px) and (min-height: 600px) and (orientation: landscape) {
+            .game-container {
+                max-width: 85vw;
+                height: 90vh;
+            }
+            
+            .board-container {
+                max-height: 60vh;
+            }
+        }
+
+        /* 手机竖屏优化 */
+        @media screen and (max-width: 480px) and (orientation: portrait) {
+            .game-container {
+                max-width: 98vw;
+                height: 98vh;
+                padding: 15px;
+            }
+            
+            .players-section {
+                padding: 0 20px;
+            }
+            
+            .game-info {
+                min-width: 70px;
+                padding: 8px;
+            }
+        }
+
+        /* 小屏幕手机优化 */
+        @media screen and (max-width: 360px) {
+            .game-container {
+                padding: 10px;
+            }
+            
+            .control-btn {
+                padding: 6px 12px;
+                font-size: 11px;
+                min-width: 70px;
+            }
+            
+            .player-area {
+                min-width: 90px;
+                padding: 10px;
+            }
+        }
+
+        /* 大屏幕优化 */
+        @media screen and (min-width: 1200px) {
+            .game-container {
+                max-width: 1000px;
+                height: 90vh;
+            }
+            
+            .board-container {
+                max-height: 65vh;
+            }
+        }
+
+        /* 防止双击缩放 */
+        .cell {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 滚动条样式 */
+        .move-history::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .move-history::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .move-history::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+
+        .move-history::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
     </style>
 </head>
@@ -488,7 +672,7 @@
         </div>
 
         <div class="move-history" id="moveHistory">
-            <h3 style="margin-bottom: 10px; color: #333;">走棋记录</h3>
+            <h3 style="margin-bottom: 10px; color: #333; font-size: clamp(14px, 2vw, 18px);">走棋记录</h3>
             <div id="moveList"></div>
         </div>
     </div>
@@ -537,6 +721,21 @@
             gameTimeLimit: 30, // 分钟
             thinkingTimeLimit: 30 // 秒
         };
+
+        // 自适应棋盘大小
+        function getCellSize() {
+            const container = document.querySelector('.board-container');
+            const maxWidth = container.clientWidth - 40;
+            const maxHeight = container.clientHeight - 40;
+            
+            const maxCellSize = Math.min(
+                Math.floor(maxWidth / BOARD_SIZE),
+                Math.floor(maxHeight / BOARD_SIZE),
+                35 // 最大35px
+            );
+            
+            return Math.max(maxCellSize, 20); // 最小20px
+        }
 
         // 初始化游戏
         function initGame() {
@@ -606,6 +805,8 @@
             const gameBoard = document.getElementById('gameBoard');
             gameBoard.innerHTML = '';
             
+            const cellSize = getCellSize();
+            
             for (let row = 0; row < BOARD_SIZE; row++) {
                 const rowDiv = document.createElement('div');
                 rowDiv.className = 'board-row';
@@ -615,11 +816,15 @@
                     cell.className = 'cell';
                     cell.dataset.row = row;
                     cell.dataset.col = col;
+                    cell.style.width = `${cellSize}px`;
+                    cell.style.height = `${cellSize}px`;
                     
                     if (board[row][col]) {
                         cell.classList.add('occupied');
                         const piece = document.createElement('div');
                         piece.className = `piece ${board[row][col]}`;
+                        piece.style.width = `${cellSize * 0.85}px`;
+                        piece.style.height = `${cellSize * 0.85}px`;
                         
                         if (lastMove && lastMove.row === row && lastMove.col === col) {
                             piece.classList.add('last-move');
@@ -841,7 +1046,7 @@
 
         // 切换玩家
         function switchPlayer() {
-            currentPlayer = currentPlayer === 'black' ? 'white' : 'white';
+            currentPlayer = currentPlayer === 'black' ? 'white' : 'black';
             currentPlayerStartTime = Date.now();
             currentPlayerThinkingTime = 0;
             updatePlayerStatus();
@@ -961,6 +1166,18 @@
         // 页面加载完成后初始化游戏
         window.onload = initGame;
 
+        // 窗口大小改变时重新渲染棋盘
+        window.addEventListener('resize', () => {
+            renderBoard();
+        });
+
+        // 屏幕旋转时重新渲染
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                renderBoard();
+            }, 100);
+        });
+
         // 点击模态框外部关闭
         window.onclick = function(event) {
             const modal = document.getElementById('settingsModal');
@@ -968,6 +1185,22 @@
                 closeSettings();
             }
         }
+
+        // 防止双击缩放
+        document.addEventListener('touchstart', function(event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        });
+
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
     </script>
 </body>
 </html>
