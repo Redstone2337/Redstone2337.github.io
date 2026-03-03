@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>深空生物工程研究院 · 角色档案库</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Microsoft YaHei", sans-serif;
+  background: #0b101e;
+  color: #e0e6f0;
+  padding: 30px 20px;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 动态星空背景 */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 30%, rgba(79,195,255,0.08) 0%, transparent 20%),
+              radial-gradient(circle at 70% 70%, rgba(120,80,255,0.06) 0%, transparent 15%);
+  pointer-events: none;
+  z-index: -1;
+  animation: bgShift 25s infinite linear;
+}
+@keyframes bgShift {
+  0%{transform:translate(0,0)}
+  50%{transform:translate(10px,-10px)}
+  100%{transform:translate(0,0)}
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 32px;
+  color: #4fc3ff;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+  animation: fadeIn 1s ease-out forwards;
+}
+.page-sub {
+  text-align: center;
+  color: #89a6d1;
+  margin-bottom: 50px;
+  font-size: 16px;
+  opacity: 0;
+  animation: fadeIn 1s 0.5s forwards;
+}
+
+/* 角色卡片列表 */
+.role-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+.role-card {
+  background: #121a2f;
+  border: 1px solid #2a3a5f;
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  opacity: 0;
+  animation: cardIn 1s var(--d) forwards;
+  text-decoration: none;
+}
+.role-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(79,195,255,0.08), transparent);
+  animation: flow 6s infinite linear;
+}
+@keyframes flow {
+  0%{left:-100%}
+  100%{left:100%}
+}
+.role-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(79,195,255,0.15);
+  border-color: #4fc3ff;
+}
+
+.code {
+  font-size: 14px;
+  color: #4fc3ff;
+  margin-bottom: 8px;
+}
+.name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.desc {
+  font-size: 14px;
+  color: #a0bce4;
+}
+
+@keyframes fadeIn {
+  to{opacity:1}
+}
+@keyframes cardIn {
+  to{opacity:1; transform: translateY(0)}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="page-title">深空生物工程研究院</div>
+  <div class="page-sub">SBERI · 星际探索融合兽 · 角色档案库</div>
+
+  <div class="role-list">
+    <!-- 角色卡片：GZL001 -->
+    <a href="gzl001.html" class="role-card" style="--d:0.8s">
+      <div class="code">GZL001</div>
+      <div class="name">狼龙兽人</div>
+      <div class="desc">灰狼 × 东方青龙 基因融合体<br>初代星际探索先锋</div>
+    </a>
+
+    <!-- 以后新增角色直接复制这里 -->
+    <!--
+    <a href="角色文件名.html" class="role-card" style="--d:0.9s">
+      <div class="code">编号</div>
+      <div class="name">角色名</div>
+      <div class="desc">简介</div>
+    </a>
+    -->
+  </div>
+</div>
+
+</body>
+</html>
