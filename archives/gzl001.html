@@ -1,337 +1,109 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>GZL001 狼龙兽人 · 角色档案</title>
+<meta charset="UTF-8">
+<title>GLZ001 · 狼龙兽人档案</title>
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: "Microsoft YaHei", sans-serif;
-  background: #0b101e;
-  color: #e0e6f0;
-  padding: 20px;
-  line-height: 1.6;
-  position: relative;
-  overflow-x: hidden;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b0f1a;color:#e0e6f0;font-family:"Microsoft YaHei",sans-serif;padding:30px 20px;line-height:1.7}
+.wrap{max-width:900px;margin:0 auto}
+.tips{background:#151b2b;border-left:4px solid #ff4444;padding:14px 18px;margin:0 0 25px;border-radius:6px;color:#ffcccc}
+.title{text-align:center;margin-bottom:30px}
+.title h1{color:#ff4444;text-shadow:0 0 12px #ff444444}
+.title p{color:#8899aa}
+.back{display:inline-block;margin-bottom:20px;color:#ff4444;text-decoration:none}
+.back:hover{color:#fff}
 
-/* 动态星空背景 */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 20% 30%, rgba(79,195,255,0.08) 0%, transparent 20%),
-    radial-gradient(circle at 70% 70%, rgba(120,80,255,0.06) 0%, transparent 15%);
-  pointer-events: none;
-  z-index: -1;
-  animation: bgShift 25s infinite linear;
-}
-@keyframes bgShift {
-  0%{transform:translate(0,0)}
-  50%{transform:translate(10px,-10px)}
-  100%{transform:translate(0,0)}
-}
+.fold{background:#121825;border:1px solid #2a3550;border-radius:10px;margin-bottom:12px;overflow:hidden}
+.fold-head{padding:18px 22px;background:#161d30;color:#ff4444;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.fold-head h2{font-size:18px}
+.fold-content{padding:0 24px;max-height:0;transition:max-height 0.4s ease-out}
+.fold.active .fold-content{padding:20px 24px;max-height:2000px}
+.fold-head::after{content:"+";font-size:22px;color:#ff4444}
+.fold.active .fold-head::after{content:"−"}
 
-.card {
-  max-width: 900px;
-  margin: 0 auto;
-  background: #121a2f;
-  border: 1px solid #2a3a5f;
-  border-radius: 14px;
-  padding: 30px;
-  box-shadow: 0 0 40px rgba(30, 60, 120, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-/* 青龙流光边框 */
-.card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(79,195,255,0.1), transparent);
-  animation: dragonFlow 8s infinite linear;
-  pointer-events: none;
-}
-@keyframes dragonFlow {
-  0%{left:-100%}
-  100%{left:100%}
-}
-
-.title {
-  text-align: center;
-  font-size: 28px;
-  color: #4fc3ff;
-  margin-bottom: 8px;
-  letter-spacing: 2px;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid #4fc3ff;
-  width: 0;
-  animation: typing 2.5s steps(20) forwards, blink 0.8s infinite 2.5s;
-}
-@keyframes typing {
-  to{width:100%}
-}
-@keyframes blink {
-  50%{border-color:transparent}
-}
-
-.subtitle {
-  text-align: center;
-  color: #89a6d1;
-  margin-bottom: 24px;
-  font-size: 15px;
-  opacity: 0;
-  animation: fadeIn 1s 2s forwards;
-}
-@keyframes fadeIn {
-  to{opacity:1}
-}
-
-/* 立绘区域 + 能量光效 */
-.art-area {
-  width: 100%;
-  height: 360px;
-  background: #0f1629;
-  border: 2px solid #2a3a5f;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-  overflow: hidden;
-  position: relative;
-  opacity: 0;
-  animation: artFade 1.5s 2.5s forwards;
-}
-@keyframes artFade {
-  to{opacity:1}
-}
-.art-area::after {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 10px;
-  background: linear-gradient(45deg, #4fc3ff, #7850ff, #4fc3ff);
-  z-index: -1;
-  filter: blur(6px);
-  opacity: 0.3;
-  animation: auraGlow 4s infinite alternate;
-}
-@keyframes auraGlow {
-  0%{opacity:0.2}
-  100%{opacity:0.4}
-}
-.art-area img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: none;
-}
-.art-area::before {
-  content: "角色立绘位置";
-  color: #4a90e2;
-  font-size: 16px;
-  opacity: 0.7;
-}
-
-/* 折叠面板 */
-.fold-section {
-  margin-bottom: 16px;
-  border-radius: 8px;
-  overflow: hidden;
-  opacity: 0;
-  animation: secFade 1s var(--d) forwards;
-}
-@keyframes secFade {
-  to{opacity:1}
-}
-.fold-head {
-  background: #18223b;
-  color: #72d9ff;
-  padding: 12px 16px;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  user-select: none;
-  transition: all 0.3s;
-  position: relative;
-}
-.fold-head::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 4px;
-  background: #4fc3ff;
-  transform: scaleY(0);
-  transition: transform 0.3s;
-}
-.fold-head:hover::before {
-  transform: scaleY(1);
-}
-.fold-head:hover {
-  background: #1d2a4a;
-  padding-left: 20px;
-}
-.fold-head::after {
-  content: "+";
-  font-size: 20px;
-  transition: transform 0.3s;
-}
-.fold-head.active::after {
-  transform: rotate(45deg);
-}
-.fold-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease;
-  background: #151d32;
-}
-.fold-body-inner {
-  padding: 16px;
-}
-
-.info-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.info-table td {
-  padding: 8px 12px;
-  border: 1px solid #243457;
-}
-.info-table td:first-child {
-  background: #18223b;
-  color: #a0bce4;
-  width: 120px;
-}
-.highlight {
-  color: #5ad1ff;
-}
-.footer {
-  text-align: center;
-  margin-top: 24px;
-  color: #668;
-  font-size: 12px;
-  opacity: 0;
-  animation: footFade 1s 5s forwards;
-}
-@keyframes footFade {
-  to{opacity:1}
-}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.info-grid p{margin:0}
+.highlight{color:#ff4444;font-weight:bold}
+p{margin-bottom:10px;color:#c8d8e8}
 </style>
 </head>
 <body>
+<div class="wrap">
+<a class="back" href="index.html">← 返回档案导航</a>
 
-<div class="card">
-  <div class="title">GZL001 狼龙兽人</div>
-  <div class="subtitle">深空生物工程研究院 · 初代星际探索型融合兽</div>
+<div class="tips">
+<strong>TIPS：</strong>GLZ001为狼龙融合改造体，野性极强、感知敏锐，近距离突袭与追击能力为协会顶尖水平。
+</div>
 
-  <div class="art-area" id="artBox">
-    <img src="https://redstone233.netlify.app/images/GZL001.png" alt="狼龙兽人">
-  </div>
+<div class="title">
+<h1>GLZ001 · 狼龙兽人档案</h1>
+<p>造物协会 · 狼龙融合改造体</p>
+</div>
 
-  <div class="fold-section" style="--d:3s">
-    <div class="fold-head">基础信息</div>
-    <div class="fold-body">
-      <div class="fold-body-inner">
-        <table class="info-table">
-          <tr><td>代号</td><td><span class="highlight">GZL001</span></td></tr>
-          <tr><td>种族</td><td>基因融合兽（灰狼×东方青龙）+ 机械改造体</td></tr>
-          <tr><td>性别</td><td>雄性</td></tr>
-          <tr><td>年龄</td><td>3个地球年（基因成熟期，相当于人类25岁）</td></tr>
-          <tr><td>身高</td><td>2.2米（含龙角）</td></tr>
-          <tr><td>体重</td><td>180公斤（含机械义肢）</td></tr>
-          <tr><td>隶属</td><td>深空生物工程研究院（SBERI）</td></tr>
-          <tr><td>身份</td><td>初代星际探索型融合兽、深空先锋队员</td></tr>
-        </table>
-      </div>
-    </div>
-  </div>
+<div class="fold">
+<div class="fold-head"><h2>基础信息</h2></div>
+<div class="fold-content">
+<div class="info-grid">
+<p><span class="highlight">代号：</span> GLZ001</p>
+<p><span class="highlight">种族：</span> 狼族 × 龙族基因融合兽人</p>
+<p><span class="highlight">性别：</span> 雄性</p>
+<p><span class="highlight">隶属：</span> 造物协会 · 突击组</p>
+<p><span class="highlight">定位：</span> 高速突袭、追击、侦查</p>
+<p><span class="highlight">特征：</span> 兽耳、尾、利爪、龙族强化骨骼</p>
+</div>
+</div>
+</div>
 
-  <div class="fold-section" style="--d:3.2s">
-    <div class="fold-head">形态特征</div>
-    <div class="fold-body">
-      <div class="fold-body-inner">
-        <p><strong>狼系特征：</strong>蓝白渐变毛发，尖耳、冰蓝竖瞳（三重视觉），钛合金钢牙，咬合力8吨，时速80公里。</p><br>
-        <p><strong>龙系特征：</strong>青蓝色龙角（信号接收）、菱形龙鳞、1.5米青龙尾（冲击力12吨），尾尖可感温。</p><br>
-        <p><strong>机械改造：</strong>左臂全机械义肢，银灰钛合金+紫色能量核心，可生成护盾、样本分析、高能光束。</p>
-      </div>
-    </div>
-  </div>
+<div class="fold">
+<div class="fold-head"><h2>外观特征</h2></div>
+<div class="fold-content">
+<p>• 狼耳 + 狼尾，听觉嗅觉远超普通龙族</p>
+<p>• 龙族强化肌肉与骨骼，爆发力极强</p>
+<p>• 利爪可自由伸缩，自带破甲撕裂效果</p>
+<p>• 双眼在暗处会发出赤色微光</p>
+<p>• 身体覆盖兽毛与硬质龙鳞双层防御</p>
+</div>
+</div>
 
-  <div class="fold-section" style="--d:3.4s">
-    <div class="fold-head">能力设定</div>
-    <div class="fold-body">
-      <div class="fold-body-inner">
-        <p><strong>生物天赋：</strong>极端环境适应、10公里嗅觉追踪、-60℃低温龙息。</p><br>
-        <p><strong>机械赋能：</strong>多功能义肢、设备直连数据同步、移动工具台。</p><br>
-        <p><strong>综合短板：</strong>能量核心续航有限；龙尾连接处脆弱；极端情绪可能短暂失控。</p>
-      </div>
-    </div>
-  </div>
+<div class="fold">
+<div class="fold-head"><h2>能力与战斗风格</h2></div>
+<div class="fold-content">
+<p>• 极致速度：短距离爆发接近瞬移</p>
+<p>• 超强感知：黑暗可视、气息追踪、环境预警</p>
+<p>• 撕裂攻击：利爪附带持续出血效果</p>
+<p>• 野性直觉：危险感应极强，难以被伏击</p>
+<p>• 弱点：防御偏弱，不适合长时间正面硬战</p>
+</div>
+</div>
 
-  <div class="fold-section" style="--d:3.6s">
-    <div class="fold-head">性格设定</div>
-    <div class="fold-body">
-      <div class="fold-body-inner">
-        <p>冷静理性、忠诚可靠，兼具狼的群体意识与龙的孤高威严。执行任务一丝不苟，闲暇有幼兽本能，对同伴极度保护，对外星生命保持警惕但不主动攻击。</p>
-      </div>
-    </div>
-  </div>
+<div class="fold">
+<div class="fold-head"><h2>背景经历</h2></div>
+<div class="fold-content">
+<p>GLZ001是造物协会为<strong>高速突袭与猎杀</strong>开发的融合实验体。</p>
+<p>以狼族的敏捷、感知、野性为基础，融入龙族的力量、恢复力与骨骼强度，成为专门用于追击、侦查、斩首的战术单位。</p>
+<p>他没有过去的记忆，只保留着深入骨髓的战斗本能，对协会绝对服从，是黑暗中最锋利的獠牙。</p>
+<p>常与GZDL001、RZDL001组成小队，负责高难度清剿任务。</p>
+</p>
+</div>
+</div>
 
-  <div class="fold-section" style="--d:3.8s">
-    <div class="fold-head">背景故事</div>
-    <div class="fold-body">
-      <div class="fold-body-inner">
-        <p>GZL001 是深空生物工程研究院「初代星际探索融合体」项目成果，诞生于火星轨道科研空间站。融合地球灰狼与东方青龙基因，搭配航天级机械改造，专为高风险深空探索而生。</p><br>
-        <p>已完成近百次探索任务，零失误。即将执行首次<strong>柯伊伯带勘测任务</strong>，寻找星际生命痕迹。</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="fold-section" style="--d:4s">
-    <div class="fold-head">专属标识</div>
-    <div class="fold-body">
-      <div class="fold-body-inner">
-        <p>胸口荧光蓝 <span class="highlight">GZL001</span> 身份认证；</p>
-        <p>机械义肢紫色核心充能时浮现<strong>青龙图腾</strong>。</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer">深空生物工程研究院 · 机密档案</div>
+<div class="fold">
+<div class="fold-head"><h2>性格与内核</h2></div>
+<div class="fold-content">
+<p>• 寡言、警惕、野性难驯</p>
+<p>• 只信任少数协会成员</p>
+<p>• 对“猎物”有极强执念</p>
+<p>• 内心深处渴望找回自己的过去</p>
+<p>• 习惯独来独往，但在小队中极度可靠</p>
+</div>
 </div>
 
 <script>
-const heads = document.querySelectorAll('.fold-head');
-heads.forEach(head => {
-  head.addEventListener('click', () => {
-    head.classList.toggle('active');
-    const body = head.nextElementSibling;
-    body.style.maxHeight = body.style.maxHeight ? null : body.scrollHeight + 300 + 'px';
-  });
-});
-
-const img = document.querySelector('#artBox img');
-if (img && img.src) img.style.display = 'block';
+document.querySelectorAll('.fold-head').forEach(h=>{
+  h.addEventListener('click',()=>h.parentElement.classList.toggle('active'))
+})
 </script>
+</div>
 </body>
 </html>
