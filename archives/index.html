@@ -1,50 +1,113 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>造物协会 · 角色档案库</title>
+<meta charset="UTF-8">
+<title>造物协会 · 改造龙兽人档案库</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Microsoft YaHei",sans-serif;background:#0b101e;color:#e0e6f0;padding:30px 20px;position:relative;overflow-x:hidden}
-body::before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 30%,rgba(79,195,255,0.08)0%,transparent 20%),radial-gradient(circle at 70% 70%,rgba(120,80,255,0.06)0%,transparent 15%);pointer-events:none;z-index:-1;animation:bgShift 25s infinite linear}
-@keyframes bgShift{0%{transform:translate(0,0)}50%{transform:translate(10px,-10px)}100%{transform:translate(0,0)}}
+body{background:#0b0f1a;color:#e0e6f0;font-family:"Microsoft YaHei",sans-serif;padding:40px 20px}
 .container{max-width:1000px;margin:0 auto}
-.page-title{text-align:center;font-size:32px;color:#4fc3ff;margin-bottom:10px;letter-spacing:3px}
-.page-sub{text-align:center;color:#89a6d1;margin-bottom:16px;font-size:16px}
-.tips{text-align:center;background:#18223b;border:1px solid #2a3a5f;border-radius:8px;padding:12px 16px;margin-bottom:30px;color:#a0bce4;font-size:14px}
-.role-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
-.role-card{background:#121a2f;border:1px solid #2a3a5f;border-radius:12px;padding:24px;position:relative;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s;text-decoration:none}
-.role-card::before{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(79,195,255,0.08),transparent);animation:flow 6s infinite linear}
-@keyframes flow{0%{left:-100%}100%{left:100%}}
-.role-card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(79,195,255,0.15);border-color:#4fc3ff}
-.code{font-size:14px;color:#4fc3ff;margin-bottom:8px}
-.name{font-size:20px;font-weight:bold;color:#fff;margin-bottom:8px}
-.desc{font-size:14px;color:#a0bce4}
+h1{text-align:center;color:#ffcc22;margin-bottom:10px;text-shadow:0 0 10px #ffcc2266}
+.tips{background:#151b2b;border-left:4px solid #00ccff;padding:14px 18px;margin:20px 0;border-radius:6px;color:#aad8ff}
+.card{background:#121825;padding:30px;border-radius:10px;margin:20px 0;border:1px solid #2a3550;transition:.3s}
+.card:hover{border-color:#00ccff;box-shadow:0 0 20px #00ccff22}
+.card h2{color:#00ccff;margin-bottom:10px}
+.card p{color:#b0c4de;line-height:1.6;margin-bottom:15px}
+.btn{display:inline-block;padding:10px 20px;background:#0077bb;color:white;border-radius:6px;text-decoration:none;transition:.3s}
+.btn:hover{background:#00aaff}
+
+/* 快捷HTML生成工具 */
+.tool{background:#121825;border:1px solid #2a3550;border-radius:10px;padding:30px;margin:40px 0}
+.tool h2{color:#00ccff;margin-bottom:20px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.form-grid input,.form-grid textarea{width:100%;padding:10px;background:#161d30;border:1px solid #2a3550;border-radius:6px;color:#fff}
+.form-grid textarea{height:80px;resize:none}
+.tool button{padding:10px 24px;background:#0077bb;color:white;border:none;border-radius:6px;cursor:pointer}
+.tool button:hover{background:#00aaff}
+#result{width:100%;height:200px;margin-top:15px;background:#0b0f1a;color:#00ffcc;padding:12px;border-radius:6px;border:1px solid #2a3550}
 </style>
 </head>
 <body>
 <div class="container">
-  <div class="page-title">造物协会</div>
-  <div class="page-sub">SBERI · 融合兽角色档案库</div>
+<h1>造物协会 · 改造龙兽人档案库</h1>
 
-  <!-- 新增 TIPS 提示 -->
-  <div class="tips">
-    💡 TIPS：深空生物工程研究院隶属于造物协会旗下的工程研究院。
-  </div>
-
-  <div class="role-list">
-    <a href="gzl001.html" class="role-card">
-      <div class="code">GZL001</div>
-      <div class="name">狼龙兽人</div>
-      <div class="desc">灰狼×青龙·星际探索先锋</div>
-    </a>
-    <a href="rzdl001.html" class="role-card">
-      <div class="code">RZDL001</div>
-      <div class="name">青毒龙侍</div>
-      <div class="desc">木毒双生·人造毒龙一号</div>
-    </a>
-  </div>
+<div class="tips">
+<strong>TIPS：</strong>本档案为造物协会最高机密级实验体记录，包含创伤、改造、能力与背景信息，仅供内部查阅。
 </div>
+
+<div class="card">
+<h2>GZDL001 —— 半机械电水双属性改造龙</h2>
+<p>原神龙星电龙皇室七皇子，遭“诛龙”组织捕获，经历五年地狱实验，被造物协会救下并改造重生。</p>
+<a class="btn" href="gzdl001.html">查看完整档案</a>
+</div>
+
+<div class="card">
+<h2>RZDL001 —— 毒沼生化改造龙</h2>
+<p>深海青龙与毒蜥基因融合体，生化组高危实验体，擅长毒素、腐蚀、毒沼环境压制，负责样本回收与隔离区看守。</p>
+<a class="btn" href="rzdl001.html">查看完整档案</a>
+</div>
+
+<div class="card">
+<h2>GLZ001 —— 狼龙兽人</h2>
+<p>狼族与龙族基因融合改造体，速度、爆发、感知顶尖，野性与机械改造并存的突击型战力。</p>
+<a class="btn" href="glz001.html">查看完整档案</a>
+</div>
+
+<!-- 快捷HTML创建工具 -->
+<div class="tool">
+<h2>📝 快捷HTML创建工具</h2>
+<p style="margin-bottom:16px">填写信息 → 点击生成 → 复制代码 → 保存为 new.html 即可新增角色</p>
+<div class="form-grid">
+<input type="text" id="fname" placeholder="文件名(英文) 例: glz002">
+<input type="text" id="title" placeholder="角色全名 例: GLZ002 影爪狼龙">
+<input type="text" id="subtitle" placeholder="副标题 例: 造物协会 · 狼龙改造体">
+<input type="text" id="color" placeholder="主题色 例: #00ccff #ff4444 #00e6ac">
+<textarea id="info" placeholder="基础信息（多行）"></textarea>
+<textarea id="body" placeholder="档案正文（任意内容）"></textarea>
+</div>
+<button onclick="generate()">生成HTML代码</button>
+<textarea id="result" readonly placeholder="生成后的代码会显示在这里"></textarea>
+</div>
+
+</div>
+
+<script>
+function generate(){
+  let fname = document.getElementById('fname').value || 'new'
+  let title = document.getElementById('title').value || '新角色档案'
+  let subtitle = document.getElementById('subtitle').value || '造物协会改造体'
+  let color = document.getElementById('color').value || '#00ccff'
+  let info = document.getElementById('info').value.split('\n').join('<br>')
+  let body = document.getElementById('body').value.split('\n').join('<br>')
+
+  let html = `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>${title}</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b0f1a;color:#e0e6f0;font-family:"Microsoft YaHei",sans-serif;padding:30px 20px}
+.wrap{max-width:900px;margin:0 auto}
+.back{display:inline-block;margin-bottom:20px;color:${color};text-decoration:none}
+.title{text-align:center;margin:30px 0}
+.title h1{color:${color}}
+.section{background:#121825;border:1px solid #2a3550;border-radius:10px;padding:24px;margin-bottom:12px}
+.section h2{color:${color};margin-bottom:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← 返回</a>
+<div class="title"><h1>${title}</h1><p>${subtitle}</p></div>
+<div class="section"><h2>基础信息</h2><p>${info}</p></div>
+<div class="section"><h2>完整档案</h2><p>${body}</p></div>
+</div>
+</body>
+</html>`
+
+  document.getElementById('result').value = html
+}
+</script>
 </body>
 </html>
