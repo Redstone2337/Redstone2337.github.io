@@ -1,120 +1,139 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>RZDL001 青毒龙侍 · 角色档案</title>
+<meta charset="UTF-8">
+<title>RZDL001 · 完整生物档案</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Microsoft YaHei",sans-serif;background:#0b101e;color:#e0e6f0;padding:20px;line-height:1.6;position:relative;overflow-x:hidden}
-body::before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 30%,rgba(79,195,255,0.08)0%,transparent 20%),radial-gradient(circle at 70% 70%,rgba(120,80,255,0.06)0%,transparent 15%);pointer-events:none;z-index:-1;animation:bgShift 25s infinite linear}
-@keyframes bgShift{0%{transform:translate(0,0)}50%{transform:translate(10px,-10px)}100%{transform:translate(0,0)}}
-.card{max-width:900px;margin:0 auto;background:#121a2f;border:1px solid #2a3a5f;border-radius:14px;padding:30px;box-shadow:0 0 40px rgba(30,60,120,0.3);position:relative;overflow:hidden}
-.card::before{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(79,195,255,0.1),transparent);animation:dragonFlow 8s infinite linear;pointer-events:none}
-@keyframes dragonFlow{0%{left:-100%}100%{left:100%}}
-.title{text-align:center;font-size:28px;color:#4fc3ff;margin-bottom:8px;letter-spacing:2px;white-space:nowrap;overflow:hidden;border-right:2px solid #4fc3ff;width:0;animation:typing 2.5s steps(22) forwards,blink 0.8s infinite 2.5s}
-@keyframes typing{to{width:100%}}
-@keyframes blink{50%{border-color:transparent}}
-.subtitle{text-align:center;color:#89a6d1;margin-bottom:24px;font-size:15px;opacity:0;animation:fadeIn 1s 2s forwards}
-.art-area{width:100%;height:360px;background:#0f1629;border:2px solid #2a3a5f;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:30px;overflow:hidden;position:relative;opacity:0;animation:artFade 1.5s 2.5s forwards}
-.art-area::after{content:"";position:absolute;inset:-2px;border-radius:10px;background:linear-gradient(45deg,#4fc3ff,#7850ff,#4fc3ff);z-index:-1;filter:blur(6px);opacity:0.3;animation:auraGlow 4s infinite alternate}
-@keyframes auraGlow{0%{opacity:0.2}100%{opacity:0.4}}
-.art-area img{width:100%;height:100%;object-fit:contain}
-.fold-section{margin-bottom:16px;border-radius:8px;overflow:hidden;opacity:0;animation:secFade 1s var(--d) forwards}
-.fold-head{background:#18223b;color:#72d9ff;padding:12px 16px;font-size:17px;font-weight:bold;cursor:pointer;display:flex;justify-content:space-between;user-select:none;transition:all 0.3s;position:relative}
-.fold-head::before{content:"";position:absolute;left:0;top:0;height:100%;width:4px;background:#4fc3ff;transform:scaleY(0);transition:transform 0.3s}
-.fold-head:hover::before{transform:scaleY(1)}
-.fold-head:hover{background:#1d2a4a;padding-left:20px}
-.fold-head::after{content:"+";font-size:20px;transition:transform 0.3s}
-.fold-head.active::after{transform:rotate(45deg)}
-.fold-body{max-height:0;overflow:hidden;transition:max-height 0.5s ease;background:#151d32}
-.fold-body-inner{padding:16px}
-.info-table{width:100%;border-collapse:collapse}
-.info-table td{padding:8px 12px;border:1px solid #243457}
-.info-table td:first-child{background:#18223b;color:#a0bce4;width:120px}
-.highlight{color:#5ad1ff}
-@keyframes fadeIn{to{opacity:1}}
-@keyframes artFade{to{opacity:1}}
-@keyframes secFade{to{opacity:1}}
+body{background:#0b0f1a;color:#e0e6f0;font-family:"Microsoft YaHei",sans-serif;padding:30px 20px;line-height:1.7}
+.wrap{max-width:900px;margin:0 auto}
+.tips{background:#151b2b;border-left:4px solid #00b377;padding:14px 18px;margin:0 0 25px;border-radius:6px;color:#aaffd8}
+.title{text-align:center;margin-bottom:30px}
+.title h1{color:#00e6ac;text-shadow:0 0 12px #00e6ac44}
+.title p{color:#8899aa}
+.back{display:inline-block;margin-bottom:20px;color:#00e6ac;text-decoration:none}
+.back:hover{color:#fff}
+
+.fold{background:#121825;border:1px solid #2a3550;border-radius:10px;margin-bottom:12px;overflow:hidden}
+.fold-head{padding:18px 22px;background:#161d30;color:#00e6ac;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.fold-head h2{font-size:18px}
+.fold-content{padding:0 24px;max-height:0;transition:max-height 0.4s ease-out}
+.fold.active .fold-content{padding:20px 24px;max-height:2000px}
+.fold-head::after{content:"+";font-size:22px;color:#00e6ac}
+.fold.active .fold-head::after{content:"−"}
+
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.info-grid p{margin:0}
+.highlight{color:#00e6ac;font-weight:bold}
+.green{color:#00e6ac}
+.red{color:#ff4444}
+p{margin-bottom:10px;color:#c8d8e8}
 </style>
 </head>
 <body>
-<div class="card">
-  <div class="title">RZDL001 青毒龙侍</div>
-  <div class="subtitle">造物协会 · 人造毒龙一号</div>
-  <div class="art-area" id="artBox">
-    <img src="https://redstone233.netlify.app/images/RZDL001.png" alt="青毒龙侍">
-  </div>
+<div class="wrap">
+<a class="back" href="index.html">← 返回档案导航</a>
 
-  <div class="fold-section" style="--d:3s">
-    <div class="fold-head">基础信息</div>
-    <div class="fold-body"><div class="fold-body-inner">
-      <table class="info-table">
-        <tr><td>代号</td><td><span class="highlight">RZDL001</span></td></tr>
-        <tr><td>全称</td><td>人造毒龙一号（RZDL = Ren Zao Du Long）</td></tr>
-        <tr><td>种族</td><td>神龙星白金皇室金龙 → 木/毒双属性人造毒龙 + 仿生机械改造体</td></tr>
-        <tr><td>性别</td><td>雄性</td></tr>
-        <tr><td>年龄</td><td>神龙星纪年 128 岁（相当于人类 32 岁）</td></tr>
-        <tr><td>身高</td><td>2.3米</td></tr>
-        <tr><td>体重</td><td>195公斤（含仿生义肢与毒腺强化）</td></tr>
-        <tr><td>隶属</td><td>造物协会 · 「生化组」</td></tr>
-        <tr><td>身份</td><td>首席毒剂师 / 特级医疗专员 / 实验体回收专员</td></tr>
-      </table>
-    </div></div>
-  </div>
+<div class="tips">
+<strong>TIPS：</strong>RZDL001为生化组高危实验体，具备强毒性与腐蚀性，非授权人员禁止近距离接触。
+</div>
 
-  <div class="fold-section" style="--d:3.2s">
-    <div class="fold-head">形态特征</div>
-    <div class="fold-body"><div class="fold-body-inner">
-      <p><strong>本体蜕变：</strong>原神龙星白金皇室金龙，通体覆盖金色龙鳞，血液为纯金色。经10年血脉异变后，鳞片转为青绿色，血液变为绿中带金的剧毒液体，仅对自身无害。</p><br>
-      <p><strong>仿生义肢：</strong>右臂为仿生机械龙爪义肢，由生物活性金属与神经束构成，可随意志变形；双角为仿生机械龙角，内置信号放大器与神经接口。</p><br>
-      <p><strong>异瞳改造：</strong>左眼（蓝色）为战术分析眼，可实时解析环境与最优解；右眼（绿色）为精神控制眼，可操控低等生物意志。</p><br>
-      <p><strong>能量特征：</strong>周身环绕淡绿色生命气息与墨绿色毒雾，两种气息可自由切换。</p>
-    </div></div>
-  </div>
+<div class="title">
+<h1>RZDL001 · 生化改造档案</h1>
+<p>造物协会 · 毒沼龙侍</p>
+</div>
 
-  <div class="fold-section" style="--d:3.4s">
-    <div class="fold-head">能力设定</div>
-    <div class="fold-body"><div class="fold-body-inner">
-      <p><strong>无解方程毒：</strong>可随手创造任何形式的剧毒，分子结构完全由自身意志定义，除他本人外，任何手段都无法解除。</p><br>
-      <p><strong>生命逆转液：</strong>可制造高效恢复药水，瓶身印有☣️白底透标，一滴即可将濒死个体瞬间恢复至满血状态。</p><br>
-      <p><strong>精准毒控：</strong>毒素具有“智能识别”特性，可自主区分友敌，不会误伤造物协会成员及他认定的“无害目标”。</p><br>
-      <p><strong>毒武共生：</strong>武器沾染一滴血液后，会被剧毒包裹，成为致命武器。</p><br>
-      <p><strong>短板：</strong>高强度制造药剂会消耗大量生命力，使用后需1–2小时休眠；仿生义肢依赖协会能源供应。</p>
-    </div></div>
-  </div>
+<div class="fold">
+<div class="fold-head"><h2>基础信息</h2></div>
+<div class="fold-content">
+<div class="info-grid">
+<p><span class="highlight">代号：</span> RZDL001</p>
+<p><span class="highlight">含义：</span> 溶·制·毒·龙 · 001号</p>
+<p><span class="highlight">种族：</span> 深海青龙 × 毒蜥基因融合体</p>
+<p><span class="highlight">性别：</span> 雄性</p>
+<p><span class="highlight">隶属：</span> 造物协会 · 生化组</p>
+<p><span class="highlight">身份：</span> 生化污染战术单位</p>
+<p><span class="highlight">职责：</span> 实验样本回收、隔离区看守</p>
+<p><span class="highlight">激活时长：</span> 3年</p>
+</div>
+</div>
+</div>
 
-  <div class="fold-section" style="--d:3.6s">
-    <div class="fold-head">性格设定</div>
-    <div class="fold-body"><div class="fold-body-inner">
-      <p>外表阴郁寡言，眼神中藏着对过去的创伤与对造物协会的复杂忠诚。对协会成员极度保护，尤其是救过他的“生化组”研究员，将他们视为唯一的家人。对金龙血脉与神龙星皇室抱有强烈的排斥与恨意，拒绝提及过去。执行任务时冷静到近乎冷酷，尤其在回收实验体或清理威胁时，手段狠辣，被称为“生化组的青影”。</p>
-    </div></div>
-  </div>
+<div class="fold">
+<div class="fold-head"><h2>外观与改造部位</h2></div>
+<div class="fold-content">
+<p>通体 <span class="green">青绿色龙鳞</span>，皮下可见毒液脉络，自带生物危害威慑感。</p>
+<p>• 右臂：<span class="green">生化机械义肢</span>（生物组织+合金，可分泌毒液与酸液）</p>
+<p>• 双眼：<span class="highlight">蓝绿异瞳</span></p>
+<p>• 左眼：机械义眼，分析毒素成分</p>
+<p>• 右眼：原生毒龙瞳，感知生命体征</p>
+<p>• 头部左侧：<span class="green">全息投影模块</span>（战术地图、毒雾扩散模拟）</p>
+<p>• 尾部：<span class="green">毒腺尾</span>，可释放大范围绿色腐蚀毒雾</p>
+<p>• 胸腹部：印有编号<span class="green">RZDL001</span>与生物危害标志</p>
+</div>
+</div>
 
-  <div class="fold-section" style="--d:3.8s">
-    <div class="fold-head">背景故事</div>
-    <div class="fold-body"><div class="fold-body-inner">
-      <p>他本是神龙星白金皇室的九皇子，拥有纯正的金龙血脉，却因木属性魔法效能低下而被视为“皇室之耻”。神秘域外黑心实验室的入侵打破了平静，他们大肆抓捕金龙一族，将其作为强制属性实验的素材。他在一次外出巡查时被擒，成为众多实验体之一。</p><br>
-      <p>在实验室中，他遭受了非人的折磨：手臂被生生锯断，龙角被砍断提取能量核心，被注入数百种未知药剂强制融合毒属性。实验全部失败后，他被丢入地牢等死。在暗无天日的地牢中，他独自熬过了10年，血脉发生异变，从弱小的金龙蜕变成了兼具木与毒双属性的全新龙种。</p><br>
-      <p>造物协会在清缴黑心实验室时，在卫生间的澡池里发现了昏迷的他。协会将他带回，为他安装了仿生机械龙爪与龙角，并对他进行了全面改造。他主动申请了异瞳改造，协会也为他量身打造了“无解方程毒”与“生命逆转液”的能力。如今，他以RZDL001的身份活跃在协会的各个战场，既是令人闻风丧胆的毒龙，也是协会成员最可靠的生命保障。</p>
-    </div></div>
-  </div>
+<div class="fold">
+<div class="fold-head"><h2>战斗能力系统</h2></div>
+<div class="fold-content">
+<p><span class="highlight">【生化义肢】</span></p>
+<p>可分泌<strong>神经毒素</strong>、<strong>腐蚀酸液</strong>，触之即麻痹、溃烂。</p>
+<p><span class="highlight">【毒沼领域】</span></p>
+<p>短时间内将区域化为致命毒沼，封锁、减速、持续杀伤。</p>
+<p><span class="highlight">【毒素全免疫】</span></p>
+<p>对已知所有毒素、腐蚀、生化污染完全免疫。</p>
+<p><span class="highlight">【生命感知】</span></p>
+<p>可穿透障碍锁定生物位置，适合搜索与回收样本。</p>
+<p><span class="red">【短板】</span></p>
+<p>过度使用毒素会消耗生命力，导致虚弱；生化组织惧怕高温。</p>
+</div>
+</div>
 
-  <div class="fold-section" style="--d:4s">
-    <div class="fold-head">专属标识</div>
-    <div class="fold-body"><div class="fold-body-inner">
-      <p>胸腹部印有造物协会编号 <span class="highlight">RZDL001</span> 与生物危害标志。</p>
-      <p>他制造的所有药剂瓶身都印有 ☣️ 白底透标，绿色为治疗，墨绿色为剧毒。</p>
-      <p>仿生义肢与异瞳在充能时，会浮现出青绿色的龙纹，这是他血脉异变与协会技术融合的象征。</p>
-    </div></div>
-  </div>
+<div class="fold">
+<div class="fold-head"><h2>体内生化药剂记录</h2></div>
+<div class="fold-content">
+<p><span class="green">【深海青龙原液】</span></p>
+<p>强化水压适应、水下行动、环境耐受力。</p>
+<p><span class="green">【毒蜥寄生毒腺】</span></p>
+<p>持续生成剧毒，代价是精神麻木、情绪淡漠。</p>
+<p><span class="green">【生化融合剂】</span></p>
+<p>让义肢与肉体结合，同时压制自主意识，强化服从性。</p>
+<p><span class="red">【副作用】</span></p>
+<p>长期毒素侵蚀 → 记忆碎片化、情感麻木、对痛苦迟钝。</p>
+</div>
+</div>
 
-  <div style="text-align:center;margin-top:24px;color:#668;font-size:12px">造物协会 · 机密档案</div>
+<div class="fold">
+<div class="fold-head"><h2>完整背景经历</h2></div>
+<div class="fold-content">
+<p>RZDL001是<span class="green">造物协会生化组</span>为高危污染环境打造的<strong>活体生化兵器</strong>。</p>
+<p>以深海青龙为基底，融合毒蜥基因，植入人工毒腺与生化义肢，用于：</p>
+<p>• 失控造物清理</p>
+<p>• 高污染区实验样本回收</p>
+<p>• 异端实验室镇压</p>
+<p>在一次<strong>深渊实验室泄漏事故</strong>中，他独自压制全部失控样本，将整片区域化为死沼，一战确立生化组最强战力地位。</p>
+<p>如今他被派驻<strong>最高级别隔离区</strong>，负责看守最危险的禁忌造物，无人敢靠近。</p>
+<p>他对自身存在意义迷茫，只将<strong>执行任务、回收样本</strong>当作唯一价值。</p>
+</div>
+</div>
+
+<div class="fold">
+<div class="fold-head"><h2>性格与内核</h2></div>
+<div class="fold-content">
+<p>• 阴郁、沉默、疏离，几乎不主动交流</p>
+<p>• 对“任务”与“样本”极度执着</p>
+<p>• 因生化改造，情感麻木，对痛苦不敏感</p>
+<p>• 内心深处渴望存在意义，而非只是兵器</p>
+<p>• 对协会：机械服从，将命令当作存在证明</p>
+<p>• 信念：<span class="highlight">完成任务，就是我还活着的证据</span></p>
+</div>
 </div>
 
 <script>
-const heads=document.querySelectorAll('.fold-head');
-heads.forEach(h=>h.addEventListener('click',()=>{h.classList.toggle('active');const b=h.nextElementSibling;b.style.maxHeight=b.style.maxHeight?null:b.scrollHeight+300+'px'}));
+document.querySelectorAll('.fold-head').forEach(h=>{
+  h.addEventListener('click',()=>h.parentElement.classList.toggle('active'))
+})
 </script>
+</div>
 </body>
 </html>
