@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>深空生物工程研究院 · 角色生成器</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#0b101e;color:#e0e6f0;padding:30px 20px}
+.container{max-width:900px;margin:0 auto}
+.head{text-align:center;margin-bottom:30px}
+h1{color:#4fc3ff;font-size:26px;margin-bottom:8px}
+.sub{color:#89a6d1;font-size:14px}
+
+.section{background:#121a2f;border:1px solid #2a3a5f;border-radius:12px;padding:20px;margin-bottom:20px}
+.sec-title{color:#72d9ff;font-size:16px;margin-bottom:14px;border-left:4px solid #4fc3ff;padding-left:10px}
+.form-group{margin-bottom:14px}
+label{display:block;margin-bottom:6px;color:#a0bce4;font-size:14px}
+input,textarea{width:100%;background:#0f1629;border:1px solid #243457;border-radius:6px;padding:10px;color:#e0e6f0;resize:vertical;font-size:14px}
+input:focus,textarea:focus{outline:none;border-color:#4fc3ff}
+
+/* 立绘预览 */
+.art-preview{width:100%;height:220px;background:#0f1629;border:2px dashed #243457;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#89a6d1;margin-top:10px}
+.art-preview img{max-width:100%;max-height:100%;object-fit:contain;display:none}
+
+/* 按钮 */
+.btn{background:#4fc3ff;color:#0b101e;border:none;border-radius:8px;padding:12px 18px;font-weight:bold;margin:6px;cursor:pointer}
+.btn-group{display:flex;justify-content:center;flex-wrap:wrap}
+.btn-purple{background:#7850ff;color:#fff}
+.btn-danger{background:#ff4d6d;color:#fff}
+
+.code-out{background:#0f1629;border:1px solid #243457;border-radius:8px;padding:14px;max-height:280px;overflow-y:auto;margin-top:16px;display:none}
+#codeText{white-space:pre-wrap;word-break:break-all;font-size:12px;color:#c0d0ff}
+
+.roles-list{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.role-item{background:#151d32;border:1px solid #243457;border-radius:8px;padding:14px}
+.role-item .name{color:#4fc3ff;font-weight:bold;margin-bottom:6px}
+.role-item .code{font-size:12px;color:#a0bce4;margin-bottom:6px}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="head">
+    <h1>深空生物工程研究院 · 角色生成器</h1>
+    <p class="sub">支持单角色生成 / 批量导出 / 立绘本地预览</p>
+  </div>
+
+  <!-- 基础信息 -->
+  <div class="section">
+    <div class="sec-title">基础信息</div>
+    <div class="form-group">
+      <label>角色代号（如 GZL001）</label>
+      <input type="text" id="code" placeholder="GZL001">
+    </div>
+    <div class="form-group">
+      <label>角色名称</label>
+      <input type="text" id="name" placeholder="狼龙兽人">
+    </div>
+    <div class="form-group">
+      <label>种族</label>
+      <input type="text" id="race" placeholder="基因融合兽（灰狼×青龙）+机械改造体">
+    </div>
+    <div class="form-group">
+      <label>性别 / 年龄 / 身高 / 体重</label>
+      <input type="text" id="gender" placeholder="雄性">
+      <input type="text" id="age" placeholder="3地球年" style="margin-top:6px">
+      <input type="text" id="height" placeholder="2.2米" style="margin-top:6px">
+      <input type="text" id="weight" placeholder="180kg" style="margin-top:6px">
+    </div>
+    <div class="form-group">
+      <label>隶属 / 身份</label>
+      <input type="text" id="belong" value="深空生物工程研究院（SBERI）">
+      <input type="text" id="job" placeholder="星际探索先锋" style="margin-top:6px">
+    </div>
+  </div>
+
+  <!-- 详细设定 -->
+  <div class="section">
+    <div class="sec-title">详细设定</div>
+    <div class="form-group"><label>形态特征</label><textarea id="form" rows="3"></textarea></div>
+    <div class="form-group"><label>能力设定</label><textarea id="ability" rows="3"></textarea></div>
+    <div class="form-group"><label>性格设定</label><textarea id="personality" rows="2"></textarea></div>
+    <div class="form-group"><label>背景故事</label><textarea id="story" rows="4"></textarea></div>
+    <div class="form-group"><label>专属标识</label><textarea id="mark" rows="2"></textarea></div>
+  </div>
+
+  <!-- 立绘预览 -->
+  <div class="section">
+    <div class="sec-title">角色立绘（本地预览）</div>
+    <input type="file" id="artFile" accept="image/*" onchange="previewArt()">
+    <div class="art-preview" id="artPreview">
+      <span>选择图片后预览</span>
+      <img id="artImg">
+    </div>
+  </div>
+
+  <!-- 操作区 -->
+  <div class="btn-group">
+    <button class="btn" onclick="generateSingle()">生成单角色 HTML</button>
+    <button class="btn btn-purple" onclick="addToList()">加入批量列表</button>
+    <button class="btn btn-purple" onclick="exportBatch()">批量导出全部角色</button>
+    <button class="btn btn-danger" onclick="clearList()">清空批量列表</button>
+  </div>
+
+  <!-- 批量角色列表 -->
+  <div class="section">
+    <div class="sec-title">批量导出角色列表</div>
+    <div id="rolesList" class="roles-list"></div>
+  </div>
+
+  <!-- 代码输出 -->
+  <div class="code-out" id="codeOut">
+    <pre id="codeText"></pre>
+  </div>
+</div>
+
+<script>
+// 模板
+const template = `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>{CODE} {NAME} · 角色档案</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#0b101e;color:#e0e6f0;padding:20px;line-height:1.6;position:relative;overflow-x:hidden}
+body::before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 30%,rgba(79,195,255,0.08)0%,transparent 20%),radial-gradient(circle at 70% 70%,rgba(120,80,255,0.06)0%,transparent 15%);pointer-events:none;z-index:-1;animation:bgShift 25s infinite linear}
+@keyframes bgShift{0%{transform:translate(0,0)}50%{transform:translate(10px,-10px)}100%{transform:translate(0,0)}}
+.card{max-width:900px;margin:0 auto;background:#121a2f;border:1px solid #2a3a5f;border-radius:14px;padding:30px;box-shadow:0 0 40px rgba(30,60,120,0.3);position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(79,195,255,0.1),transparent);animation:dragonFlow 8s infinite linear;pointer-events:none}
+@keyframes dragonFlow{0%{left:-100%}100%{left:100%}}
+.title{text-align:center;font-size:28px;color:#4fc3ff;margin-bottom:8px;letter-spacing:2px;white-space:nowrap;overflow:hidden;border-right:2px solid #4fc3ff;width:0;animation:typing 2.5s steps(22) forwards,blink 0.8s infinite 2.5s}
+@keyframes typing{to{width:100%}}
+@keyframes blink{50%{border-color:transparent}}
+.subtitle{text-align:center;color:#89a6d1;margin-bottom:24px;font-size:15px;opacity:0;animation:fadeIn 1s 2s forwards}
+.art-area{width:100%;height:360px;background:#0f1629;border:2px solid #2a3a5f;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:30px;overflow:hidden;position:relative;opacity:0;animation:artFade 1.5s 2.5s forwards}
+.art-area::after{content:"";position:absolute;inset:-2px;border-radius:10px;background:linear-gradient(45deg,#4fc3ff,#7850ff,#4fc3ff);z-index:-1;filter:blur(6px);opacity:0.3;animation:auraGlow 4s infinite alternate}
+@keyframes auraGlow{0%{opacity:0.2}100%{opacity:0.4}}
+.art-area img{width:100%;height:100%;object-fit:contain}
+.fold-section{margin-bottom:16px;border-radius:8px;overflow:hidden;opacity:0;animation:secFade 1s var(--d) forwards}
+.fold-head{background:#18223b;color:#72d9ff;padding:12px 16px;font-size:17px;font-weight:bold;cursor:pointer;display:flex;justify-content:space-between;user-select:none;transition:all 0.3s;position:relative}
+.fold-head::before{content:"";position:absolute;left:0;top:0;height:100%;width:4px;background:#4fc3ff;transform:scaleY(0);transition:transform 0.3s}
+.fold-head:hover::before{transform:scaleY(1)}
+.fold-head:hover{background:#1d2a4a;padding-left:20px}
+.fold-head::after{content:"+";font-size:20px;transition:transform 0.3s}
+.fold-head.active::after{transform:rotate(45deg)}
+.fold-body{max-height:0;overflow:hidden;transition:max-height 0.5s ease;background:#151d32}
+.fold-body-inner{padding:16px}
+.info-table{width:100%;border-collapse:collapse}
+.info-table td{padding:8px 12px;border:1px solid #243457}
+.info-table td:first-child{background:#18223b;color:#a0bce4;width:120px}
+.highlight{color:#5ad1ff}
+@keyframes fadeIn{to{opacity:1}}
+@keyframes artFade{to{opacity:1}}
+@keyframes secFade{to{opacity:1}}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="title">{CODE} {NAME}</div>
+  <div class="subtitle">深空生物工程研究院 · 角色档案</div>
+  <div class="art-area" id="artBox"><img src="{ART_SRC}" alt="立绘"></div>
+
+  <div class="fold-section" style="--d:3s">
+    <div class="fold-head">基础信息</div>
+    <div class="fold-body"><div class="fold-body-inner">
+      <table class="info-table">
+        <tr><td>代号</td><td><span class="highlight">{CODE}</span></td></tr>
+        <tr><td>种族</td><td>{RACE}</td></tr>
+        <tr><td>性别</td><td>{GENDER}</td></tr>
+        <tr><td>年龄</td><td>{AGE}</td></tr>
+        <tr><td>身高</td><td>{HEIGHT}</td></tr>
+        <tr><td>体重</td><td>{WEIGHT}</td></tr>
+        <tr><td>隶属</td><td>{BELONG}</td></tr>
+        <tr><td>身份</td><td>{JOB}</td></tr>
+      </table>
+    </div></div>
+  </div>
+
+  <div class="fold-section" style="--d:3.2s">
+    <div class="fold-head">形态特征</div>
+    <div class="fold-body"><div class="fold-body-inner">{FORM}</div></div>
+  </div>
+
+  <div class="fold-section" style="--d:3.4s">
+    <div class="fold-head">能力设定</div>
+    <div class="fold-body"><div class="fold-body-inner">{ABILITY}</div></div>
+  </div>
+
+  <div class="fold-section" style="--d:3.6s">
+    <div class="fold-head">性格设定</div>
+    <div class="fold-body"><div class="fold-body-inner">{PERSONALITY}</div></div>
+  </div>
+
+  <div class="fold-section" style="--d:3.8s">
+    <div class="fold-head">背景故事</div>
+    <div class="fold-body"><div class="fold-body-inner">{STORY}</div></div>
+  </div>
+
+  <div class="fold-section" style="--d:4s">
+    <div class="fold-head">专属标识</div>
+    <div class="fold-body"><div class="fold-body-inner">{MARK}</div></div>
+  </div>
+
+  <div style="text-align:center;margin-top:24px;color:#668;font-size:12px">深空生物工程研究院 · 机密档案</div>
+</div>
+
+<script>
+const heads=document.querySelectorAll('.fold-head');
+heads.forEach(h=>h.addEventListener('click',()=>{h.classList.toggle('active');const b=h.nextElementSibling;b.style.maxHeight=b.style.maxHeight?null:b.scrollHeight+300+'px'}));
+</script>
+</body>
+</html>`;
+
+// 全局
+let roleList = [];
+let artBase64 = "";
+
+// 立绘预览
+function previewArt() {
+  const file = document.getElementById('artFile').files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    artBase64 = e.target.result;
+    const img = document.getElementById('artImg');
+    img.src = artBase64;
+    img.style.display = "block";
+    document.querySelector('#artPreview span').style.display = "none";
+  };
+  reader.readAsDataURL(file);
+}
+
+// 收集数据
+function getFormData() {
+  return {
+    code: document.getElementById('code').value || 'XXX000',
+    name: document.getElementById('name').value || '未命名',
+    race: document.getElementById('race').value || '未知',
+    gender: document.getElementById('gender').value || '未知',
+    age: document.getElementById('age').value || '未知',
+    height: document.getElementById('height').value || '未知',
+    weight: document.getElementById('weight').value || '未知',
+    belong: document.getElementById('belong').value || '深空生物工程研究院',
+    job: document.getElementById('job').value || '探索队员',
+    form: document.getElementById('form').value || '暂无',
+    ability: document.getElementById('ability').value || '暂无',
+    personality: document.getElementById('personality').value || '暂无',
+    story: document.getElementById('story').value || '暂无',
+    mark: document.getElementById('mark').value || '暂无',
+    art: artBase64
+  };
+}
+
+// 渲染
+function renderList() {
+  const box = document.getElementById('rolesList');
+  box.innerHTML = roleList.map((r, i) => `
+    <div class="role-item">
+      <div class="code">${r.code}</div>
+      <div class="name">${r.name}</div>
+      <button class="btn" style="padding:6px 10px;font-size:12px" onclick="exportOne(${i})">导出此角色</button>
+    </div>
+  `).join('');
+}
+
+// 加入列表
+function addToList() {
+  roleList.push(getFormData());
+  renderList();
+  alert("已加入批量列表");
+}
+
+// 生成单个
+function generateSingle() {
+  const data = getFormData();
+  buildAndShow(data);
+}
+
+// 导出一个
+function exportOne(index) {
+  const data = roleList[index];
+  buildAndDownload(data);
+}
+
+// 批量导出
+function exportBatch() {
+  if (roleList.length === 0) {
+    alert("请先加入角色到批量列表");
+    return;
+  }
+  roleList.forEach(data => {
+    buildAndDownload(data);
+  });
+  alert(`已批量导出 ${roleList.length} 个角色档案`);
+}
+
+// 清空
+function clearList() {
+  roleList = [];
+  renderList();
+}
+
+// 生成并显示
+function buildAndShow(data) {
+  let html = buildHtml(data);
+  document.getElementById('codeText').textContent = html;
+  document.getElementById('codeOut').style.display = "block";
+}
+
+// 生成并下载
+function buildAndDownload(data) {
+  const html = buildHtml(data);
+  const blob = new Blob([html], { type: "text/html" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `${data.code}.html`;
+  a.click();
+}
+
+// 替换模板
+function buildHtml(data) {
+  return template
+    .replace(/{CODE}/g, data.code)
+    .replace(/{NAME}/g, data.name)
+    .replace(/{RACE}/g, data.race)
+    .replace(/{GENDER}/g, data.gender)
+    .replace(/{AGE}/g, data.age)
+    .replace(/{HEIGHT}/g, data.height)
+    .replace(/{WEIGHT}/g, data.weight)
+    .replace(/{BELONG}/g, data.belong)
+    .replace(/{JOB}/g, data.job)
+    .replace(/{FORM}/g, data.form)
+    .replace(/{ABILITY}/g, data.ability)
+    .replace(/{PERSONALITY}/g, data.personality)
+    .replace(/{STORY}/g, data.story)
+    .replace(/{MARK}/g, data.mark)
+    .replace(/{ART_SRC}/g, data.art || "");
+}
+</script>
+</body>
+</html>
