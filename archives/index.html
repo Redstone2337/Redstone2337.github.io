@@ -1,113 +1,378 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-<meta charset="UTF-8">
-<title>造物协会 · 改造龙兽人档案库</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0b0f1a;color:#e0e6f0;font-family:"Microsoft YaHei",sans-serif;padding:40px 20px}
-.container{max-width:1000px;margin:0 auto}
-h1{text-align:center;color:#ffcc22;margin-bottom:10px;text-shadow:0 0 10px #ffcc2266}
-.tips{background:#151b2b;border-left:4px solid #00ccff;padding:14px 18px;margin:20px 0;border-radius:6px;color:#aad8ff}
-.card{background:#121825;padding:30px;border-radius:10px;margin:20px 0;border:1px solid #2a3550;transition:.3s}
-.card:hover{border-color:#00ccff;box-shadow:0 0 20px #00ccff22}
-.card h2{color:#00ccff;margin-bottom:10px}
-.card p{color:#b0c4de;line-height:1.6;margin-bottom:15px}
-.btn{display:inline-block;padding:10px 20px;background:#0077bb;color:white;border-radius:6px;text-decoration:none;transition:.3s}
-.btn:hover{background:#00aaff}
-
-/* 快捷HTML生成工具 */
-.tool{background:#121825;border:1px solid #2a3550;border-radius:10px;padding:30px;margin:40px 0}
-.tool h2{color:#00ccff;margin-bottom:20px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
-.form-grid input,.form-grid textarea{width:100%;padding:10px;background:#161d30;border:1px solid #2a3550;border-radius:6px;color:#fff}
-.form-grid textarea{height:80px;resize:none}
-.tool button{padding:10px 24px;background:#0077bb;color:white;border:none;border-radius:6px;cursor:pointer}
-.tool button:hover{background:#00aaff}
-#result{width:100%;height:200px;margin-top:15px;background:#0b0f1a;color:#00ffcc;padding:12px;border-radius:6px;border:1px solid #2a3550}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>造物协会 · 改造龙兽人档案库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            background: #0a0a12;
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(30, 30, 60, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(30, 30, 60, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            margin-bottom: 0.5rem;
+        }
+        .tips {
+            background: #151b2b;
+            border-left: 4px solid #00ccff;
+            padding: 14px 18px;
+            margin: 20px auto 30px;
+            border-radius: 6px;
+            color: #aad8ff;
+            max-width: 1000px;
+            font-size: 0.95rem;
+        }
+        .card-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        .unit-card {
+            background: rgba(20, 20, 35, 0.8);
+            border: 1px solid rgba(100, 100, 200, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            text-decoration: none;
+        }
+        .unit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(100, 100, 200, 0.4);
+            border-color: rgba(150, 150, 255, 0.6);
+        }
+        .unit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), transparent);
+        }
+        .unit-avatar {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            filter: saturate(1.2) contrast(1.1);
+        }
+        .unit-info {
+            padding: 1.5rem;
+        }
+        .unit-code {
+            font-size: 0.85rem;
+            color: #88aaff;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        .unit-name {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .unit-race {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 1rem;
+        }
+        .unit-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .status-active {
+            background: rgba(0, 200, 100, 0.2);
+            color: #00d860;
+            border: 1px solid rgba(0, 200, 100, 0.3);
+        }
+        .status-contained {
+            background: rgba(200, 150, 0, 0.2);
+            color: #ffc107;
+            border: 1px solid rgba(200, 150, 0, 0.3);
+        }
+        .generator-section {
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+            padding: 2rem;
+            background: rgba(20, 20, 35, 0.8);
+            border: 1px solid rgba(100, 100, 200, 0.3);
+            border-radius: 12px;
+        }
+        .generator-section h2 {
+            color: #00ccff;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        .generator-section p {
+            color: #aad8ff;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+            grid-column: 1 / -1;
+        }
+        .form-grid input,
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(10, 10, 18, 0.8);
+            border: 1px solid rgba(100, 100, 200, 0.3);
+            border-radius: 6px;
+            color: #e0e0e0;
+            font-family: inherit;
+        }
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .btn-generate {
+            padding: 10px 24px;
+            background: #0077bb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        .btn-generate:hover {
+            background: #00aaff;
+        }
+        .code-output {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(10, 10, 18, 0.8);
+            border: 1px solid rgba(100, 100, 200, 0.3);
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #00d860;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+            width: 100%;
+            min-height: 200px;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div class="container">
-<h1>造物协会 · 改造龙兽人档案库</h1>
+    <div class="bg-grid"></div>
+    <div class="container">
+        <header>
+            <h1>造物协会 · 改造龙兽人档案库</h1>
+        </header>
+        <div class="tips">
+            <strong>TIPS：</strong>本档案为造物协会最高机密级实验体记录，包含创伤、改造、能力与背景信息，仅供内部查阅。
+        </div>
+        <div class="card-list">
+            <!-- GZT001 金鳌 -->
+            <a href="gzt001.html" class="unit-card" style="--accent-color: #ffd700;">
+                <img src="https://redstone233.netlify.app/images/Laboratory.png" alt="GZT001" class="unit-avatar">
+                <div class="unit-info">
+                    <div class="unit-code">GZT001</div>
+                    <h3 class="unit-name">金鳌</h3>
+                    <p class="unit-race">金色龙人（五爪金龙后裔）</p>
+                    <span class="unit-status status-contained">Contained</span>
+                </div>
+            </a>
+            <!-- GZDL001 紫弧 -->
+            <a href="gzdl001.html" class="unit-card" style="--accent-color: #9933ff;">
+                <img src="https://redstone233.netlify.app/images/Laboratory.png" alt="GZDL001" class="unit-avatar">
+                <div class="unit-info">
+                    <div class="unit-code">GZDL001</div>
+                    <h3 class="unit-name">紫弧</h3>
+                    <p class="unit-race">紫电龙人</p>
+                    <span class="unit-status status-active">Active</span>
+                </div>
+            </a>
+            <!-- RZDL001 穆璃 -->
+            <a href="rzdl001.html" class="unit-card" style="--accent-color: #66ccff;">
+                <img src="https://redstone233.netlify.app/images/Laboratory.png" alt="RZDL001" class="unit-avatar">
+                <div class="unit-info">
+                    <div class="unit-code">RZDL001</div>
+                    <h3 class="unit-name">穆璃</h3>
+                    <p class="unit-race">琉璃龙人</p>
+                    <span class="unit-status status-active">Active</span>
+                </div>
+            </a>
+            <!-- GZL001 冰羽 -->
+            <a href="gzl001.html" class="unit-card" style="--accent-color: #00ccff;">
+                <img src="https://redstone233.netlify.app/images/Laboratory.png" alt="GZL001" class="unit-avatar">
+                <div class="unit-info">
+                    <div class="unit-code">GZL001</div>
+                    <h3 class="unit-name">冰羽</h3>
+                    <p class="unit-race">冰翼龙人</p>
+                    <span class="unit-status status-active">Active</span>
+                </div>
+            </a>
+        </div>
 
-<div class="tips">
-<strong>TIPS：</strong>本档案为造物协会最高机密级实验体记录，包含创伤、改造、能力与背景信息，仅供内部查阅。
-</div>
+        <!-- 快捷新建角色HTML工具 -->
+        <div class="generator-section">
+            <h2>📝 快捷HTML创建工具</h2>
+            <p>填写信息 → 点击生成 → 复制代码 → 保存为 对应文件名.html 即可新增角色</p>
+            <form id="generatorForm">
+                <div class="form-grid">
+                    <input type="text" id="fileName" placeholder="文件名(例: gzt002.html)" required>
+                    <input type="text" id="unitCode" placeholder="角色编号(例: GZT002)" required>
+                    <input type="text" id="unitName" placeholder="角色本名(例: 金鳌)" required>
+                    <input type="color" id="accentColor" value="#ffd700" required>
+                    <input type="url" id="avatarUrl" placeholder="头像图片URL" required>
+                    <input type="text" id="unitRace" placeholder="种族/身份" required>
+                    <select id="unitStatus" required>
+                        <option value="Active">Active</option>
+                        <option value="Contained">Contained</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="details" style="color: #88aaff; margin-bottom: 0.5rem; display: block;">基础信息（JSON格式）</label>
+                    <textarea id="details" required>{"身份":"","改造状态":"","核心改造":"","能力":"","眼睛特征":""}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="bio" style="color: #88aaff; margin-bottom: 0.5rem; display: block;">背景故事</label>
+                    <textarea id="bio" required placeholder="填写角色完整背景"></textarea>
+                </div>
+                <button type="submit" class="btn-generate">生成HTML代码</button>
+            </form>
+            <textarea class="code-output" id="codeOutput" readonly placeholder="生成后的代码会显示在这里"></textarea>
+        </div>
+    </div>
 
-<div class="card">
-<h2>GZDL001 —— 半机械电水双属性改造龙</h2>
-<p>原神龙星电龙皇室七皇子，遭“诛龙”组织捕获，经历五年地狱实验，被造物协会救下并改造重生。</p>
-<a class="btn" href="gzdl001.html">查看完整档案</a>
-</div>
-
-<div class="card">
-<h2>RZDL001 —— 毒沼生化改造龙</h2>
-<p>深海青龙与毒蜥基因融合体，生化组高危实验体，擅长毒素、腐蚀、毒沼环境压制，负责样本回收与隔离区看守。</p>
-<a class="btn" href="rzdl001.html">查看完整档案</a>
-</div>
-
-<div class="card">
-<h2>GLZ001 —— 狼龙兽人</h2>
-<p>狼族与龙族基因融合改造体，速度、爆发、感知顶尖，野性与机械改造并存的突击型战力。</p>
-<a class="btn" href="gzl001.html">查看完整档案</a>
-</div>
-
-<!-- 快捷HTML创建工具 -->
-<div class="tool">
-<h2>📝 快捷HTML创建工具</h2>
-<p style="margin-bottom:16px">填写信息 → 点击生成 → 复制代码 → 保存为 new.html 即可新增角色</p>
-<div class="form-grid">
-<input type="text" id="fname" placeholder="文件名(英文) 例: glz002">
-<input type="text" id="title" placeholder="角色全名 例: GLZ002 影爪狼龙">
-<input type="text" id="subtitle" placeholder="副标题 例: 造物协会 · 狼龙改造体">
-<input type="text" id="color" placeholder="主题色 例: #00ccff #ff4444 #00e6ac">
-<textarea id="info" placeholder="基础信息（多行）"></textarea>
-<textarea id="body" placeholder="档案正文（任意内容）"></textarea>
-</div>
-<button onclick="generate()">生成HTML代码</button>
-<textarea id="result" readonly placeholder="生成后的代码会显示在这里"></textarea>
-</div>
-
-</div>
-
-<script>
-function generate(){
-  let fname = document.getElementById('fname').value || 'new'
-  let title = document.getElementById('title').value || '新角色档案'
-  let subtitle = document.getElementById('subtitle').value || '造物协会改造体'
-  let color = document.getElementById('color').value || '#00ccff'
-  let info = document.getElementById('info').value.split('\n').join('<br>')
-  let body = document.getElementById('body').value.split('\n').join('<br>')
-
-  let html = `<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<title>${title}</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0b0f1a;color:#e0e6f0;font-family:"Microsoft YaHei",sans-serif;padding:30px 20px}
-.wrap{max-width:900px;margin:0 auto}
-.back{display:inline-block;margin-bottom:20px;color:${color};text-decoration:none}
-.title{text-align:center;margin:30px 0}
-.title h1{color:${color}}
-.section{background:#121825;border:1px solid #2a3550;border-radius:10px;padding:24px;margin-bottom:12px}
-.section h2{color:${color};margin-bottom:14px}
-</style>
-</head>
-<body>
-<div class="wrap">
-<a class="back" href="index.html">← 返回</a>
-<div class="title"><h1>${title}</h1><p>${subtitle}</p></div>
-<div class="section"><h2>基础信息</h2><p>${info}</p></div>
-<div class="section"><h2>完整档案</h2><p>${body}</p></div>
-</div>
+    <script>
+        document.getElementById('generatorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fileName = document.getElementById('fileName').value;
+            const unitCode = document.getElementById('unitCode').value;
+            const unitName = document.getElementById('unitName').value;
+            const accentColor = document.getElementById('accentColor').value;
+            const avatarUrl = document.getElementById('avatarUrl').value;
+            const unitRace = document.getElementById('unitRace').value;
+            const unitStatus = document.getElementById('unitStatus').value;
+            const details = JSON.parse(document.getElementById('details').value);
+            const bio = document.getElementById('bio').value;
+            
+            let detailsHtml = '';
+            for (const [label, value] of Object.entries(details)) {
+                detailsHtml += `<p><span class="highlight">${label}：</span> ${value}</p>`;
+            }
+        
+            const htmlTemplate = `<!DOCTYPE html>
+        <html lang="zh-CN">
+        <head>
+        <meta charset="UTF-8">
+        <title>${unitCode} · ${unitName}档案</title>
+        <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0a0a12;color:#e0e6f0;font-family:"Microsoft YaHei",'Segoe UI',sans-serif;padding:30px 20px;line-height:1.7}
+        .wrap{max-width:900px;margin:0 auto}
+        .tips{background:#151b2b;border-left:4px solid ${accentColor};padding:14px 18px;margin:0 0 25px;border-radius:6px;color:${accentColor}88}
+        .title{text-align:center;margin-bottom:30px}
+        .title h1{color:${accentColor};text-shadow:0 0 12px ${accentColor}44}
+        .title p{color:#8899aa;margin-top:0.5rem}
+        .back{display:inline-block;margin-bottom:20px;color:${accentColor};text-decoration:none;font-size:1rem}
+        .back:hover{color:#fff}
+        .fold{background:rgba(20, 20, 35, 0.8);border:1px solid rgba(100, 100, 200, 0.3);border-radius:10px;margin-bottom:12px;overflow:hidden}
+        .fold-head{padding:18px 22px;background:rgba(10, 10, 18, 0.8);color:${accentColor};cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+        .fold-head h2{font-size:18px;font-weight:600}
+        .fold-content{padding:0 24px;max-height:0;transition:max-height 0.4s ease-out}
+        .fold.active .fold-content{padding:20px 24px;max-height:2000px}
+        .fold-head::after{content:"+";font-size:22px;color:${accentColor}}
+        .fold.active .fold-head::after{content:"−"}
+        .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+        .highlight{color:${accentColor};font-weight:bold}
+        p{margin-bottom:10px;color:#c8d8e8}
+        </style>
+        </head>
+        <body>
+        <div class="wrap">
+        <a class="back" href="index.html">← 返回档案导航</a>
+        <div class="tips">
+        <strong>TIPS：</strong>${unitCode}为造物协会改造实验体，${unitStatus === 'Active' ? '现役作战单位，高危级' : '收容管控单位，限制级'}，档案信息禁止外泄。
+        </div>
+        <div class="title">
+        <h1>${unitCode} · ${unitName}档案</h1>
+        <p>造物协会 · ${unitRace}</p>
+        </div>
+        <div class="fold">
+        <div class="fold-head"><h2>基础信息</h2></div>
+        <div class="fold-content">
+        ${detailsHtml}
+        </div>
+        </div>
+        <div class="fold">
+        <div class="fold-head"><h2>背景经历</h2></div>
+        <div class="fold-content">
+        ${bio.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}
+        </div>
+        </div>
+        <script>
+        document.querySelectorAll('.fold-head').forEach(h=>{
+          h.addEventListener('click',()=>h.parentElement.classList.toggle('active'))
+        })
+    </script>
+    </div>
 </body>
-</html>`
 
-  document.getElementById('result').value = html
-}
+</html>`;
+document.getElementById('codeOutput').value = htmlTemplate;
+});
 </script>
 </body>
+
 </html>
