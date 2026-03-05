@@ -1,101 +1,75 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>GZDL001 · 紫弧档案</title>
+    <link rel="stylesheet" href="css/style.css">
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{background:#0a0a12;color:#e0e6f0;font-family:"Microsoft YaHei",'Segoe UI',sans-serif;padding:30px 20px;line-height:1.7}
-        .wrap{max-width:900px;margin:0 auto}
-        .tips{background:#151b2b;border-left:4px solid #9933ff;padding:14px 18px;margin:0 0 25px;border-radius:6px;color:#9933ff88}
-        .title{text-align:center;margin-bottom:30px}
-        .title h1{color:#9933ff;text-shadow:0 0 12px #9933ff44}
-        .title p{color:#8899aa;margin-top:0.5rem}
-        .back{display:inline-block;margin-bottom:20px;color:#9933ff;text-decoration:none;font-size:1rem}
-        .back:hover{color:#fff}
-        .fold{background:rgba(20, 20, 35, 0.8);border:1px solid rgba(100, 100, 200, 0.3);border-radius:10px;margin-bottom:12px;overflow:hidden}
-        .fold-head{padding:18px 22px;background:rgba(10, 10, 18, 0.8);color:#9933ff;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-        .fold-head h2{font-size:18px;font-weight:600}
-        .fold-content{padding:0 24px;max-height:0;transition:max-height 0.4s ease-out}
-        .fold.active .fold-content{padding:20px 24px;max-height:2000px}
-        .fold-head::after{content:"+";font-size:22px;color:#9933ff}
-        .fold.active .fold-head::after{content:"−"}
-        .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-        .highlight{color:#9933ff;font-weight:bold}
-        p{margin-bottom:10px;color:#c8d8e8}
+        :root {
+            --accent-color: #9933ff; /* 紫弧专属色 */
+            --accent-rgb: 153,51,255;
+        }
+        .tips {border-left-color: #9933ff; color: #9933ff88;}
     </style>
 </head>
-
 <body>
     <div class="wrap">
         <a class="back" href="index.html">← 返回档案导航</a>
         <div class="tips">
-            <strong>TIPS：</strong>GZDL001为紫电龙人皇室后裔改造体，雷电操控天赋拉满，现役高速突击单位，雷电攻击可撕裂金属、干扰电子设备。
+            <strong>TIPS：</strong>GZDL001为造物协会救治改造体，紫电龙人后裔，无改造副作用，擅长雷电掌控与高速飞行，是协会突击组核心成员。
         </div>
-        <div class="title">
+        <button class="avatar-btn" onclick="toggleAvatar()">查看/隐藏角色立绘</button>
+        <div class="avatar-box" id="avatarBox">
+            <img src="https://redstone233.netlify.app/images/Laboratory.png" alt="紫弧立绘">
+        </div>
+        <div class="detail-title">
             <h1>GZDL001 · 紫弧档案</h1>
-            <p>造物协会 · 紫电龙人（电水双属性改造龙）</p>
+            <p>造物协会 · 紫电龙人（仿生机械改造体）</p>
         </div>
-        <div class="fold">
-            <div class="fold-head">
-                <h2>基础信息</h2>
-            </div>
+        <div class="fold active">
+            <div class="fold-head">基础信息</div>
             <div class="fold-content">
                 <div class="info-grid">
                     <p><span class="highlight">代号：</span> GZDL001</p>
                     <p><span class="highlight">本名：</span> 紫弧</p>
-                    <p><span class="highlight">种族：</span> 紫电龙人（原神龙星电龙皇室七皇子）</p>
-                    <p><span class="highlight">改造状态：</span> 深度改造，现役服役中</p>
-                    <p><span class="highlight">核心改造：</span> 全身雷电增幅回路、神经反应强化、外骨骼装甲、水雷融合核心</p>
-                    <p><span class="highlight">眼睛特征：</span> 深紫电光（能量过载标识）</p>
-                    <p><span class="highlight">属性：</span> 电/水双属性</p>
-                    <p><span class="highlight">隶属：</span> 造物协会 · 突击组</p>
+                    <p><span class="highlight">种族：</span> 紫电龙人后裔（仿生机械改造体）</p>
+                    <p><span class="highlight">性别：</span> 雌性</p>
+                    <p><span class="highlight">状态：</span> 现役作战</p>
+                    <p><span class="highlight">核心改造：</span> 仿生机械角、机械翼膜、雷电能量增幅核心</p>
+                    <p><span class="highlight">定位：</span> 雷电输出、高速飞行、电磁干扰、小队支援</p>
+                    <p><span class="highlight">特征：</span> 紫色龙鳞、机械角带紫电、翼膜可展开飞行、全身环绕淡紫电光</p>
                 </div>
             </div>
         </div>
         <div class="fold">
-            <div class="fold-head">
-                <h2>能力特性</h2>
-            </div>
+            <div class="fold-head">背景经历</div>
             <div class="fold-content">
-                <p><span class="highlight">雷电掌控：</span> 天生操控雷电，改造后增幅回路可释放撕裂金属的高压闪电、大范围雷电领域</p>
-                <p><span class="highlight">高速移动：</span> 神经反应强化+外骨骼装甲，短距离爆发速度接近瞬移，闪避能力拉满</p>
-                <p><span class="highlight">电磁干扰：</span> 雷电能量可干扰/瘫痪敌方电子设备、改造机械体，对科技单位克制显著</p>
-                <p><span class="highlight">水雷融合：</span> 改造后解锁水属性，可将雷电融入水流，形成腐蚀性雷水、雷水漩涡</p>
-                <p><span class="highlight">物理强化：</span> 外骨骼装甲提升防御与爆发力，可进行近身雷电肉搏</p>
+                <p>紫电龙人一族的后裔，天生具备掌控雷电的能力，幼时因族群遭遇黑心实验室袭击，被抓捕后遭受断角、断肢、毁翼的折磨，沦为实验体。</p>
+                <p>造物协会清缴该黑心实验室时将其救出，为其装配定制化仿生机械角、机械翼膜，并植入雷电能量增幅核心，不仅恢复其原有能力，还大幅提升了雷电掌控与飞行能力。</p>
+                <p>改造过程全程无副作用，保留完整自主意识，为报答协会救命之恩，自愿加入协会突击组，成为核心成员，与苍獠组成最佳作战搭档。</p>
             </div>
         </div>
         <div class="fold">
-            <div class="fold-head">
-                <h2>背景经历</h2>
-            </div>
+            <div class="fold-head">能力与战斗风格</div>
             <div class="fold-content">
-                <p>紫弧是原神龙星电龙皇室七皇子，天生拥有顶尖的雷电操控天赋，是族群中最具潜力的年轻战士。</p>
-                <p>在“诛龙”组织的突袭中，紫弧为保护族人奋勇抵抗，最终寡不敌众被捕获，经历了五年地狱般的实验折磨，身体与精神遭受重创。</p>
-                <p>后被造物协会救下，成为协会改造实验体，通过植入雷电增幅回路、神经反应芯片、水雷融合核心，将其雷电天赋发挥到极致，同时解锁水属性，实现电水双融。</p>
-                <p>如今作为造物协会突击组核心战力，紫弧是战场上的闪电之刃，以迅雷不及掩耳之势收割目标，虽摆脱诛龙组织控制，但过往的实验经历仍在其心中留下阴影。</p>
+                <div class="core-ability">
+                    <p><strong>紫电狂潮：</strong> 释放大范围紫色雷电，可同时攻击多个目标，附带麻痹效果，是主要的群体输出能力。</p>
+                    <p><strong>电磁干扰：</strong> 利用雷电能量形成电磁屏障，干扰敌方电子设备与能量攻击，为队友提供掩护。</p>
+                    <p><strong>雷翼飞行：</strong> 机械翼膜配合雷电能量，飞行速度极快，可实现空中悬停、急速变向，擅长空中突袭与撤离。</p>
+                    <p><strong>紫电穿刺：</strong> 将雷电能量汇聚于机械角，发动精准穿刺攻击，可突破敌方能量护盾与装甲。</p>
+                </div>
+                <p class="highlight" style="margin:12px 0 6px">战斗风格</p>
+                <p>主打<strong>中远程雷电输出+空中支援</strong>，利用高速飞行能力保持与敌方的距离，通过紫电狂潮进行群体压制，电磁干扰掩护队友，配合苍獠的瞬影突袭进行联合作战，是突击小队的“空中雷电炮台”。</p>
+                <p class="highlight" style="margin:12px 0 6px">弱点</p>
+                <ul class="weakness-list">
+                    <li>雷电能力遇水会大幅衰减，甚至会反噬自身；</li>
+                    <li>机械翼膜与机械角虽坚韧，但惧怕高强度物理撞击；</li>
+                    <li>能量消耗过快，长时间战斗后会进入能量虚弱期。</li>
+                </ul>
             </div>
         </div>
-        <div class="fold">
-            <div class="fold-head">
-                <h2>外观特征</h2>
-            </div>
-            <div class="fold-content">
-                <p>• 全身覆盖淡紫色龙鳞，雷电涌动时鳞片会发出深浅不一的紫芒，极具视觉冲击</p>
-                <p>• 体表植入银色雷电增幅回路，与龙鳞交织，能量流动时回路会亮起紫色电光</p>
-                <p>• 四肢覆盖轻量化外骨骼装甲，关节处有雷电导流口，可直接释放雷电冲击</p>
-                <p>• 眼瞳呈深紫色，能量过载时会迸发出刺眼的电光，是其力量爆发的信号</p>
-                <p>• 龙角为螺旋状紫晶质地，可汇聚雷电能量，释放超高压雷电光束</p>
-                <p>• 尾部修长，尾尖有雷电凝聚器，可甩出雷电鞭、释放雷电弹幕</p>
-            </div>
-        </div>
-        <script>
-            document.querySelectorAll('.fold-head').forEach(h=>{
-              h.addEventListener('click',()=>h.parentElement.classList.toggle('active'))
-            })
-        </script>
     </div>
+    <script src="js/common.js"></script>
 </body>
-
 </html>

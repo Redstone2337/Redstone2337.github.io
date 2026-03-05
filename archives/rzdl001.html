@@ -1,102 +1,112 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="UTF-8">
-    <title>RZDL001 · 穆璃档案</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GZL001 · 苍獠档案</title>
+    <!-- 引入公共样式 -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- 仅需修改主题色，其他样式全复用 -->
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{background:#0a0a12;color:#e0e6f0;font-family:"Microsoft YaHei",'Segoe UI',sans-serif;padding:30px 20px;line-height:1.7}
-        .wrap{max-width:900px;margin:0 auto}
-        .tips{background:#151b2b;border-left:4px solid #66ccff;padding:14px 18px;margin:0 0 25px;border-radius:6px;color:#66ccff88}
-        .title{text-align:center;margin-bottom:30px}
-        .title h1{color:#66ccff;text-shadow:0 0 12px #66ccff44}
-        .title p{color:#8899aa;margin-top:0.5rem}
-        .back{display:inline-block;margin-bottom:20px;color:#66ccff;text-decoration:none;font-size:1rem}
-        .back:hover{color:#fff}
-        .fold{background:rgba(20, 20, 35, 0.8);border:1px solid rgba(100, 100, 200, 0.3);border-radius:10px;margin-bottom:12px;overflow:hidden}
-        .fold-head{padding:18px 22px;background:rgba(10, 10, 18, 0.8);color:#66ccff;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-        .fold-head h2{font-size:18px;font-weight:600}
-        .fold-content{padding:0 24px;max-height:0;transition:max-height 0.4s ease-out}
-        .fold.active .fold-content{padding:20px 24px;max-height:2000px}
-        .fold-head::after{content:"+";font-size:22px;color:#66ccff}
-        .fold.active .fold-head::after{content:"−"}
-        .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-        .highlight{color:#66ccff;font-weight:bold}
-        p{margin-bottom:10px;color:#c8d8e8}
+        :root {
+            --accent-color: #ff4444; /* 苍獠专属主题色 */
+            --accent-rgb: 255,68,68; /* 主题色RGB（与上方对应） */
+        }
+        .tips {border-left-color: #ff4444; color: #ff444488;}
     </style>
 </head>
-
 <body>
     <div class="wrap">
         <a class="back" href="index.html">← 返回档案导航</a>
         <div class="tips">
-            <strong>TIPS：</strong>RZDL001为琉璃龙人+毒蜥基因融合改造体，防御型收容单位，绝对防御+毒素掌控，负责样本回收与隔离区看守，意志坚定仍在抵抗协会部分控制。
+            <strong>TIPS：</strong>GZL001为狼龙融合改造体+赛博义肢强化型，野性极强、感知敏锐，短距离瞬移级突袭+机械义肢破防，近距离作战与追击能力为协会顶尖水平。
         </div>
-        <div class="title">
-            <h1>RZDL001 · 穆璃档案</h1>
-            <p>造物协会 · 琉璃龙人（毒沼生化改造龙）</p>
+        <!-- 立绘控制按钮 + 默认隐藏立绘 -->
+        <button class="avatar-btn" id="avatarBtn">查看/隐藏角色立绘</button>
+        <div class="avatar-box" id="avatarBox">
+            <!-- 替换为实际立绘URL即可 -->
+            <img src="https://redstone233.netlify.app/images/Laboratory.png" alt="GZL001苍獠立绘">
         </div>
-        <div class="fold">
-            <div class="fold-head">
-                <h2>基础信息</h2>
-            </div>
+        <div class="detail-title">
+            <h1>GZL001 · 苍獠档案</h1>
+            <p>造物协会 · 狼龙融合改造体（赛博强化版）</p>
+        </div>
+        <!-- 折叠面板内容（仅改这里即可） -->
+        <div class="fold active">
+            <div class="fold-head">基础信息</div>
             <div class="fold-content">
                 <div class="info-grid">
-                    <p><span class="highlight">代号：</span> RZDL001</p>
-                    <p><span class="highlight">本名：</span> 穆璃</p>
-                    <p><span class="highlight">种族：</span> 琉璃龙人（深海青龙+毒蜥基因融合体）</p>
-                    <p><span class="highlight">改造状态：</span> 部分改造，收容管控中</p>
-                    <p><span class="highlight">核心改造：</span> 琉璃结晶化皮肤、能量护盾生成器、反重力装置、毒沼核心</p>
-                    <p><span class="highlight">眼睛特征：</span> 淡蓝琉璃色（结晶化标识）</p>
-                    <p><span class="highlight">定位：</span> 防御型、样本回收、隔离区看守</p>
-                    <p><span class="highlight">隶属：</span> 造物协会 · 生化组</p>
+                    <p><span class="highlight">代号：</span> GZL001</p>
+                    <p><span class="highlight">本名：</span> 苍獠</p>
+                    <p><span class="highlight">种族：</span> 灰狼族×玄龙族基因融合兽人（赛博义肢强化）</p>
+                    <p><span class="highlight">性别：</span> 雄性</p>
+                    <p><span class="highlight">隶属：</span> 造物协会 · 突击组</p>
+                    <p><span class="highlight">定位：</span> 高速突袭、精准追击、近距离破防、隐蔽侦查</p>
+                    <p><span class="highlight">核心改造：</span> 左前臂赛博机械义肢（紫核能量驱动）、龙族骨骼强化、感官神经增幅</p>
+                    <p><span class="highlight">特征标识：</span> 胸口刻印GZL001编号、蓝白渐变兽毛+青蓝龙鳞、青蓝色龙角、机械义肢紫核能量源</p>
                 </div>
             </div>
         </div>
         <div class="fold">
-            <div class="fold-head">
-                <h2>能力特性</h2>
-            </div>
+            <div class="fold-head">外观特征</div>
             <div class="fold-content">
-                <p><span class="highlight">绝对防御：</span> 琉璃结晶化皮肤坚不可摧，可抵御大部分物理/能量攻击，能量护盾生成器可展开大范围防御领域</p>
-                <p><span class="highlight">毒素掌控：</span> 融合毒蜥基因后，可释放腐蚀性毒素、麻痹毒素，能制造毒沼环境压制目标</p>
-                <p><span class="highlight">能量吸收：</span> 琉璃皮肤可吸收部分能量攻击，转化为自身护盾能量，越受攻击防御越强</p>
-                <p><span class="highlight">浮空移动：</span> 植入反重力装置，可在空中自由移动，摆脱地形限制，适合看守与拦截</p>
-                <p><span class="highlight">样本回收：</span> 改造后可精准捕捉目标样本，毒素可对目标进行非致命性控制，避免样本损坏</p>
-                <p><span class="highlight">意志抗性：</span> 自身意志异常坚定，可抵抗部分精神控制，是协会少数未被完全掌控的改造体</p>
+                <p>• 主体为蓝白渐变兽毛，覆盖躯干与四肢，毛发浓密且韧性极强，可抵御轻度物理切割；肩背、上臂及腰侧覆盖青蓝色玄龙族硬质龙鳞，形成双层防御体系，龙鳞随能量流动会泛淡蓝微光。</p>
+                <p>• 保留狼耳+狼尾，狼耳听觉是普通兽人的8倍，狼尾可辅助高速移动时的平衡，尾尖带细小龙鳞，具备轻微攻击能力；头顶生一对青蓝色弯形龙角，质地坚硬，可用于近身撞击，也能汇聚少量野性能量。</p>
+                <p>• 左前臂为定制化赛博机械义肢，义肢主体为银灰金属质感，核心位置嵌有紫色能量晶核，晶核为义肢提供动力，释放能量时会迸发紫芒，义肢可切换利爪/重拳两种形态，自带破甲与撕裂效果。</p>
+                <p>• 龙族强化型肌肉与骨骼，身形挺拔且肌肉线条极具爆发力，四肢利爪可自由伸缩，爪尖带玄龙寒气，造成伤口会有短暂凝血抑制效果；双眼在暗处呈赤色微光，黑暗可视距离达50米，能量充盈时眼尾会泛淡紫电光。</p>
             </div>
         </div>
         <div class="fold">
-            <div class="fold-head">
-                <h2>背景经历</h2>
-            </div>
+            <div class="fold-head">能力与战斗风格</div>
             <div class="fold-content">
-                <p>穆璃原本是琉璃龙族群的守护者，深海青龙分支，身体天生由半透明琉璃结晶构成，拥有极强的天然防御能力，负责守护族群的核心领地。</p>
-                <p>造物协会看中其极致的防御天赋，将其捕获后进行生化改造，融合毒蜥基因，植入能量护盾生成器与反重力装置，试图将其打造成移动的防御堡垒与毒沼管控单位。</p>
-                <p>改造后穆璃成为生化组高危实验体，擅长毒素、腐蚀与毒沼环境压制，被安排负责样本回收与隔离区看守，成为协会的“移动牢笼”。</p>
-                <p>但穆璃的意志远超协会预期，始终在抵抗精神控制，未被完全驯服，如今处于协会收容管控状态，协会仍在尝试彻底掌控其意识，而穆璃则在等待挣脱控制的时机。</p>
+                <h3 class="highlight" style="font-size:15px;margin-bottom:6px">核心能力</h3>
+                <div class="core-ability">
+                    <p><strong>瞬影突袭：</strong>短距离爆发速度接近瞬移，配合龙族骨骼的强支撑性，可实现连续变向突袭，追击时速度无衰减，是协会突击组最快的单兵单位。</p>
+                    <p><strong>全域感知：</strong>融合狼族的嗅觉、听觉与龙族的环境感知，可实现千米级气息追踪、黑暗可视、声波定位，能提前预判危险攻击，伏击成功率近乎为0。</p>
+                    <p><strong>破防双击：</strong>机械义肢利爪形态可撕裂合金装甲，重拳形态附带紫核能量冲击，配合狼龙利爪的持续出血效果，近距离作战可快速破防并造成高额伤害；龙角撞击可针对敌方防御弱点进行精准突破。</p>
+                    <p><strong>紫核赋能：</strong>机械义肢的紫色能量晶核可短暂为全身赋能，提升速度与力量30%，持续10秒，赋能期间全身会环绕蓝紫交织的能量纹路，是其必杀技触发前提。</p>
+                </div>
+                <h3 class="highlight" style="font-size:15px;margin:12px 0 6px">战斗风格</h3>
+                <p>主打<strong>速攻流近身作战</strong>，不做长时间正面硬抗，以瞬影突袭接近目标，利用感知预判躲避攻击，通过机械义肢+利爪的组合技快速破防，完成击杀后立即撤离，典型的“一击即走”战术。</p>
+                <p>侦查时会利用自身隐蔽性与全域感知，提前锁定目标位置与防御漏洞，为小队提供精准情报；小队作战中常作为先锋，负责突破敌方第一道防线，为后续队友开辟通道。</p>
+                <h3 class="highlight" style="font-size:15px;margin:12px 0 6px">弱点</h3>
+                <ul class="weakness-list">
+                    <li>防御偏科，龙鳞与兽毛仅能抵御中轻度攻击，机械义肢虽坚硬但紫核晶核为薄弱点，遭受重击会导致义肢短暂失灵；</li>
+                    <li>紫核赋能后会进入5秒虚弱期，速度与力量暂时下降20%，易被敌方反制；</li>
+                    <li>长时间高速移动会消耗大量体能，无法进行持久战，适合速战速决。</li>
+                </ul>
             </div>
         </div>
         <div class="fold">
-            <div class="fold-head">
-                <h2>外观特征</h2>
-            </div>
+            <div class="fold-head">背景经历</div>
             <div class="fold-content">
-                <p>• 全身覆盖半透明淡蓝色琉璃结晶皮肤，光线折射下会呈现出琉璃光泽，结晶纹理清晰可见</p>
-                <p>• 结晶皮肤下有淡绿色毒素脉络，释放毒素时脉络会亮起，毒素颜色随类型变化（腐蚀绿/麻痹紫）</p>
-                <p>• 胸口植入能量护盾生成器，呈圆形蓝光装置，展开护盾时会散发出淡蓝色能量波</p>
-                <p>• 四肢关节处有反重力装置，呈银色悬浮模块，浮空时会发出微弱的蓝光</p>
-                <p>• 眼瞳为淡蓝琉璃色，清澈却冰冷，抵抗控制时眼瞳会闪过一丝红光</p>
-                <p>• 龙尾为琉璃质地，尾尖有毒素喷射口，可精准释放各类毒素，尾身可作为防御盾牌使用</p>
+                <p>GZL001（苍獠）是造物协会为<strong>高速突袭与精准猎杀</strong>研发的第二代狼龙融合改造体，在初代狼龙融合实验基础上，新增赛博机械义肢强化，成为协会突击组的核心单兵战力。</p>
+                <p>其原生体为灰狼族精英战士，因族群遭遇变故被协会收容，自愿接受狼龙基因融合与赛博改造，改造过程中保留了自身意识，但失去了部分原生体记忆，仅残留对族群的模糊执念。</p>
+                <p>以狼族的极致敏捷、全域感知、野性本能为基底，融入玄龙族的骨骼强度、力量爆发与环境适应力，再通过左前臂的紫核能量机械义肢弥补狼龙融合体的破防短板，最终成为兼具速度、感知与破防能力的完美突袭单位。</p>
+                <p>无原生体过往的记忆束缚，苍獠将造物协会视为唯一归属，对协会指令绝对服从，是黑暗中最锋利的“苍獠之刃”。常与GZDL001（紫弧）、RZDL001组成突击小队，紫弧的雷电掌控与苍獠的瞬影突袭形成完美配合，成为协会高难度清剿、斩首任务的王牌组合。</p>
             </div>
         </div>
-        <script>
-            document.querySelectorAll('.fold-head').forEach(h=>{
-              h.addEventListener('click',()=>h.parentElement.classList.toggle('active'))
-            })
-        </script>
+        <div class="fold">
+            <div class="fold-head">性格与内核</div>
+            <div class="fold-content">
+                <ul>
+                    <li>寡言少语，性格冷峻，警惕性极强，对陌生环境与陌生人会保持绝对戒备，仅在与紫弧等小队队友配合时会展现少量信任；</li>
+                    <li>野性难驯，战斗中会释放狼龙的原始野性，眼神凶狠极具压迫感，但日常状态下会刻意压制野性，表现出沉稳的一面；</li>
+                    <li>目标执念极强，一旦锁定追击目标，便会不死不休，直到完成任务，是协会最可靠的“追踪猎手”；</li>
+                    <li>内心深处藏有对“自我身份”的探寻欲，虽服从协会，但偶尔会因原生体的模糊记忆陷入迷茫，渴望知道自己的过往；</li>
+                    <li>小队意识极强，虽习惯独来独往，但在团队作战中会绝对配合队友，愿意为队友提供掩护，是突击小队中最值得信赖的先锋。</li>
+                </ul>
+            </div>
+        </div>
+        <div class="fold">
+            <div class="fold-head">专属羁绊</div>
+            <div class="fold-content">
+                <p>• 与GZDL001（紫弧）为最佳作战搭档，苍獠的瞬影突袭可突破敌方防线，为紫弧的大范围雷电攻击创造输出环境；紫弧的电磁干扰可掩护苍獠的隐蔽侦查，二者配合无往不利；</p>
+                <p>• 对造物协会的改造师抱有轻微依赖感，因其是见证自己从原生体变为改造体的人，也是唯一知道自己部分原生体信息的人。</p>
+            </div>
+        </div>
     </div>
+    <!-- 引入公共脚本 -->
+    <script src="js/common.js"></script>
 </body>
-
 </html>

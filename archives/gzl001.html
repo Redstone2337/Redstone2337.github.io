@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -18,6 +19,7 @@
             line-height: 1.6;
             font-size: 14px;
         }
+        /* 响应式容器，适配多尺寸 */
         .wrap {
             max-width: 900px;
             margin: 0 auto;
@@ -25,19 +27,19 @@
         }
         .tips {
             background: #151b2b;
-            border-left: 4px solid #00ccff;
+            border-left: 4px solid #ff4444;
             padding: 10px 14px;
             margin: 0 0 20px;
             border-radius: 6px;
-            color: #b3e5fc;
+            color: #ffcccc;
         }
         .title {
             text-align: center;
             margin-bottom: 20px;
         }
         .title h1 {
-            color: #00ccff;
-            text-shadow: 0 0 15px rgba(0, 204, 255, 0.5);
+            color: #ff4444;
+            text-shadow: 0 0 12px rgba(255, 68, 68, 0.4);
             font-size: 20px;
             margin-bottom: 5px;
         }
@@ -48,7 +50,7 @@
         .back {
             display: inline-block;
             margin-bottom: 15px;
-            color: #00ccff;
+            color: #ff4444;
             text-decoration: none;
             font-size: 14px;
         }
@@ -58,7 +60,7 @@
         }
         .fold {
             background: rgba(20, 20, 35, 0.8);
-            border: 1px solid rgba(0, 204, 255, 0.3);
+            border: 1px solid rgba(100, 100, 200, 0.3);
             border-radius: 8px;
             margin-bottom: 10px;
             overflow: hidden;
@@ -66,7 +68,7 @@
         .fold-head {
             padding: 14px 18px;
             background: rgba(10, 10, 18, 0.8);
-            color: #00ccff;
+            color: #ff4444;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -88,12 +90,13 @@
         .fold-head::after {
             content: "+";
             font-size: 20px;
-            color: #00ccff;
+            color: #ff4444;
             line-height: 1;
         }
         .fold.active .fold-head::after {
             content: "−";
         }
+        /* 响应式栅格：手机单列，平板/电脑双列 */
         .info-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -101,17 +104,8 @@
             margin-bottom: 8px;
         }
         .highlight {
-            color: #00ccff;
+            color: #ff4444;
             font-weight: bold;
-        }
-        .codename-desc {
-            font-size: 12px;
-            color: #ff9800;
-            font-style: italic;
-            margin-top: 10px;
-            padding: 8px;
-            background: rgba(255, 152, 0, 0.1);
-            border-radius: 4px;
         }
         p {
             margin-bottom: 8px;
@@ -127,21 +121,12 @@
         .core-ability {
             margin: 6px 0;
             padding-left: 8px;
-            border-left: 2px solid #00ccff;
+            border-left: 2px solid #ff4444;
         }
         .weakness-list {
             color: #ffcccc;
         }
-        .mission-tag {
-            display: inline-block;
-            background: #ff9800;
-            color: #0a0a12;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: bold;
-            margin-right: 5px;
-        }
+        /* 平板及以上设备样式 */
         @media (min-width: 768px) {
             body {
                 padding: 25px 20px;
@@ -165,6 +150,7 @@
                 padding: 12px 16px;
             }
         }
+        /* 电脑端样式 */
         @media (min-width: 992px) {
             body {
                 padding: 30px 20px;
@@ -179,15 +165,16 @@
         }
     </style>
 </head>
+
 <body>
     <div class="wrap">
         <a class="back" href="index.html">← 返回档案导航</a>
         <div class="tips">
-            <strong>深空密档：</strong>GZL001为「初代星际探索融合体」计划核心成果，兼具灰狼的耐力追踪与青龙的环境适应力，是深空探索与近接作战的完美结合体。
+            <strong>TIPS：</strong>GZL001为狼龙融合改造体+赛博义肢强化型，野性极强、感知敏锐，短距离瞬移级突袭+机械义肢破防，近距离作战与追击能力为协会顶尖水平。
         </div>
         <div class="title">
             <h1>GZL001 · 苍獠档案</h1>
-            <p>造物协会 · 深空生物工程研究院 · 星际先锋</p>
+            <p>造物协会 · 狼龙融合改造体（赛博强化版）</p>
         </div>
 
         <div class="fold active">
@@ -198,15 +185,12 @@
                 <div class="info-grid">
                     <p><span class="highlight">代号：</span> GZL001</p>
                     <p><span class="highlight">本名：</span> 苍獠</p>
-                    <p><span class="highlight">种族：</span> 地球灰狼×东方青龙基因融合体（航天级义肢强化）</p>
+                    <p><span class="highlight">种族：</span> 灰狼族×玄龙族基因融合兽人（赛博义肢强化）</p>
                     <p><span class="highlight">性别：</span> 雄性</p>
-                    <p><span class="highlight">隶属：</span> 造物协会 · 深空生物工程研究院 · 突击探索组</p>
-                    <p><span class="highlight">定位：</span> 深空高风险任务执行、小行星带勘测、近接破防作战</p>
-                    <p><span class="highlight">核心改造：</span> 航天级紫核义肢、真空环境适应系统、龙族能量转化器官</p>
-                    <p><span class="highlight">诞生地：</span> 火星轨道 · 共工号科研空间站</p>
-                </div>
-                <div class="codename-desc">
-                    🔍 代号释义：G (Grey Wolf/灰狼) + Z (Azure Dragon/青龙) + L (Lander/探索者)
+                    <p><span class="highlight">隶属：</span> 造物协会 · 突击组</p>
+                    <p><span class="highlight">定位：</span> 高速突袭、精准追击、近距离破防、隐蔽侦查</p>
+                    <p><span class="highlight">核心改造：</span> 左前臂赛博机械义肢（紫核能量驱动）、龙族骨骼强化、感官神经增幅</p>
+                    <p><span class="highlight">特征标识：</span> 胸口刻印GZL001编号、蓝白渐变兽毛+青蓝龙鳞、青蓝色龙角、机械义肢紫核能量源</p>
                 </div>
             </div>
         </div>
@@ -216,10 +200,10 @@
                 <h2>外观特征</h2>
             </div>
             <div class="fold-content">
-                <p>• 主体为蓝白渐变兽毛，模拟太空低温环境的伪装色，毛发浓密且具备真空隔热特性，可抵御微陨石的轻度撞击；肩背、上臂覆盖青蓝色青龙鳞甲，不仅提供物理防御，更能在宇宙辐射下形成能量护盾。</p>
-                <p>• 保留狼耳+狼尾，狼耳经过音频修正，可接收真空环境下的电磁通讯波；狼尾粗壮，兼具平衡功能与星际锚点固定能力。头顶青蓝色龙角为能量天线，可直接吸收恒星辐射转化为动能。</p>
-                <p>• 左前臂为定制化航天级赛博义肢，银灰金属质感，核心嵌有紫色「真空能量晶核」。该义肢可在无氧环境下持续运作，切换利爪形态用于样本采集与舱体切割，切换重拳形态用于陨石破碎，释放能量时迸发的紫芒是其生命维持系统正常的标志。</p>
-                <p>• 龙族强化型体魄，身形挺拔，四肢利爪可耐受极端温差。双眼在黑暗宇宙中呈赤色微光，具备高倍红外夜视能力，能清晰捕捉小行星带的微弱热源。</p>
+                <p>• 主体为蓝白渐变兽毛，覆盖躯干与四肢，毛发浓密且韧性极强，可抵御轻度物理切割；肩背、上臂及腰侧覆盖青蓝色玄龙族硬质龙鳞，形成双层防御体系，龙鳞随能量流动会泛淡蓝微光。</p>
+                <p>• 保留狼耳+狼尾，狼耳听觉是普通兽人的8倍，狼尾可辅助高速移动时的平衡，尾尖带细小龙鳞，具备轻微攻击能力；头顶生一对青蓝色弯形龙角，质地坚硬，可用于近身撞击，也能汇聚少量野性能量。</p>
+                <p>• 左前臂为定制化赛博机械义肢，义肢主体为银灰金属质感，核心位置嵌有紫色能量晶核，晶核为义肢提供动力，释放能量时会迸发紫芒，义肢可切换利爪/重拳两种形态，自带破甲与撕裂效果。</p>
+                <p>• 龙族强化型肌肉与骨骼，身形挺拔且肌肉线条极具爆发力，四肢利爪可自由伸缩，爪尖带玄龙寒气，造成伤口会有短暂凝血抑制效果；双眼在暗处呈赤色微光，黑暗可视距离达50米，能量充盈时眼尾会泛淡紫电光。</p>
             </div>
         </div>
 
@@ -230,20 +214,21 @@
             <div class="fold-content">
                 <h3 class="highlight" style="font-size:15px;margin-bottom:6px">核心能力</h3>
                 <div class="core-ability">
-                    <p><strong>瞬影突袭（零重力适配版）：</strong>在无重力或低重力环境下，爆发速度接近瞬移。利用龙族骨骼强支撑性与义肢反冲力，可实现连续变向，是小行星带复杂地形中最灵活的猎手。</p>
-                    <p><strong>全域感知（深空模式）：</strong>融合狼族嗅觉（可追踪分子级样本）与龙族环境感知。在真空环境中，可通过电磁波定位、引力波感知，实现对未知天体的全方位勘测，伏击与被伏击成功率均为0。</p>
-                    <p><strong>破防双击（工程/战斗双用）：</strong>义肢利爪可撕裂最坚硬的合金舱门与小行星岩壳，重拳形态附带紫核能量冲击。在执行任务时，这既是采集样本的工具，也是应对突发异星生物的武器。</p>
-                    <p><strong>紫核赋能（恒星充能）：</strong>当龙角吸收足够恒星辐射后，紫核可为全身赋能，短时间内提升各项机能30%。这是他在柯伊伯带极寒环境中维持生存的关键，也是必杀技的能量来源。</p>
+                    <p><strong>瞬影突袭：</strong>短距离爆发速度接近瞬移，配合龙族骨骼的强支撑性，可实现连续变向突袭，追击时速度无衰减，是协会突击组最快的单兵单位。</p>
+                    <p><strong>全域感知：</strong>融合狼族的嗅觉、听觉与龙族的环境感知，可实现千米级气息追踪、黑暗可视、声波定位，能提前预判危险攻击，伏击成功率近乎为0。</p>
+                    <p><strong>破防双击：</strong>机械义肢利爪形态可撕裂合金装甲，重拳形态附带紫核能量冲击，配合狼龙利爪的持续出血效果，近距离作战可快速破防并造成高额伤害；龙角撞击可针对敌方防御弱点进行精准突破。</p>
+                    <p><strong>紫核赋能：</strong>机械义肢的紫色能量晶核可短暂为全身赋能，提升速度与力量30%，持续10秒，赋能期间全身会环绕蓝紫交织的能量纹路，是其必杀技触发前提。</p>
                 </div>
 
                 <h3 class="highlight" style="font-size:15px;margin:12px 0 6px">战斗风格</h3>
-                <p>主打<strong>高速机动与精准执行</strong>。作为深空先锋，他不做无意义的持久战。无论是抢修故障太空舱，还是清除路径上的障碍，他都遵循“一击即走，任务优先”的原则。在团队作战中，他负责突入未知区域，建立前哨阵地。</p>
+                <p>主打<strong>速攻流近身作战</strong>，不做长时间正面硬抗，以瞬影突袭接近目标，利用感知预判躲避攻击，通过机械义肢+利爪的组合技快速破防，完成击杀后立即撤离，典型的“一击即走”战术。</p>
+                <p>侦查时会利用自身隐蔽性与全域感知，提前锁定目标位置与防御漏洞，为小队提供精准情报；小队作战中常作为先锋，负责突破敌方第一道防线，为后续队友开辟通道。</p>
 
                 <h3 class="highlight" style="font-size:15px;margin:12px 0 6px">弱点</h3>
                 <ul class="weakness-list">
-                    <li>极端能量真空：在完全无恒星辐射的黑暗区域，紫核能量消耗速度会增加3倍，需频繁休眠。</li>
-                    <li>赋能后遗症：紫核高能模式结束后，会有5秒系统冷却期，期间感官灵敏度下降，易被突袭。</li>
-                    <li>情感波动：对“地球故乡”的模糊记忆偶尔会干扰其执行纯理性的探索任务。</li>
+                    <li>防御偏科，龙鳞与兽毛仅能抵御中轻度攻击，机械义肢虽坚硬但紫核晶核为薄弱点，遭受重击会导致义肢短暂失灵；</li>
+                    <li>紫核赋能后会进入5秒虚弱期，速度与力量暂时下降20%，易被敌方反制；</li>
+                    <li>长时间高速移动会消耗大量体能，无法进行持久战，适合速战速决。</li>
                 </ul>
             </div>
         </div>
@@ -253,11 +238,10 @@
                 <h2>背景经历</h2>
             </div>
             <div class="fold-content">
-                <p>GZL001（苍獠）是造物协会旗下<strong>深空生物工程研究院</strong>的「初代星际探索融合体」项目首个成功样本，诞生于火星轨道的「共工号」科研空间站。</p>
-                <p>科研团队为替代人类执行高风险深空任务，提取了地球灰狼的优质基因（耐力、追踪力）与东方青龙的神话基因序列（环境适应性、能量转化），结合顶尖航天级机械技术完成改造。</p>
-                <p>经过3年的模拟训练与实战测试，苍獠已完成近百次近地轨道与火星周边的探索任务，包括小行星带样本采集、废弃卫星回收、空间站故障抢修等，从未出现过任务失误，成为研究院最可靠的深空先锋。</p>
-                <p>尽管战功赫赫，但改造过程中丢失的部分原生记忆，让他对“地球”产生了强烈的执念。他将研究院视为临时的港湾，内心深处却在探寻自己作为“融合体”的真正归宿。</p>
-                <p>目前，苍獠正处于<span class="mission-tag">备战状态</span>，即将执行首次「柯伊伯带勘测任务」。他将作为先遣队员，深入太阳系边缘，采集彗星样本以寻找星际生命痕迹，为人类的深空探索事业开辟道路。</p>
+                <p>GZL001（苍獠）是造物协会为<strong>高速突袭与精准猎杀</strong>研发的第二代狼龙融合改造体，在初代狼龙融合实验基础上，新增赛博机械义肢强化，成为协会突击组的核心单兵战力。</p>
+                <p>其原生体为灰狼族精英战士，因族群遭遇变故被协会收容，自愿接受狼龙基因融合与赛博改造，改造过程中保留了自身意识，但失去了部分原生体记忆，仅残留对族群的模糊执念。</p>
+                <p>以狼族的极致敏捷、全域感知、野性本能为基底，融入玄龙族的骨骼强度、力量爆发与环境适应力，再通过左前臂的紫核能量机械义肢弥补狼龙融合体的破防短板，最终成为兼具速度、感知与破防能力的完美突袭单位。</p>
+                <p>无原生体过往的记忆束缚，苍獠将造物协会视为唯一归属，对协会指令绝对服从，是黑暗中最锋利的“苍獠之刃”。常与GZDL001（紫弧）、RZDL001组成突击小队，紫弧的雷电掌控与苍獠的瞬影突袭形成完美配合，成为协会高难度清剿、斩首任务的王牌组合。</p>
             </div>
         </div>
 
@@ -267,11 +251,11 @@
             </div>
             <div class="fold-content">
                 <ul>
-                    <li><strong>绝对理性：</strong>长期的太空任务让他养成了冷静沉稳的性格，寡言少语，一切行动以任务优先级为最高准则。</li>
-                    <li><strong>野性本能：</strong>在面对未知威胁时，狼的野性与龙的威严会被瞬间激发，展现出令人胆寒的压迫感。</li>
-                    <li><strong>探索之心：</strong>代号中的“L”不仅是探索者，更是他的本能。他对未知的宇宙充满好奇，这种好奇有时甚至会超越指令的限制。</li>
-                    <li><strong>身份迷茫：</strong>他清楚自己是“造物”，是工具，但偶尔闪过的地球记忆碎片，让他开始质疑自己的存在意义，渴望在冰冷的宇宙中找到属于自己的“家”。</li>
-                    <li><strong>团队信任：</strong>对少数几位陪伴他训练的研究员和搭档（如GZDL001「紫弧」）有着极深的信任，这是他冰冷外壳下唯一的温度。</li>
+                    <li>寡言少语，性格冷峻，警惕性极强，对陌生环境与陌生人会保持绝对戒备，仅在与紫弧等小队队友配合时会展现少量信任；</li>
+                    <li>野性难驯，战斗中会释放狼龙的原始野性，眼神凶狠极具压迫感，但日常状态下会刻意压制野性，表现出沉稳的一面；</li>
+                    <li>目标执念极强，一旦锁定追击目标，便会不死不休，直到完成任务，是协会最可靠的“追踪猎手”；</li>
+                    <li>内心深处藏有对“自我身份”的探寻欲，虽服从协会，但偶尔会因原生体的模糊记忆陷入迷茫，渴望知道自己的过往；</li>
+                    <li>小队意识极强，虽习惯独来独往，但在团队作战中会绝对配合队友，愿意为队友提供掩护，是突击小队中最值得信赖的先锋。</li>
                 </ul>
             </div>
         </div>
@@ -281,14 +265,14 @@
                 <h2>专属羁绊</h2>
             </div>
             <div class="fold-content">
-                <p>• <strong>GZDL001「紫弧」</strong>：同为“星际探索融合体”计划的产物，具备雷电掌控能力。紫弧负责提供远程能量掩护与电磁干扰，苍獠负责近距离勘测，二者是完美的深空搭档。</p>
-                <p>• <strong>首席改造师「赫」</strong>：在火星空间站见证了苍獠的“诞生”。赫是唯一知道苍獠原生基因来源的人，也是苍獠在迷茫时唯一的倾诉对象，二者之间有着超越创造者与造物的复杂情感。</p>
-                <p>• <strong>「共工号」空间站</strong>：虽然是冰冷的金属牢笼，但也是他目前唯一的“栖息地”。每次任务归来，看到空间站的灯光，是他在宇宙中为数不多的安心时刻。</p>
+                <p>• 与GZDL001（紫弧）为最佳作战搭档，苍獠的瞬影突袭可突破敌方防线，为紫弧的大范围雷电攻击创造输出环境；紫弧的电磁干扰可掩护苍獠的隐蔽侦查，二者配合无往不利；</p>
+                <p>• 对造物协会的改造师抱有轻微依赖感，因其是见证自己从原生体变为改造体的人，也是唯一知道自己部分原生体信息的人。</p>
             </div>
         </div>
     </div>
 
     <script>
+        // 折叠面板交互，适配移动端点击
         document.querySelectorAll('.fold-head').forEach(head => {
             head.addEventListener('click', () => {
                 head.parentElement.classList.toggle('active');
@@ -296,4 +280,5 @@
         });
     </script>
 </body>
+
 </html>
