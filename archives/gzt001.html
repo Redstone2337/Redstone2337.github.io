@@ -7,25 +7,25 @@
     <link rel="stylesheet" href="css/style.css">
     <style>
         :root {
-            --accent-color: #ffd700; /* 金鳌专属色 */
+            --accent-color: #FFD700;
             --accent-rgb: 255,215,0;
         }
-        .tips {border-left-color: #ffd700; color: #ffd70088;}
+        .tips {border-left-color: #FFD700; color: #FFD70088;}
     </style>
 </head>
 <body>
     <div class="wrap">
         <a class="back" href="index.html">← 返回档案导航</a>
         <div class="tips">
-            <strong>TIPS：</strong>GZT001为外星入侵者改造龙族捕捉兵器，五爪金龙后裔，被造物协会收容管控，具备极强的物理防御与捕捉能力。
+            <strong>TIPS：</strong>GZT001并非造物协会产物，而是外星入侵者改造的龙族捕捉冷血单位，至今仍在敌舰服役。
         </div>
-        <button class="avatar-btn" onclick="toggleAvatar()">查看/隐藏角色立绘</button>
+        <button class="avatar-btn" id="avatarBtn">查看/隐藏角色立绘</button>
         <div class="avatar-box" id="avatarBox">
-            <img src="https://redstone2337.netlify.app/images/Laboratory.png" alt="金鳌立绘">
+            <img src="" alt="GZT001金鳌立绘">
         </div>
         <div class="detail-title">
             <h1>GZT001 · 金鳌档案</h1>
-            <p>造物协会 · 金色龙人（五爪金龙后裔/外星改造体）</p>
+            <p>外星改造 · 五爪金龙后裔</p>
         </div>
         <div class="fold active">
             <div class="fold-head">基础信息</div>
@@ -33,44 +33,42 @@
                 <div class="info-grid">
                     <p><span class="highlight">代号：</span> GZT001</p>
                     <p><span class="highlight">本名：</span> 金鳌</p>
-                    <p><span class="highlight">种族：</span> 五爪金龙后裔（外星机械改造体）</p>
+                    <p><span class="highlight">种族：</span> 五爪金龙后裔·金色龙人</p>
                     <p><span class="highlight">性别：</span> 雄性</p>
-                    <p><span class="highlight">状态：</span> 收容管控</p>
-                    <p><span class="highlight">核心改造：</span> 脊椎加装8只机械臂、左爪嵌紫色能量核心</p>
-                    <p><span class="highlight">定位：</span> 龙族捕捉、物理压制、大范围防御</p>
-                    <p><span class="highlight">特征：</span> 全身金色龙鳞、机械臂可自由伸缩、能量核心呈紫色微光</p>
+                    <p><span class="highlight">改造方：</span> 神秘星球入侵者</p>
+                    <p><span class="highlight">定位：</span> 龙族捕捉、战力压制、执行管控</p>
+                    <p><span class="highlight">核心改造：</span> 脊椎8只机械臂、左爪紫能机械义肢、双腿合金义肢</p>
+                    <p><span class="highlight">标识：</span> 胸骨左侧GZT001+Modified-Unit、金色血脉含祖龙气息</p>
                 </div>
+            </div>
+        </div>
+        <div class="fold">
+            <div class="fold-head">外观特征</div>
+            <div class="fold-content">
+                <p>通体覆盖璀璨金色龙鳞，光泽温润且防御力极强，血脉自带祖龙威压，可压制普通龙族。背部脊椎无缝衔接8只精密机械臂，灵活可控，用于抓捕与作战。左爪为紫色能量核心仿生机械龙爪，能量充盈时泛紫光。双腿部分合金义肢，金属与血肉完美融合，兼顾力量与速度。身形挺拔威严，气场强大，机械与原生龙身结合，兼具神性与冰冷科技感。</p>
+            </div>
+        </div>
+        <div class="fold">
+            <div class="fold-head">核心能力</div>
+            <div class="fold-content">
+                <p>• 祖龙血脉压制：金色血液藏祖龙气息，对龙族形成天生威压，削弱敌方战力</p>
+                <p>• 八机械臂作战：背部机械臂多方位攻击、束缚抓捕，攻防一体</p>
+                <p>• 紫能机械爪：凝聚紫色能量，撕裂防御，造成能量创伤</p>
+                <p>• 合金躯体强化：义肢加持，力量、速度、耐力全面提升</p>
+                <p>• 龙族本源战力：保留金龙原生战力，飞行、近战、防御顶尖</p>
             </div>
         </div>
         <div class="fold">
             <div class="fold-head">背景经历</div>
             <div class="fold-content">
-                <p>原是神龍星边陲的普通龙人，因身负纯正五爪金龙血脉，被外星入侵者抓捕并强制改造，成为其捕捉龙族的专属兵器。</p>
-                <p>改造过程中被植入外星机械核心，脊椎加装8只可自由伸缩的机械臂，左爪嵌有紫色能量核心，失去部分自主意识，仅听从入侵者指令。</p>
-                <p>造物协会清缴外星入侵者据点时将其收容，目前处于管控状态，协会正尝试剥离其体内的外星改造装置，恢复其自主意识。</p>
+                <p>本是神龙星边陲小镇普通金龙后裔，继承纯正五爪金龙血脉，通体金鳞，血液含金芒祖龙气息。因血脉特殊，被神秘星球入侵者盯上，强行掳至外星飞船进行强制改造。入侵者在其脊椎植入8只机械臂，改造左爪为紫能机械义肢，双腿替换合金部件，刻印专属编号，将其打造成专门捕捉龙族的冷血工具。</p>
+                <p>改造后被强行控制意识，沦为敌方战力，至今仍在飞船上服役，听命于入侵者，执行抓捕同族的指令，身不由己，被困于冰冷的机械操控之中。</p>
             </div>
         </div>
-<div class="fold">
-    <div class="fold-head">性格特质</div>
-    <div class="fold-content">
-        <p>外表冷峻寡言，内心坚韧隐忍，因自幼遭遇异族抓捕改造，对陌生生灵戒备极强，不善主动亲近。骨子里藏着龙族的骄傲与血性，坚守底线、恩怨分明，被操控时仍留存本心良知。沉稳内敛，心思缜密，行事果决不拖沓，面对困境隐忍坚韧，从不会轻易屈服。虽身负冰冷机械改造，却保有温柔底色，共情同族伤痛，渴望挣脱控制、重获自由，守护同类、坚守本心，是外冷内热、有勇有谋的龙族后裔。</p>
-    </div>
-</div>
-
         <div class="fold">
-            <div class="fold-head">能力与弱点</div>
+            <div class="fold-head">性格特质</div>
             <div class="fold-content">
-                <div class="core-ability">
-                    <p><strong>金龙防御：</strong> 金色龙鳞硬度堪比合金，可抵御大部分物理攻击与能量冲击，是协会已知最强的物理防御之一。</p>
-                    <p><strong>机械捕捉：</strong> 8只机械臂可实现360°无死角捕捉，配合能量核心的束缚力场，能轻松压制中低阶龙人。</p>
-                    <p><strong>金龙之力：</strong> 保留五爪金龙的基础力量，近身撞击能力极强，可轻易摧毁建筑与防御工事。</p>
-                </div>
-                <p class="highlight" style="margin:12px 0 6px">弱点</p>
-                <ul class="weakness-list">
-                    <li>紫色能量核心为核心弱点，遭受重击会导致机械臂失灵、防御大幅下降；</li>
-                    <li>改造后机动性大幅降低，不擅长应对高速突袭的敌人；</li>
-                    <li>自主意识薄弱，易被精神系能力干扰与控制。</li>
-                </ul>
+                <p>外表冷峻威严，沉默寡言，因长期被操控改造，性情偏冰冷疏离，自带压迫感。骨子里藏着金龙的高傲与血性，即便被控制，本心仍留存一丝良知，不愿残害同族。隐忍坚韧，承受着改造与操控的双重痛苦，却从未彻底屈服。内心藏着对自由的渴望，对故土的执念，外冷内热，有底线有风骨，是被迫沉沦却未泯灭本心的龙族战士。</p>
             </div>
         </div>
     </div>
