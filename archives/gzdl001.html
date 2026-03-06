@@ -7,25 +7,25 @@
     <link rel="stylesheet" href="css/style.css">
     <style>
         :root {
-            --accent-color: #9933ff; /* 紫弧专属色 */
+            --accent-color: #9933FF;
             --accent-rgb: 153,51,255;
         }
-        .tips {border-left-color: #9933ff; color: #9933ff88;}
+        .tips {border-left-color: #9933FF; color: #9933FF88;}
     </style>
 </head>
 <body>
     <div class="wrap">
         <a class="back" href="index.html">← 返回档案导航</a>
         <div class="tips">
-            <strong>TIPS：</strong>GZDL001为造物协会救治改造体，紫电龙人后裔，无改造副作用，擅长雷电掌控与高速飞行，是协会突击组核心成员。
+            <strong>TIPS：</strong>深空生物工程研究院隶属于造物协会旗下工程研究院，接受协会改造无副作用，自由生活。
         </div>
-        <button class="avatar-btn" onclick="toggleAvatar()">查看/隐藏角色立绘</button>
+        <button class="avatar-btn" id="avatarBtn">查看/隐藏角色立绘</button>
         <div class="avatar-box" id="avatarBox">
-            <img src="https://redstone2337.netlify.app/images/Laboratory.png" alt="紫弧立绘">
+            <img src="" alt="GZDL001紫弧立绘">
         </div>
         <div class="detail-title">
             <h1>GZDL001 · 紫弧档案</h1>
-            <p>造物协会 · 紫电龙人（仿生机械改造体）</p>
+            <p>造物协会 · 半机械紫电龙人</p>
         </div>
         <div class="fold active">
             <div class="fold-head">基础信息</div>
@@ -33,46 +33,42 @@
                 <div class="info-grid">
                     <p><span class="highlight">代号：</span> GZDL001</p>
                     <p><span class="highlight">本名：</span> 紫弧</p>
-                    <p><span class="highlight">种族：</span> 紫电龙人后裔（仿生机械改造体）</p>
-                    <p><span class="highlight">性别：</span> 雌性</p>
-                    <p><span class="highlight">状态：</span> 现役作战</p>
-                    <p><span class="highlight">核心改造：</span> 仿生机械角、机械翼膜、雷电能量增幅核心</p>
-                    <p><span class="highlight">定位：</span> 雷电输出、高速飞行、电磁干扰、小队支援</p>
-                    <p><span class="highlight">特征：</span> 紫色龙鳞、机械角带紫电、翼膜可展开飞行、全身环绕淡紫电光</p>
+                    <p><span class="highlight">种族：</span> 紫电龙人·半机械改造体</p>
+                    <p><span class="highlight">性别：</span> 雄性</p>
+                    <p><span class="highlight">隶属：</span> 造物协会</p>
+                    <p><span class="highlight">定位：</span> 战力输出、雷电掌控、近战突袭</p>
+                    <p><span class="highlight">核心改造：</span> 仿生机械右臂、合金龙角、机械龙尾</p>
+                    <p><span class="highlight">属性：</span> 雷电属性</p>
                 </div>
+            </div>
+        </div>
+        <div class="fold">
+            <div class="fold-head">外观特征</div>
+            <div class="fold-content">
+                <p>通体紫青渐变龙鳞，自带电光流转，右侧龙角被砍断后替换合金机械角，右臂为无缝仿生机械龙爪，尾部残缺处加装机械龙尾。机械部件与原生躯体完美融合，无违和感，周身萦绕淡紫电光，气质凌厉又温润。身形挺拔，龙鳞坚韧，机械部位科技感拉满，兼具原生龙族美感与赛博科技质感。</p>
+            </div>
+        </div>
+        <div class="fold">
+            <div class="fold-head">核心能力</div>
+            <div class="fold-content">
+                <p>• 紫电掌控：操控雷电之力，远程攻击、近身麻痹敌方</p>
+                <p>• 机械义肢战力：仿生右臂力量强悍，爪击带雷电撕裂效果</p>
+                <p>• 龙鳞防御：原生龙鳞+机械防护，双重防御，抗伤极强</p>
+                <p>• 极速突袭：机械肢体加持，移动迅猛，近身作战顶尖</p>
+                <p>• 无副作用改造：协会专属改造，战力提升，生活如常</p>
             </div>
         </div>
         <div class="fold">
             <div class="fold-head">背景经历</div>
             <div class="fold-content">
-                <p>紫电龙人一族的后裔，天生具备掌控雷电的能力，幼时因族群遭遇黑心实验室袭击，被抓捕后遭受断角、断肢、毁翼的折磨，沦为实验体。</p>
-                <p>造物协会清缴该黑心实验室时将其救出，为其装配定制化仿生机械角、机械翼膜，并植入雷电能量增幅核心，不仅恢复其原有能力，还大幅提升了雷电掌控与飞行能力。</p>
-                <p>改造过程全程无副作用，保留完整自主意识，为报答协会救命之恩，自愿加入协会突击组，成为核心成员，与苍獠组成最佳作战搭档。</p>
+                <p>曾被黑心实验室抓捕囚禁，遭受残忍实验，右臂被生生锯断，右侧龙角被蛮力砍断，全程被堵住口鼻，承受极致痛苦却无法发声。实验室残忍无道，残害众多龙族，断角、断肢、断尾比比皆是。</p>
+                <p>造物协会清缴捣毁黑心实验室时，将其救下，动用顶尖仿生机械技术，为其重装机械右臂、合金龙角、机械龙尾，修复所有创伤，改造无任何副作用。如今自由生活，实力大增，外表更具气场，与正常生灵无异，安稳度日。</p>
             </div>
         </div>
-<div class="fold">
-    <div class="fold-head">性格特质</div>
-    <div class="fold-content">
-        <p>温和通透，心性纯粹，历经黑暗磨难却未失温柔本心。安静内敛，不善言辞，待人谦和有礼，对救助自己的造物协会心怀感恩，懂得珍惜与回馈。内心柔软且共情力强，心疼同族遭遇，友善对待所有生灵。坚韧勇敢，直面过往伤痛，不怨天尤人，踏实沉稳、认真可靠。恪守本心，温和有分寸，沉稳不张扬，既懂感恩知进退，又有直面困境的勇气，平和温柔中藏着不屈的韧劲，待人真诚，处事稳重。</p>
-    </div>
-</div>
         <div class="fold">
-            <div class="fold-head">能力与战斗风格</div>
+            <div class="fold-head">性格特质</div>
             <div class="fold-content">
-                <div class="core-ability">
-                    <p><strong>紫电狂潮：</strong> 释放大范围紫色雷电，可同时攻击多个目标，附带麻痹效果，是主要的群体输出能力。</p>
-                    <p><strong>电磁干扰：</strong> 利用雷电能量形成电磁屏障，干扰敌方电子设备与能量攻击，为队友提供掩护。</p>
-                    <p><strong>雷翼飞行：</strong> 机械翼膜配合雷电能量，飞行速度极快，可实现空中悬停、急速变向，擅长空中突袭与撤离。</p>
-                    <p><strong>紫电穿刺：</strong> 将雷电能量汇聚于机械角，发动精准穿刺攻击，可突破敌方能量护盾与装甲。</p>
-                </div>
-                <p class="highlight" style="margin:12px 0 6px">战斗风格</p>
-                <p>主打<strong>中远程雷电输出+空中支援</strong>，利用高速飞行能力保持与敌方的距离，通过紫电狂潮进行群体压制，电磁干扰掩护队友，配合苍獠的瞬影突袭进行联合作战，是突击小队的“空中雷电炮台”。</p>
-                <p class="highlight" style="margin:12px 0 6px">弱点</p>
-                <ul class="weakness-list">
-                    <li>雷电能力遇水会大幅衰减，甚至会反噬自身；</li>
-                    <li>机械翼膜与机械角虽坚韧，但惧怕高强度物理撞击；</li>
-                    <li>能量消耗过快，长时间战斗后会进入能量虚弱期。</li>
-                </ul>
+                <p>温和内敛，心性纯粹，历经磨难却依旧温柔向阳。安静沉稳，不善争执，待人友善谦和，对造物协会满怀感恩。心思细腻，共情力强，格外体恤受过苦难的同族。坚韧果敢，直面过往伤痛，不卑不亢，沉稳可靠。虽历经黑暗，却始终保有善意，温柔有分寸，知感恩懂珍惜，平和中藏着不屈的力量。</p>
             </div>
         </div>
     </div>
