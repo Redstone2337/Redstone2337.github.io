@@ -1,4 +1,4 @@
-/* 造物协会档案库 全站通用样式 | 暗黑科技+响应式+隐藏立绘+折叠面板 */
+/* 造物协会档案库 全站通用样式 - 响应式适配手机/平板/电脑 */
 * {
     margin: 0;
     padding: 0;
@@ -7,10 +7,10 @@
 body {
     font-family: 'Segoe UI', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
     background: #0a0a12;
-    color: #e0e6f0;
+    color: #e0e0e0;
     line-height: 1.6;
 }
-/* 全局背景网格 */
+/* 全局背景网格（导航页专属） */
 .bg-grid {
     position: fixed;
     top: 0;
@@ -35,15 +35,18 @@ body {
     margin: 0 auto;
     padding: 15px 10px;
 }
-/* 通用头部标题 */
+/* 通用头部标题（导航页） */
+header {
+    text-align: center;
+    margin: 2rem 0;
+}
 h1 {
     font-size: 2.5rem;
     color: #ffd700;
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     margin-bottom: 0.5rem;
-    text-align: center;
 }
-/* 通用提示框 */
+/* 通用提示条（导航页/详情页） */
 .tips {
     background: #151b2b;
     border-left: 4px solid #00ccff;
@@ -54,7 +57,7 @@ h1 {
     max-width: 1000px;
     font-size: 0.95rem;
 }
-/* 导航页角色卡片网格 */
+/* 导航页-角色卡片网格 */
 .card-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -129,7 +132,7 @@ h1 {
     color: #ffc107;
     border: 1px solid rgba(200, 150, 0, 0.3);
 }
-/* 快捷生成工具样式 */
+/* 导航页-快捷生成工具 */
 .generator-section {
     max-width: 1000px;
     margin: 0 auto 4rem;
@@ -174,7 +177,7 @@ h1 {
     min-height: 120px;
     resize: vertical;
 }
-.btn-generate, .back-btn {
+.btn-generate {
     padding: 10px 24px;
     background: #0077bb;
     color: white;
@@ -183,10 +186,8 @@ h1 {
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 1rem;
-    display: inline-block;
-    text-decoration: none;
 }
-.btn-generate:hover, .back-btn:hover {
+.btn-generate:hover {
     background: #00aaff;
 }
 .code-output {
@@ -204,7 +205,34 @@ h1 {
     width: 100%;
     min-height: 200px;
 }
-/* 详情页折叠面板（核心样式） */
+/* 详情页-专属样式 */
+.detail-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.detail-title h1 {
+    font-size: 20px;
+    color: var(--accent-color);
+    text-shadow: 0 0 12px rgba(var(--accent-rgb), 0.25);
+    margin-bottom: 5px;
+    text-transform: none;
+}
+.detail-title p {
+    color: #8899aa;
+    font-size: 12px;
+}
+.back {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 14px;
+}
+.back:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+/* 折叠面板（详情页核心） */
 .fold {
     background: rgba(20, 20, 35, 0.8);
     border: 1px solid rgba(100, 100, 200, 0.3);
@@ -236,24 +264,25 @@ h1 {
     max-height: 0;
     transition: max-height 0.4s ease-out;
     font-size: 14px;
+    color: #c8d8e8;
 }
 .fold.active .fold-content {
     padding: 15px 18px;
     max-height: 5000px;
 }
-/* 详情页基础信息栅格 */
+/* 详情页-信息栅格 */
 .info-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 8px;
     margin-bottom: 8px;
 }
-/* 高亮文字（专属色） */
+/* 详情页-高亮文字（主题色） */
 .highlight {
     color: var(--accent-color);
     font-weight: bold;
 }
-/* 详情页角色立绘（默认隐藏） */
+/* 详情页-角色立绘（默认隐藏） */
 .avatar-box {
     text-align: center;
     margin: 20px 0;
@@ -286,34 +315,7 @@ h1 {
     background: var(--accent-color);
     color: #0a0a12;
 }
-/* 详情页标题 */
-.detail-title {
-    text-align: center;
-    margin-bottom: 20px;
-}
-.detail-title h1 {
-    font-size: 20px;
-    color: var(--accent-color);
-    text-shadow: 0 0 12px rgba(var(--accent-rgb), 0.4);
-    margin-bottom: 5px;
-}
-.detail-title p {
-    color: #8899aa;
-    font-size: 12px;
-}
-/* 详情页返回按钮 */
-.back {
-    display: inline-block;
-    margin-bottom: 15px;
-    color: var(--accent-color);
-    text-decoration: none;
-    font-size: 14px;
-}
-.back:hover {
-    color: #fff;
-    text-decoration: underline;
-}
-/* 详情页自定义样式 */
+/* 详情页-能力/弱点专属样式 */
 .core-ability {
     margin: 6px 0;
     padding-left: 8px;
@@ -321,6 +323,8 @@ h1 {
 }
 .weakness-list {
     color: #ffcccc;
+    list-style: inside;
+    margin-left: 10px;
 }
 ul {
     margin: 0 0 8px 20px;
@@ -328,10 +332,16 @@ ul {
 ul li {
     margin-bottom: 5px;
 }
-/* 响应式适配：平板（768px） */
+/* 响应式适配 - 平板（768px+） */
 @media (min-width: 768px) {
     .wrap {
         padding: 25px 20px;
+    }
+    .detail-title h1 {
+        font-size: 26px;
+    }
+    .detail-title p {
+        font-size: 14px;
     }
     .info-grid {
         grid-template-columns: 1fr 1fr;
@@ -342,24 +352,22 @@ ul li {
     }
     .fold-content {
         font-size: 15px;
-    }
-    .detail-title h1 {
-        font-size: 26px;
-    }
-    .detail-title p {
-        font-size: 14px;
-    }
-    .avatar-box img {
-        max-width: 60%;
+        line-height: 1.7;
     }
     .tips {
         padding: 12px 16px;
     }
+    .avatar-box img {
+        max-width: 60%;
+    }
 }
-/* 响应式适配：电脑（992px） */
+/* 响应式适配 - 电脑（992px+） */
 @media (min-width: 992px) {
     .wrap {
         padding: 30px 20px;
+    }
+    .detail-title h1 {
+        font-size: 28px;
     }
     .fold {
         margin-bottom: 12px;
@@ -367,11 +375,8 @@ ul li {
     .fold-content {
         font-size: 16px;
     }
-    .detail-title h1 {
-        font-size: 28px;
-    }
 }
-/* 响应式适配：手机（768px以下） */
+/* 响应式适配 - 小屏手机（768px-） */
 @media (max-width: 768px) {
     h1 {
         font-size: 2rem;
