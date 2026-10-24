@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>精致五子棋游戏</title>
     <style>
         * {
@@ -11,193 +11,152 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            overflow-x: hidden;
-        }
-
-        .game-container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            width: 100%;
-            max-width: 95vw;
-            height: 95vh;
-            display: flex;
-            flex-direction: column;
+        html, body {
+            height: 100%;
+            height: 100dvh;
             overflow: hidden;
         }
 
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* ============ 主容器 ============ */
+        .game-container {
+            width: 100%;
+            height: 100%;
+            padding: clamp(8px, 1.8vw, 16px);
+            display: flex;
+            flex-direction: column;
+            gap: clamp(6px, 1.2vw, 12px);
+            background: rgba(255, 255, 255, 0.95);
+            overflow: hidden;
+        }
+
+        /* 大屏留白并居中 */
+        @media (min-width: 900px) and (min-height: 700px) {
+            body {
+                padding: 20px;
+            }
+            .game-container {
+                max-width: 1150px;
+                max-height: 920px;
+                border-radius: 20px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        /* ============ 标题区 ============ */
         .game-header {
-            text-align: center;
-            margin-bottom: 15px;
             flex-shrink: 0;
+            text-align: center;
         }
 
         .game-title {
-            font-size: clamp(24px, 4vw, 36px);
+            font-size: clamp(18px, 3.5vw, 28px);
             color: #333;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2px;
+            letter-spacing: 1px;
         }
 
         .game-subtitle {
-            font-size: clamp(12px, 2vw, 16px);
-            color: #666;
+            font-size: clamp(11px, 1.8vw, 14px);
+            color: #888;
         }
 
+        /* ============ 顶部主控制 ============ */
         .main-controls {
-            text-align: center;
-            margin-bottom: 15px;
             flex-shrink: 0;
             display: flex;
             justify-content: center;
+            gap: clamp(8px, 1.5vw, 12px);
             flex-wrap: wrap;
-            gap: 10px;
         }
 
         .control-btn {
-            padding: clamp(8px, 1.5vw, 12px) clamp(15px, 2.5vw, 30px);
-            font-size: clamp(12px, 1.8vw, 16px);
+            padding: clamp(8px, 1.2vw, 10px) clamp(16px, 2.5vw, 24px);
+            font-size: clamp(12px, 1.6vw, 14px);
             font-weight: bold;
             border: none;
-            border-radius: 25px;
+            border-radius: 22px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            min-width: 80px;
+            transition: all 0.25s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            white-space: nowrap;
         }
 
         .btn-start {
             background: linear-gradient(135deg, #4CAF50, #45a049);
             color: white;
         }
-
-        .btn-start:hover {
+        .btn-start:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+            box-shadow: 0 6px 18px rgba(76, 175, 80, 0.4);
+        }
+        .btn-start:disabled {
+            background: #bbb;
+            cursor: not-allowed;
         }
 
         .btn-settings {
             background: linear-gradient(135deg, #FF9800, #F57C00);
             color: white;
         }
-
         .btn-settings:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+            box-shadow: 0 6px 18px rgba(255, 152, 0, 0.4);
         }
 
-        .btn-start:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .players-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding: 0 clamp(10px, 2vw, 50px);
-            flex-shrink: 0;
-        }
-
-        .player-area {
-            text-align: center;
-            padding: clamp(10px, 1.5vw, 20px);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            min-width: clamp(100px, 15vw, 150px);
-        }
-
-        .player-area.active {
+        .btn-primary {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(102, 126, 234, 0.4);
         }
 
-        .player-area.inactive {
-            background: #f5f5f5;
-            color: #999;
-            opacity: 0.7;
-        }
-
-        .player-icon {
-            width: clamp(40px, 5vw, 60px);
-            height: clamp(40px, 5vw, 60px);
-            border-radius: 50%;
-            margin: 0 auto 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: clamp(16px, 2.5vw, 24px);
-            font-weight: bold;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .black-player .player-icon {
-            background: #000;
+        .btn-secondary {
+            background: linear-gradient(135deg, #9e9e9e, #757575);
             color: white;
-            border: 3px solid #333;
+        }
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(158, 158, 158, 0.4);
         }
 
-        .white-player .player-icon {
-            background: white;
-            color: black;
-            border: 3px solid #ccc;
-        }
-
-        .player-name {
-            font-size: clamp(14px, 2vw, 18px);
-            font-weight: bold;
-            margin-bottom: 3px;
-        }
-
-        .player-status {
-            font-size: clamp(10px, 1.5vw, 14px);
-            opacity: 0.8;
-        }
-
-        .timer {
-            font-size: clamp(12px, 1.8vw, 16px);
-            font-weight: bold;
-            margin-top: 5px;
-        }
-
-        .thinking-time {
-            font-size: clamp(10px, 1.2vw, 12px);
-            color: #ff6b6b;
-            margin-top: 3px;
-            height: clamp(12px, 1.5vw, 16px);
-        }
-
-        .board-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* ============ 主体：棋盘 + 侧栏 ============ */
+        .game-body {
             flex: 1;
-            margin: 15px 0;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(6px, 1.2vw, 12px);
+        }
+
+        /* ---- 棋盘 ---- */
+        .board-container {
+            flex: 1 1 auto;
+            min-height: 0;
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
         }
 
         .game-board {
             background: #DEB887;
-            padding: clamp(10px, 2vw, 20px);
-            border-radius: 10px;
+            padding: clamp(8px, 1.5vw, 16px);
+            border-radius: 8px;
             box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
-            border: 3px solid #8B4513;
+            border: 2px solid #8B4513;
             display: inline-block;
-            max-width: 100%;
-            max-height: 100%;
         }
 
         .board-row {
@@ -209,15 +168,13 @@
             background: transparent;
             cursor: pointer;
             position: relative;
-            transition: all 0.2s ease;
+            transition: background 0.15s;
             aspect-ratio: 1;
-            min-width: 20px;
-            min-height: 20px;
+            touch-action: manipulation;
         }
 
         .cell:hover:not(.occupied) {
             background: rgba(210, 105, 30, 0.3);
-            transform: scale(1.1);
         }
 
         .cell.occupied {
@@ -230,174 +187,328 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            animation: placePiece 0.3s ease-out;
-            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+            animation: placePiece 0.25s ease-out;
+            box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.35);
         }
 
         @keyframes placePiece {
-            0% {
-                transform: translate(-50%, -50%) scale(0);
-                opacity: 0;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.2);
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
+            0%   { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            60%  { transform: translate(-50%, -50%) scale(1.15); }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
 
         .piece.black {
-            background: radial-gradient(circle at 30% 30%, #444, #000);
+            background: radial-gradient(circle at 30% 30%, #555, #000);
             border: 1px solid #000;
         }
-
         .piece.white {
-            background: radial-gradient(circle at 30% 30%, #fff, #ddd);
-            border: 1px solid #ccc;
+            background: radial-gradient(circle at 30% 30%, #fff, #d8d8d8);
+            border: 1px solid #bbb;
         }
-
         .piece.last-move {
-            box-shadow: 0 0 15px #ff6b6b, 2px 2px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 12px #ff6b6b, 1px 1px 4px rgba(0, 0, 0, 0.35);
         }
 
-        .game-info {
+        /* ---- 侧栏 ---- */
+        .game-sidebar {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(6px, 1vw, 10px);
+        }
+
+        .game-status {
             text-align: center;
-            padding: clamp(8px, 1.5vw, 15px);
-            background: #f8f9fa;
+            font-size: clamp(12px, 1.6vw, 14px);
+            font-weight: bold;
+            color: #667eea;
+            padding: 6px 10px;
+            background: #f0f2ff;
+            border-radius: 8px;
+        }
+
+        /* 玩家卡片区 */
+        .players-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: 8px;
+        }
+
+        .player-area {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: clamp(6px, 1vw, 10px);
             border-radius: 10px;
-            font-size: clamp(10px, 1.5vw, 14px);
-            color: #666;
-            min-width: clamp(80px, 12vw, 120px);
+            transition: all 0.25s ease;
+            background: #f5f5f5;
         }
 
+        .player-area.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 6px 14px rgba(102, 126, 234, 0.3);
+        }
+        .player-area.inactive {
+            opacity: 0.65;
+        }
+
+        .player-icon {
+            width: clamp(28px, 4.5vw, 42px);
+            height: clamp(28px, 4.5vw, 42px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(14px, 2.2vw, 20px);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .black-player .player-icon {
+            background: #000;
+            color: white;
+            border: 2px solid #333;
+        }
+        .white-player .player-icon {
+            background: white;
+            color: black;
+            border: 2px solid #ccc;
+        }
+
+        .player-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .player-name {
+            font-size: clamp(12px, 1.6vw, 14px);
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .player-status {
+            font-size: clamp(10px, 1.2vw, 11px);
+            opacity: 0.85;
+            white-space: nowrap;
+        }
+
+        .player-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: clamp(10px, 1.2vw, 12px);
+            margin-top: 2px;
+        }
+
+        .timer {
+            font-weight: bold;
+        }
+
+        .thinking-time {
+            color: #ff6b6b;
+        }
+
+        /* 中间对局信息 */
+        .game-info {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 3px;
+            padding: 6px 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: clamp(10px, 1.2vw, 12px);
+            color: #666;
+            white-space: nowrap;
+        }
+
+        /* 底部操作 */
         .controls {
-            text-align: center;
-            margin-top: 15px;
             flex-shrink: 0;
             display: flex;
             justify-content: center;
+            gap: clamp(6px, 1vw, 10px);
             flex-wrap: wrap;
-            gap: 10px;
         }
 
+        .controls .control-btn {
+            padding: 8px 16px;
+            font-size: clamp(11px, 1.4vw, 13px);
+        }
+
+        /* 走棋记录 */
         .move-history {
-            margin-top: 15px;
-            max-height: clamp(100px, 15vh, 150px);
-            overflow-y: auto;
-            background: white;
-            border-radius: 10px;
-            padding: clamp(10px, 1.5vw, 15px);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
             flex-shrink: 0;
+            max-height: clamp(70px, 14vh, 160px);
+            overflow-y: auto;
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: clamp(11px, 1.3vw, 13px);
+        }
+
+        .move-history h3 {
+            font-size: clamp(12px, 1.5vw, 14px);
+            color: #333;
+            margin-bottom: 4px;
+            position: sticky;
+            top: 0;
+            background: #fafafa;
         }
 
         .move-item {
-            padding: clamp(3px, 0.8vw, 5px) 0;
-            border-bottom: 1px solid #eee;
-            font-size: clamp(10px, 1.3vw, 14px);
+            padding: 2px 0;
+            border-bottom: 1px dashed #eee;
+            color: #555;
         }
-
         .move-item:last-child {
             border-bottom: none;
         }
 
-        /* 设置模态框样式 */
+        /* 滚动条 */
+        .move-history::-webkit-scrollbar,
+        .game-sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .move-history::-webkit-scrollbar-track,
+        .game-sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .move-history::-webkit-scrollbar-thumb,
+        .game-sidebar::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 3px;
+        }
+
+        /* ============ 横屏：棋盘左、侧栏右 ============ */
+        @media (orientation: landscape) and (min-width: 640px) {
+            .game-body {
+                flex-direction: row;
+            }
+
+            .game-sidebar {
+                flex: 0 0 clamp(240px, 34%, 360px);
+                overflow-y: auto;
+                padding-right: 4px;
+            }
+
+            .players-section {
+                flex-direction: column;
+            }
+
+            .player-area {
+                flex-direction: row;
+            }
+
+            .move-history {
+                max-height: none;
+                flex: 1;
+                min-height: 60px;
+            }
+        }
+
+        /* 极窄竖屏（小手机），压缩标题区 */
+        @media (orientation: portrait) and (max-width: 360px) {
+            .game-subtitle {
+                display: none;
+            }
+        }
+
+        /* ============ 设置模态框 ============ */
         .settings-modal {
             display: none;
             position: fixed;
+            inset: 0;
             z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+            padding: 20px;
         }
 
         .settings-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: clamp(20px, 3vw, 30px);
-            border-radius: 15px;
-            width: clamp(300px, 80vw, 400px);
-            max-width: 90vw;
+            background: white;
+            margin: max(20px, 8vh) auto;
+            padding: clamp(18px, 3vw, 26px);
+            border-radius: 14px;
+            width: min(420px, 92vw);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .settings-header {
             text-align: center;
-            margin-bottom: clamp(15px, 2vw, 20px);
-            font-size: clamp(18px, 3vw, 24px);
+            font-size: clamp(16px, 2.6vw, 20px);
             font-weight: bold;
             color: #333;
+            margin-bottom: 16px;
         }
 
         .setting-item {
-            margin-bottom: clamp(15px, 2vw, 20px);
+            margin-bottom: 14px;
         }
 
         .setting-label {
             display: block;
-            margin-bottom: clamp(5px, 1vw, 8px);
+            margin-bottom: 5px;
             font-weight: bold;
             color: #555;
-            font-size: clamp(12px, 1.8vw, 16px);
+            font-size: clamp(12px, 1.6vw, 14px);
         }
 
         .setting-input {
             width: 100%;
-            padding: clamp(8px, 1.5vw, 10px);
+            padding: 8px 10px;
             border: 2px solid #ddd;
             border-radius: 8px;
-            font-size: clamp(14px, 2vw, 16px);
+            font-size: clamp(13px, 1.8vw, 15px);
         }
-
         .setting-input:focus {
             outline: none;
             border-color: #667eea;
         }
 
         .setting-description {
-            font-size: clamp(10px, 1.3vw, 12px);
+            font-size: clamp(10px, 1.2vw, 12px);
             color: #888;
-            margin-top: clamp(3px, 0.5vw, 5px);
+            margin-top: 4px;
         }
 
         .settings-buttons {
-            text-align: center;
-            margin-top: clamp(20px, 3vw, 30px);
             display: flex;
             justify-content: center;
             gap: 10px;
+            margin-top: 16px;
             flex-wrap: wrap;
         }
 
+        /* ============ 提示与弹窗 ============ */
         .time-warning {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 16px;
+            right: 16px;
             background: #ff6b6b;
             color: white;
-            padding: clamp(10px, 1.5vw, 15px) clamp(15px, 2vw, 20px);
+            padding: 10px 16px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-            animation: slideIn 0.3s ease-out;
+            font-size: clamp(12px, 1.6vw, 14px);
             z-index: 1001;
-            font-size: clamp(12px, 1.8vw, 16px);
-            max-width: 80vw;
-            text-align: center;
+            animation: slideIn 0.3s ease-out;
         }
 
         @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
         }
 
         .winner-announcement {
@@ -406,274 +517,93 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: white;
-            padding: clamp(25px, 4vw, 40px);
-            border-radius: 20px;
+            padding: clamp(20px, 3vw, 32px);
+            border-radius: 16px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             text-align: center;
             z-index: 1002;
-            animation: winnerPopup 0.5s ease-out;
+            animation: winnerPopup 0.4s ease-out;
             max-width: 90vw;
             max-height: 80vh;
             overflow-y: auto;
         }
 
         @keyframes winnerPopup {
-            0% {
-                transform: translate(-50%, -50%) scale(0);
-                opacity: 0;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
 
         .winner-text {
-            font-size: clamp(20px, 4vw, 28px);
+            font-size: clamp(18px, 3.5vw, 24px);
             font-weight: bold;
-            margin-bottom: clamp(15px, 2vw, 20px);
+            margin-bottom: 12px;
             color: #333;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-
-        .game-status {
-            text-align: center;
-            margin: clamp(10px, 1.5vw, 20px) 0;
-            font-size: clamp(14px, 2vw, 18px);
-            font-weight: bold;
-            color: #667eea;
-            flex-shrink: 0;
-        }
-
-        /* 横屏模式优化 */
-        @media screen and (orientation: landscape) and (max-height: 600px) {
-            .game-container {
-                height: 98vh;
-                padding: 10px;
-            }
-            
-            .game-header {
-                margin-bottom: 10px;
-            }
-            
-            .game-title {
-                font-size: 20px;
-                margin-bottom: 3px;
-            }
-            
-            .main-controls {
-                margin-bottom: 10px;
-            }
-            
-            .control-btn {
-                padding: 6px 12px;
-                font-size: 12px;
-                min-width: 60px;
-            }
-            
-            .players-section {
-                margin-bottom: 10px;
-                padding: 0 20px;
-            }
-            
-            .player-area {
-                padding: 8px;
-                min-width: 80px;
-            }
-            
-            .player-icon {
-                width: 30px;
-                height: 30px;
-                font-size: 14px;
-            }
-            
-            .player-name {
-                font-size: 12px;
-            }
-            
-            .player-status {
-                font-size: 10px;
-            }
-            
-            .timer {
-                font-size: 11px;
-            }
-            
-            .thinking-time {
-                font-size: 9px;
-                height: 12px;
-            }
-            
-            .board-container {
-                margin: 10px 0;
-            }
-            
-            .game-board {
-                padding: 8px;
-            }
-            
-            .controls {
-                margin-top: 10px;
-            }
-            
-            .move-history {
-                margin-top: 10px;
-                max-height: 80px;
-                padding: 8px;
-            }
-            
-            .move-item {
-                padding: 2px 0;
-                font-size: 10px;
-            }
-        }
-
-        /* 平板横屏优化 */
-        @media screen and (min-width: 768px) and (min-height: 600px) and (orientation: landscape) {
-            .game-container {
-                max-width: 85vw;
-                height: 90vh;
-            }
-            
-            .board-container {
-                max-height: 60vh;
-            }
-        }
-
-        /* 手机竖屏优化 */
-        @media screen and (max-width: 480px) and (orientation: portrait) {
-            .game-container {
-                max-width: 98vw;
-                height: 98vh;
-                padding: 15px;
-            }
-            
-            .players-section {
-                padding: 0 20px;
-            }
-            
-            .game-info {
-                min-width: 70px;
-                padding: 8px;
-            }
-        }
-
-        /* 小屏幕手机优化 */
-        @media screen and (max-width: 360px) {
-            .game-container {
-                padding: 10px;
-            }
-            
-            .control-btn {
-                padding: 6px 12px;
-                font-size: 11px;
-                min-width: 70px;
-            }
-            
-            .player-area {
-                min-width: 90px;
-                padding: 10px;
-            }
-        }
-
-        /* 大屏幕优化 */
-        @media screen and (min-width: 1200px) {
-            .game-container {
-                max-width: 1000px;
-                height: 90vh;
-            }
-            
-            .board-container {
-                max-height: 65vh;
-            }
-        }
-
-        /* 防止双击缩放 */
-        .cell {
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        /* 滚动条样式 */
-        .move-history::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .move-history::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 3px;
-        }
-
-        .move-history::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 3px;
-        }
-
-        .move-history::-webkit-scrollbar-thumb:hover {
-            background: #555;
         }
     </style>
 </head>
 <body>
     <div class="game-container">
-        <div class="game-header">
+        <header class="game-header">
             <h1 class="game-title">精致五子棋</h1>
             <p class="game-subtitle">智慧与策略的对决</p>
-        </div>
+        </header>
 
         <div class="main-controls">
             <button class="control-btn btn-start" id="startBtn" onclick="startGame()">开始游戏</button>
             <button class="control-btn btn-settings" onclick="openSettings()">设置</button>
         </div>
 
-        <div class="game-status" id="gameStatus">请点击"开始游戏"开始对局</div>
-
-        <div class="players-section">
-            <div class="player-area black-player" id="blackPlayer">
-                <div class="player-icon">●</div>
-                <div class="player-name">黑棋</div>
-                <div class="player-status">未开始</div>
-                <div class="timer" id="blackTimer">00:00</div>
-                <div class="thinking-time" id="blackThinkingTime"></div>
+        <div class="game-body">
+            <div class="board-container">
+                <div class="game-board" id="gameBoard"></div>
             </div>
 
-            <div class="game-info">
-                <div>第 <span id="moveCount">0</span> 步</div>
-                <div>对局时间: <span id="gameTimer">00:00</span></div>
-                <div>限时: <span id="timeLimit">--:--</span></div>
-            </div>
+            <aside class="game-sidebar">
+                <div class="game-status" id="gameStatus">请点击"开始游戏"开始对局</div>
 
-            <div class="player-area white-player" id="whitePlayer">
-                <div class="player-icon">○</div>
-                <div class="player-name">白棋</div>
-                <div class="player-status">未开始</div>
-                <div class="timer" id="whiteTimer">00:00</div>
-                <div class="thinking-time" id="whiteThinkingTime"></div>
-            </div>
-        </div>
+                <div class="players-section">
+                    <div class="player-area black-player" id="blackPlayer">
+                        <div class="player-icon">●</div>
+                        <div class="player-info">
+                            <div class="player-name">黑棋</div>
+                            <div class="player-status">未开始</div>
+                            <div class="player-meta">
+                                <span class="timer" id="blackTimer">00:00</span>
+                                <span class="thinking-time" id="blackThinkingTime"></span>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="board-container">
-            <div class="game-board" id="gameBoard"></div>
-        </div>
+                    <div class="game-info">
+                        <div>第 <span id="moveCount">0</span> 步</div>
+                        <div>对局 <span id="gameTimer">00:00</span></div>
+                        <div>限时 <span id="timeLimit">--:--</span></div>
+                    </div>
 
-        <div class="controls">
-            <button class="control-btn btn-primary" onclick="resetGame()">重新开始</button>
-            <button class="control-btn btn-secondary" onclick="undoMove()">悔棋</button>
-            <button class="control-btn btn-secondary" onclick="showRules()">游戏规则</button>
-        </div>
+                    <div class="player-area white-player" id="whitePlayer">
+                        <div class="player-icon">○</div>
+                        <div class="player-info">
+                            <div class="player-name">白棋</div>
+                            <div class="player-status">未开始</div>
+                            <div class="player-meta">
+                                <span class="timer" id="whiteTimer">00:00</span>
+                                <span class="thinking-time" id="whiteThinkingTime"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="move-history" id="moveHistory">
-            <h3 style="margin-bottom: 10px; color: #333; font-size: clamp(14px, 2vw, 18px);">走棋记录</h3>
-            <div id="moveList"></div>
+                <div class="controls">
+                    <button class="control-btn btn-primary" onclick="resetGame()">重新开始</button>
+                    <button class="control-btn btn-secondary" onclick="undoMove()">悔棋</button>
+                    <button class="control-btn btn-secondary" onclick="showRules()">规则</button>
+                </div>
+
+                <div class="move-history" id="moveHistory">
+                    <h3>走棋记录</h3>
+                    <div id="moveList"></div>
+                </div>
+            </aside>
         </div>
     </div>
 
@@ -681,19 +611,19 @@
     <div id="settingsModal" class="settings-modal">
         <div class="settings-content">
             <div class="settings-header">游戏设置</div>
-            
+
             <div class="setting-item">
                 <label class="setting-label">对局时间限制（分钟）</label>
-                <input type="number" id="gameTimeLimit" class="setting-input" value="30" min="5" max="120">
-                <div class="setting-description">设置整局游戏的总时间限制，0表示无限制</div>
+                <input type="number" id="gameTimeLimit" class="setting-input" value="30" min="0" max="120">
+                <div class="setting-description">设置整局游戏的总时间限制，0 表示无限制</div>
             </div>
-            
+
             <div class="setting-item">
                 <label class="setting-label">每步思考时间（秒）</label>
                 <input type="number" id="thinkingTimeLimit" class="setting-input" value="30" min="10" max="300">
                 <div class="setting-description">每位玩家每步棋的思考时间限制</div>
             </div>
-            
+
             <div class="settings-buttons">
                 <button class="control-btn btn-primary" onclick="saveSettings()">保存设置</button>
                 <button class="control-btn btn-secondary" onclick="closeSettings()">取消</button>
@@ -715,29 +645,27 @@
         let timers = {};
         let gameStarted = false;
         let currentPlayerThinkingTime = 0;
+        let thinkingExpired = false;
 
-        // 游戏设置
         let gameSettings = {
-            gameTimeLimit: 30, // 分钟
-            thinkingTimeLimit: 30 // 秒
+            gameTimeLimit: 30,
+            thinkingTimeLimit: 30
         };
 
-        // 自适应棋盘大小
+        /* ---------- 尺寸计算 ---------- */
         function getCellSize() {
             const container = document.querySelector('.board-container');
-            const maxWidth = container.clientWidth - 40;
-            const maxHeight = container.clientHeight - 40;
-            
-            const maxCellSize = Math.min(
-                Math.floor(maxWidth / BOARD_SIZE),
-                Math.floor(maxHeight / BOARD_SIZE),
-                35 // 最大35px
-            );
-            
-            return Math.max(maxCellSize, 20); // 最小20px
+            if (!container) return 20;
+
+            const rect = container.getBoundingClientRect();
+            // 估算 .game-board 的 padding + border 占用
+            const boardPadding = 24;
+            const maxCell = Math.floor(Math.min(rect.width, rect.height) - boardPadding) / BOARD_SIZE;
+            const size = Math.floor(Math.min(maxCell, 40));
+            return Math.max(size, 14);
         }
 
-        // 初始化游戏
+        /* ---------- 初始化 ---------- */
         function initGame() {
             board = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null));
             currentPlayer = 'black';
@@ -749,68 +677,77 @@
             whiteTime = 0;
             currentPlayerStartTime = Date.now();
             currentPlayerThinkingTime = 0;
+            thinkingExpired = false;
             gameStarted = false;
-            
+
+            clearInterval(timers.game);
+            clearInterval(timers.players);
+            clearInterval(timers.thinking);
+
+            document.getElementById('blackTimer').textContent = '00:00';
+            document.getElementById('whiteTimer').textContent = '00:00';
+            document.getElementById('blackThinkingTime').textContent = '';
+            document.getElementById('whiteThinkingTime').textContent = '';
+            document.getElementById('gameTimer').textContent = '00:00';
+            document.getElementById('moveCount').textContent = '0';
+            document.getElementById('timeLimit').textContent = '--:--';
+
             renderBoard();
             updatePlayerStatus();
             updateMoveHistory();
             updateGameStatus();
-            
-            // 停止所有计时器
-            clearInterval(timers.game);
-            clearInterval(timers.players);
-            clearInterval(timers.thinking);
         }
 
-        // 开始游戏
+        /* ---------- 开始游戏 ---------- */
         function startGame() {
             if (gameStarted) return;
-            
+
             gameStarted = true;
             gameStartTime = Date.now();
             currentPlayerStartTime = Date.now();
             currentPlayerThinkingTime = 0;
-            
+            thinkingExpired = false;
+
             document.getElementById('startBtn').disabled = true;
             document.getElementById('startBtn').textContent = '游戏进行中';
-            
+
             updateGameStatus();
             updatePlayerStatus();
             startAllTimers();
-            
-            // 显示时间限制
+
             if (gameSettings.gameTimeLimit > 0) {
-                document.getElementById('timeLimit').textContent = 
-                    `${gameSettings.gameTimeLimit}:00`;
+                document.getElementById('timeLimit').textContent = `${gameSettings.gameTimeLimit}:00`;
             } else {
                 document.getElementById('timeLimit').textContent = '无限制';
             }
         }
 
-        // 更新游戏状态
+        /* ---------- 状态更新 ---------- */
         function updateGameStatus() {
             const status = document.getElementById('gameStatus');
-            if (!gameStarted) {
+            if (!gameStarted && !gameOver) {
                 status.textContent = '请点击"开始游戏"开始对局';
             } else if (gameOver) {
                 status.textContent = '游戏结束';
             } else {
-                const currentPlayerText = currentPlayer === 'black' ? '黑棋' : '白棋';
-                status.textContent = `当前对局中 - ${currentPlayerText}思考中...`;
+                const t = currentPlayer === 'black' ? '黑棋' : '白棋';
+                status.textContent = `对局中 · ${t}回合`;
             }
         }
 
-        // 渲染棋盘
+        /* ---------- 渲染棋盘 ---------- */
         function renderBoard() {
             const gameBoard = document.getElementById('gameBoard');
+            if (!gameBoard) return;
             gameBoard.innerHTML = '';
-            
+
             const cellSize = getCellSize();
-            
+            const pieceSize = Math.max(cellSize - 2, 8);
+
             for (let row = 0; row < BOARD_SIZE; row++) {
                 const rowDiv = document.createElement('div');
                 rowDiv.className = 'board-row';
-                
+
                 for (let col = 0; col < BOARD_SIZE; col++) {
                     const cell = document.createElement('div');
                     cell.className = 'cell';
@@ -818,100 +755,88 @@
                     cell.dataset.col = col;
                     cell.style.width = `${cellSize}px`;
                     cell.style.height = `${cellSize}px`;
-                    
+
                     if (board[row][col]) {
                         cell.classList.add('occupied');
                         const piece = document.createElement('div');
                         piece.className = `piece ${board[row][col]}`;
-                        piece.style.width = `${cellSize * 0.85}px`;
-                        piece.style.height = `${cellSize * 0.85}px`;
-                        
+                        piece.style.width = `${pieceSize}px`;
+                        piece.style.height = `${pieceSize}px`;
                         if (lastMove && lastMove.row === row && lastMove.col === col) {
                             piece.classList.add('last-move');
                         }
-                        
                         cell.appendChild(piece);
                     }
-                    
+
                     cell.addEventListener('click', handleCellClick);
                     rowDiv.appendChild(cell);
                 }
-                
                 gameBoard.appendChild(rowDiv);
             }
         }
 
-        // 处理点击事件
+        /* ---------- 落子 ---------- */
         function handleCellClick(event) {
             if (!gameStarted || gameOver) return;
-            
             const cell = event.target.closest('.cell');
             if (!cell || cell.classList.contains('occupied')) return;
-            
+
             const row = parseInt(cell.dataset.row);
             const col = parseInt(cell.dataset.col);
-            
-            // 重置当前玩家思考时间
+
             currentPlayerThinkingTime = 0;
-            
-            // 下棋
+            thinkingExpired = false;
+
             board[row][col] = currentPlayer;
             lastMove = { row, col, player: currentPlayer };
-            moveHistory.push({ row, col, player: currentPlayer, moveNumber: moveHistory.length + 1 });
-            
+            moveHistory.push({
+                row, col, player: currentPlayer,
+                moveNumber: moveHistory.length + 1
+            });
+
             renderBoard();
             updateMoveHistory();
-            
+
             if (checkWin(row, col)) {
                 endGame(currentPlayer === 'black' ? '黑棋' : '白棋');
                 return;
             }
-            
             if (checkDraw()) {
                 endGame('平局');
                 return;
             }
-            
-            // 切换玩家并重置思考时间
+
             currentPlayer = currentPlayer === 'black' ? 'white' : 'black';
             currentPlayerStartTime = Date.now();
             currentPlayerThinkingTime = 0;
-            
+
             updatePlayerStatus();
             updateGameStatus();
         }
 
-        // 检查获胜
+        /* ---------- 胜负判断 ---------- */
         function checkWin(row, col) {
-            const directions = [
-                [[0, 1], [0, -1]],   // 水平
-                [[1, 0], [-1, 0]],   // 垂直
-                [[1, 1], [-1, -1]],  // 对角线1
-                [[1, -1], [-1, 1]]   // 对角线2
+            const dirs = [
+                [[0, 1], [0, -1]],
+                [[1, 0], [-1, 0]],
+                [[1, 1], [-1, -1]],
+                [[1, -1], [-1, 1]]
             ];
-            
-            for (const direction of directions) {
+            for (const dir of dirs) {
                 let count = 1;
-                
-                for (const [dr, dc] of direction) {
-                    let r = row + dr;
-                    let c = col + dc;
-                    
-                    while (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE && 
-                           board[r][c] === currentPlayer) {
+                for (const [dr, dc] of dir) {
+                    let r = row + dr, c = col + dc;
+                    while (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE && board[r][c] === currentPlayer) {
                         count++;
                         r += dr;
                         c += dc;
                     }
                 }
-                
                 if (count >= 5) return true;
             }
-            
             return false;
         }
 
-        // 检查平局
         function checkDraw() {
             for (let row = 0; row < BOARD_SIZE; row++) {
                 for (let col = 0; col < BOARD_SIZE; col++) {
@@ -921,241 +846,224 @@
             return true;
         }
 
-        // 更新玩家状态
+        /* ---------- 玩家状态 ---------- */
         function updatePlayerStatus() {
-            const blackPlayer = document.getElementById('blackPlayer');
-            const whitePlayer = document.getElementById('whitePlayer');
-            
-            if (!gameStarted) {
-                blackPlayer.querySelector('.player-status').textContent = '未开始';
-                whitePlayer.querySelector('.player-status').textContent = '未开始';
-                return;
-            }
-            
-            if (currentPlayer === 'black') {
-                blackPlayer.classList.add('active');
-                blackPlayer.classList.remove('inactive');
-                whitePlayer.classList.add('inactive');
-                whitePlayer.classList.remove('active');
-                
-                blackPlayer.querySelector('.player-status').textContent = '思考中...';
-                whitePlayer.querySelector('.player-status').textContent = '等待中';
+            const black = document.getElementById('blackPlayer');
+            const white = document.getElementById('whitePlayer');
+
+            black.classList.remove('active', 'inactive');
+            white.classList.remove('active', 'inactive');
+
+            if (!gameStarted && !gameOver) {
+                black.querySelector('.player-status').textContent = '未开始';
+                white.querySelector('.player-status').textContent = '未开始';
+            } else if (currentPlayer === 'black') {
+                black.classList.add('active');
+                white.classList.add('inactive');
+                black.querySelector('.player-status').textContent = '思考中…';
+                white.querySelector('.player-status').textContent = '等待中';
             } else {
-                whitePlayer.classList.add('active');
-                whitePlayer.classList.remove('inactive');
-                blackPlayer.classList.add('inactive');
-                blackPlayer.classList.remove('active');
-                
-                whitePlayer.querySelector('.player-status').textContent = '思考中...';
-                blackPlayer.querySelector('.player-status').textContent = '等待中';
+                white.classList.add('active');
+                black.classList.add('inactive');
+                white.querySelector('.player-status').textContent = '思考中…';
+                black.querySelector('.player-status').textContent = '等待中';
             }
-            
+
             document.getElementById('moveCount').textContent = moveHistory.length;
         }
 
-        // 更新走棋记录
+        /* ---------- 走棋记录 ---------- */
         function updateMoveHistory() {
-            const moveList = document.getElementById('moveList');
-            moveList.innerHTML = '';
-            
-            moveHistory.slice(-10).reverse().forEach(move => {
-                const moveItem = document.createElement('div');
-                moveItem.className = 'move-item';
-                const playerText = move.player === 'black' ? '黑棋' : '白棋';
-                moveItem.textContent = `第${move.moveNumber}手: ${playerText} (${move.row + 1}, ${move.col + 1})`;
-                moveList.appendChild(moveItem);
+            const list = document.getElementById('moveList');
+            list.innerHTML = '';
+            moveHistory.slice(-10).reverse().forEach(m => {
+                const div = document.createElement('div');
+                div.className = 'move-item';
+                const p = m.player === 'black' ? '黑' : '白';
+                div.textContent = `第 ${m.moveNumber} 手 · ${p} (${m.row + 1}, ${m.col + 1})`;
+                list.appendChild(div);
             });
         }
 
-        // 启动所有计时器
+        /* ---------- 计时器 ---------- */
         function startAllTimers() {
-            // 游戏总计时器
             clearInterval(timers.game);
             timers.game = setInterval(() => {
                 if (!gameStarted || gameOver) return;
-                
                 const elapsed = Math.floor((Date.now() - gameStartTime) / 1000);
-                const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
-                const seconds = (elapsed % 60).toString().padStart(2, '0');
-                document.getElementById('gameTimer').textContent = `${minutes}:${seconds}`;
-                
-                // 检查对局时间限制
+                const mm = String(Math.floor(elapsed / 60)).padStart(2, '0');
+                const ss = String(elapsed % 60).padStart(2, '0');
+                document.getElementById('gameTimer').textContent = `${mm}:${ss}`;
+
                 if (gameSettings.gameTimeLimit > 0 && elapsed >= gameSettings.gameTimeLimit * 60) {
                     endGame('时间到！平局');
                 }
             }, 1000);
 
-            // 玩家用时计时器
             clearInterval(timers.players);
             timers.players = setInterval(() => {
-                const currentElapsed = Math.floor((Date.now() - currentPlayerStartTime) / 1000);
-                
+                if (!gameStarted || gameOver) return;
+                const elapsed = Math.floor((Date.now() - currentPlayerStartTime) / 1000);
                 if (currentPlayer === 'black') {
-                    const total = blackTime + currentElapsed;
-                    const minutes = Math.floor(total / 60).toString().padStart(2, '0');
-                    const seconds = (total % 60).toString().padStart(2, '0');
-                    document.getElementById('blackTimer').textContent = `${minutes}:${seconds}`;
+                    const total = blackTime + elapsed;
+                    document.getElementById('blackTimer').textContent =
+                        `${String(Math.floor(total / 60)).padStart(2, '0')}:${String(total % 60).padStart(2, '0')}`;
                 } else {
-                    const total = whiteTime + currentElapsed;
-                    const minutes = Math.floor(total / 60).toString().padStart(2, '0');
-                    const seconds = (total % 60).toString().padStart(2, '0');
-                    document.getElementById('whiteTimer').textContent = `${minutes}:${seconds}`;
+                    const total = whiteTime + elapsed;
+                    document.getElementById('whiteTimer').textContent =
+                        `${String(Math.floor(total / 60)).padStart(2, '0')}:${String(total % 60).padStart(2, '0')}`;
                 }
-            }, 1000);
+            }, 500);
 
-            // 思考时间计时器
             clearInterval(timers.thinking);
             timers.thinking = setInterval(() => {
+                if (!gameStarted || gameOver) return;
                 currentPlayerThinkingTime++;
-                
-                const remainingTime = gameSettings.thinkingTimeLimit - currentPlayerThinkingTime;
-                const thinkingTimeElement = document.getElementById(
+
+                const remaining = gameSettings.thinkingTimeLimit - currentPlayerThinkingTime;
+                const el = document.getElementById(
                     currentPlayer === 'black' ? 'blackThinkingTime' : 'whiteThinkingTime'
                 );
-                
-                if (remainingTime > 0) {
-                    thinkingTimeElement.textContent = `思考时间: ${remainingTime}秒`;
-                    thinkingTimeElement.style.color = remainingTime <= 10 ? '#ff6b6b' : '#666';
-                } else {
-                    thinkingTimeElement.textContent = '时间到！';
-                    thinkingTimeElement.style.color = '#ff0000';
-                    
-                    // 自动切换玩家
+
+                if (remaining > 0) {
+                    el.textContent = `${remaining}s`;
+                    el.style.color = remaining <= 10 ? '#ff6b6b' : '#999';
+                } else if (!thinkingExpired) {
+                    thinkingExpired = true;
+                    el.textContent = '超时';
+                    el.style.color = '#ff0000';
+                    showTimeWarning();
                     setTimeout(() => {
-                        if (!gameOver) {
-                            showTimeWarning();
-                            switchPlayer();
-                        }
-                    }, 1000);
+                        if (!gameOver && gameStarted) switchPlayer();
+                    }, 800);
                 }
             }, 1000);
         }
 
-        // 显示时间警告
         function showTimeWarning() {
-            const warning = document.createElement('div');
-            warning.className = 'time-warning';
-            const playerText = currentPlayer === 'black' ? '黑棋' : '白棋';
-            warning.textContent = `${playerText}思考时间到！自动切换`;
-            document.body.appendChild(warning);
-            
-            setTimeout(() => {
-                warning.remove();
-            }, 3000);
+            const warn = document.createElement('div');
+            warn.className = 'time-warning';
+            warn.textContent = `${currentPlayer === 'black' ? '黑棋' : '白棋'}思考超时，自动切换`;
+            document.body.appendChild(warn);
+            setTimeout(() => warn.remove(), 2800);
         }
 
-        // 切换玩家
         function switchPlayer() {
+            // 结算当前玩家用时
+            const elapsed = Math.floor((Date.now() - currentPlayerStartTime) / 1000);
+            if (currentPlayer === 'black') blackTime += elapsed;
+            else whiteTime += elapsed;
+
             currentPlayer = currentPlayer === 'black' ? 'white' : 'black';
             currentPlayerStartTime = Date.now();
             currentPlayerThinkingTime = 0;
+            thinkingExpired = false;
+
+            document.getElementById('blackThinkingTime').textContent = '';
+            document.getElementById('whiteThinkingTime').textContent = '';
+
             updatePlayerStatus();
             updateGameStatus();
         }
 
-        // 结束游戏
+        /* ---------- 结束对局 ---------- */
         function endGame(result) {
             gameOver = true;
             gameStarted = false;
             clearInterval(timers.game);
             clearInterval(timers.players);
             clearInterval(timers.thinking);
-            
+
             document.getElementById('startBtn').disabled = false;
             document.getElementById('startBtn').textContent = '开始游戏';
-            
+
             const overlay = document.createElement('div');
             overlay.className = 'overlay';
             document.body.appendChild(overlay);
-            
-            const announcement = document.createElement('div');
-            announcement.className = 'winner-announcement';
-            
+
+            const modal = document.createElement('div');
+            modal.className = 'winner-announcement';
+
             if (result === '平局' || result === '时间到！平局') {
-                announcement.innerHTML = `
+                modal.innerHTML = `
                     <div class="winner-text">🤝 ${result}</div>
-                    <p>双方都表现出色，再来一局吧！</p>
+                    <p style="color:#666;margin-bottom:16px;">双方势均力敌，再来一局吧！</p>
                     <button class="control-btn btn-primary" onclick="closeAnnouncement()">确定</button>
                 `;
             } else {
-                const winnerColor = result === '黑棋' ? '⚫' : '⚪';
-                announcement.innerHTML = `
-                    <div class="winner-text">${winnerColor} ${result}获胜！</div>
-                    <p>恭喜获胜，精彩的对局！</p>
+                const icon = result === '黑棋' ? '⚫' : '⚪';
+                modal.innerHTML = `
+                    <div class="winner-text">${icon} ${result}获胜！</div>
+                    <p style="color:#666;margin-bottom:16px;">恭喜获胜，精彩的对局！</p>
                     <button class="control-btn btn-primary" onclick="closeAnnouncement()">确定</button>
                 `;
             }
-            
-            document.body.appendChild(announcement);
+            document.body.appendChild(modal);
             updateGameStatus();
         }
 
-        // 关闭获胜提示
         function closeAnnouncement() {
-            const overlay = document.querySelector('.overlay');
-            const announcement = document.querySelector('.winner-announcement');
-            if (overlay) overlay.remove();
-            if (announcement) announcement.remove();
+            document.querySelector('.overlay')?.remove();
+            document.querySelector('.winner-announcement')?.remove();
         }
 
-        // 打开设置
+        /* ---------- 设置 ---------- */
         function openSettings() {
             document.getElementById('settingsModal').style.display = 'block';
             document.getElementById('gameTimeLimit').value = gameSettings.gameTimeLimit;
             document.getElementById('thinkingTimeLimit').value = gameSettings.thinkingTimeLimit;
         }
 
-        // 关闭设置
         function closeSettings() {
             document.getElementById('settingsModal').style.display = 'none';
         }
 
-        // 保存设置
         function saveSettings() {
-            const gameTimeLimit = parseInt(document.getElementById('gameTimeLimit').value);
-            const thinkingTimeLimit = parseInt(document.getElementById('thinkingTimeLimit').value);
-            
-            if (gameTimeLimit < 0 || gameTimeLimit > 120) {
-                alert('对局时间限制必须在0-120分钟之间');
+            const g = parseInt(document.getElementById('gameTimeLimit').value);
+            const t = parseInt(document.getElementById('thinkingTimeLimit').value);
+
+            if (isNaN(g) || g < 0 || g > 120) {
+                alert('对局时间限制必须在 0-120 分钟之间');
                 return;
             }
-            
-            if (thinkingTimeLimit < 10 || thinkingTimeLimit > 300) {
-                alert('思考时间限制必须在10-300秒之间');
+            if (isNaN(t) || t < 10 || t > 300) {
+                alert('思考时间限制必须在 10-300 秒之间');
                 return;
             }
-            
-            gameSettings.gameTimeLimit = gameTimeLimit;
-            gameSettings.thinkingTimeLimit = thinkingTimeLimit;
-            
+            gameSettings.gameTimeLimit = g;
+            gameSettings.thinkingTimeLimit = t;
             closeSettings();
             alert('设置已保存！');
         }
 
-        // 悔棋
+        /* ---------- 悔棋 ---------- */
         function undoMove() {
             if (!gameStarted || gameOver || moveHistory.length === 0) return;
-            
-            const lastMove = moveHistory.pop();
-            board[lastMove.row][lastMove.col] = null;
-            
-            // 切换回上一步的玩家
-            currentPlayer = lastMove.player;
+            const last = moveHistory.pop();
+            board[last.row][last.col] = null;
+
+            currentPlayer = last.player;
             currentPlayerStartTime = Date.now();
             currentPlayerThinkingTime = 0;
-            
+            thinkingExpired = false;
+
+            lastMove = moveHistory.length > 0 ? {
+                row: moveHistory[moveHistory.length - 1].row,
+                col: moveHistory[moveHistory.length - 1].col
+            } : null;
+
             renderBoard();
             updatePlayerStatus();
             updateMoveHistory();
             updateGameStatus();
         }
 
-        // 显示规则
+        /* ---------- 规则 ---------- */
         function showRules() {
             alert('五子棋规则：\n\n1. 点击"开始游戏"开始对战\n2. 黑棋先手，白棋后手，轮流下棋\n3. 每步棋有思考时间限制，超时自动切换\n4. 先在横、竖、斜任一方向连成五子者获胜\n5. 棋盘填满仍未分胜负则为平局\n6. 可以使用悔棋功能撤销上一步\n\n祝您游戏愉快！');
         }
 
-        // 重置游戏
+        /* ---------- 重置 ---------- */
         function resetGame() {
             closeAnnouncement();
             initGame();
@@ -1163,42 +1071,46 @@
             document.getElementById('startBtn').textContent = '开始游戏';
         }
 
-        // 页面加载完成后初始化游戏
-        window.onload = initGame;
+        /* ---------- 布局监听 ---------- */
+        function setupResizeObserver() {
+            const container = document.querySelector('.board-container');
+            if (!container) return;
 
-        // 窗口大小改变时重新渲染棋盘
-        window.addEventListener('resize', () => {
-            renderBoard();
-        });
-
-        // 屏幕旋转时重新渲染
-        window.addEventListener('orientationchange', () => {
-            setTimeout(() => {
-                renderBoard();
-            }, 100);
-        });
-
-        // 点击模态框外部关闭
-        window.onclick = function(event) {
-            const modal = document.getElementById('settingsModal');
-            if (event.target === modal) {
-                closeSettings();
+            if (typeof ResizeObserver !== 'undefined') {
+                let raf;
+                const observer = new ResizeObserver(() => {
+                    cancelAnimationFrame(raf);
+                    raf = requestAnimationFrame(() => renderBoard());
+                });
+                observer.observe(container);
+            } else {
+                window.addEventListener('resize', () => {
+                    renderBoard();
+                });
             }
         }
 
-        // 防止双击缩放
-        document.addEventListener('touchstart', function(event) {
-            if (event.touches.length > 1) {
-                event.preventDefault();
+        /* ---------- 启动 ---------- */
+        window.addEventListener('load', () => {
+            // 布局稳定后再初始化
+            requestAnimationFrame(() => {
+                initGame();
+                setupResizeObserver();
+            });
+        });
+
+        // 模态框点击外部关闭
+        window.addEventListener('click', (e) => {
+            if (e.target === document.getElementById('settingsModal')) {
+                closeSettings();
             }
         });
 
+        // 防止双击缩放
         let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(event) {
-            const now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
+        document.addEventListener('touchend', (e) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) e.preventDefault();
             lastTouchEnd = now;
         }, false);
     </script>
